@@ -32,3 +32,19 @@ html {
 body {
   @apply bg-white text-ink font-sans antialiased;
 }
+
+.legal-content h1 {
+  @apply text-4xl font-extrabold text-ink;
+}
+
+.legal-content h2 {
+  @apply mt-8 text-xl font-bold text-ink;
+}
+
+.legal-content p {
+  @apply mt-3 text-sm leading-relaxed text-muted;
+}
+
+.legal-content ul {
+  @apply mt-3 list-disc space-y-1 pl-5 text-sm text-muted;
+}
