@@ -1,0 +1,43 @@
+---
+import { translations } from '../i18n/translations';
+import { routes, otherLang, type Lang, type RouteKey } from '../i18n/routes';
+import { PLAY_STORE_URL } from '../i18n/constants';
+
+interface Props {
+  lang: Lang;
+  currentRoute: RouteKey;
+}
+
+const { lang, currentRoute } = Astro.props;
+const t = translations[lang];
+const home = routes.home[lang];
+const switchHref = routes[currentRoute][otherLang(lang)];
+---
+<header class="sticky top-0 z-50 border-b border-surface-border bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+    <a href={home} class="flex items-center">
+      <img src="/images/kaxa_wordmark_green.png" alt="Kaxa" class="h-7 w-auto" />
+    </a>
+    <nav class="hidden items-center gap-8 text-sm font-semibold text-ink md:flex">
+      <a href={`${home}#como-funciona`} class="hover:text-primary">{t.nav.howItWorks}</a>
+      <a href={`${home}#funciones`} class="hover:text-primary">{t.nav.features}</a>
+      <a href={`${home}#precios`} class="hover:text-primary">{t.nav.pricing}</a>
+      <a href={routes.support[lang]} class="hover:text-primary">{t.nav.support}</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a
+        href={switchHref}
+        class="text-sm font-bold text-muted hover:text-primary"
+        aria-label="Switch language"
+      >
+        {lang === 'es' ? 'EN' : 'ES'}
+      </a>
+      <a
+        href={PLAY_STORE_URL}
+        class="rounded-btn bg-primary px-4 py-2 text-sm font-bold text-white shadow-card hover:bg-primary-dark"
+      >
+        {t.nav.download}
+      </a>
+    </div>
+  </div>
+</header>
