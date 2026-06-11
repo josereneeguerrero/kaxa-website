@@ -1,0 +1,90 @@
+---
+import LegalLayout from '../../../layouts/LegalLayout.astro';
+import { translations } from '../../../i18n/translations';
+
+const lang = 'en' as const;
+const t = translations[lang];
+---
+<LegalLayout
+  lang={lang}
+  currentRoute="privacy"
+  title={`${t.footer.privacy} — Kaxa`}
+  description={t.meta.description}
+  heading="Privacy Policy"
+  updated="Last updated: June 10, 2026"
+>
+  <h2>1. Introduction</h2>
+  <p>
+    At Kaxa ("Kaxa", "we") we respect your privacy and are committed to protecting your personal
+    and financial information. This Privacy Policy explains what information we collect, how we
+    use it, and what rights you have over it.
+  </p>
+
+  <h2>2. Information we collect</h2>
+  <ul>
+    <li>Account information, such as your email address if you create an account.</li>
+    <li>
+      Financial information you enter manually: expenses, income, pockets, budgets, debts, and
+      savings goals.
+    </li>
+    <li>
+      Technical device information (model, operating system, app identifiers) for diagnostics and
+      service improvement.
+    </li>
+    <li>Anonymous usage data to understand how the app is used and improve its features.</li>
+  </ul>
+
+  <h2>3. How we use your information</h2>
+  <ul>
+    <li>
+      To operate and maintain Kaxa's core features (transaction tracking, pockets, budgets, debts,
+      and goals).
+    </li>
+    <li>To generate your financial reports and summaries.</li>
+    <li>To sync your information across devices, if you enable that feature.</li>
+    <li>To manage your subscription and free trial.</li>
+    <li>To communicate with you about important changes to the service.</li>
+  </ul>
+
+  <h2>4. Storage and security</h2>
+  <p>
+    Your information is stored securely, using encryption in transit. We implement reasonable
+    measures to protect your data against unauthorized access, loss, or alteration.
+  </p>
+
+  <h2>5. Subscriptions and payments</h2>
+  <p>
+    Kaxa subscriptions are processed through Google Play and/or the App Store via RevenueCat.
+    Kaxa does not store or have access to your full payment card details; these are managed
+    directly by the corresponding app store.
+  </p>
+
+  <h2>6. Sharing information with third parties</h2>
+  <p>
+    We do not sell your financial information or share it with third parties for advertising
+    purposes. We may share information with service providers (such as hosting or payment
+    processing) solely to operate Kaxa, under confidentiality agreements.
+  </p>
+
+  <h2>7. Your rights</h2>
+  <p>
+    You can access, correct, or delete your personal information at any time from the app's
+    settings. If you delete your account, your information is removed according to our internal
+    retention processes.
+  </p>
+
+  <h2>8. Children's privacy</h2>
+  <p>Kaxa is not directed at children under 13, and we do not knowingly collect information from children.</p>
+
+  <h2>9. Changes to this policy</h2>
+  <p>
+    We may update this Privacy Policy from time to time. We will post any changes on this page
+    with a new "last updated" date.
+  </p>
+
+  <h2>10. Contact</h2>
+  <p>
+    If you have questions about this Privacy Policy, write to us at
+    <a href={`mailto:${t.footer.contactEmail}`} class="text-primary underline">{t.footer.contactEmail}</a>.
+  </p>
+</LegalLayout>
