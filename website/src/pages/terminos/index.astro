@@ -1,0 +1,100 @@
+---
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { translations } from '../../i18n/translations';
+
+const lang = 'es' as const;
+const t = translations[lang];
+---
+<LegalLayout
+  lang={lang}
+  currentRoute="terms"
+  title={`${t.footer.terms} — Kaxa`}
+  description={t.meta.description}
+  heading="Términos de Servicio"
+  updated="Última actualización: 10 de junio de 2026"
+>
+  <h2>1. Aceptación de los términos</h2>
+  <p>
+    Al descargar, instalar o usar Kaxa ("la app", "el servicio") aceptas estos Términos de
+    Servicio. Si no estás de acuerdo con ellos, no debes usar la app.
+  </p>
+
+  <h2>2. Descripción del servicio</h2>
+  <p>
+    Kaxa es una aplicación de organización financiera personal que te permite registrar gastos e
+    ingresos, organizarlos en bolsillos, crear presupuestos, dar seguimiento a deudas y definir
+    metas de ahorro. Kaxa es una herramienta de organización y no constituye asesoría financiera,
+    legal ni fiscal.
+  </p>
+
+  <h2>3. Suscripciones y precios</h2>
+  <p>
+    Kaxa ofrece los siguientes planes de suscripción, gestionados a través de Google Play y/o App
+    Store mediante RevenueCat:
+  </p>
+  <ul>
+    <li>Plan semanal: $1.99 USD por semana, con prueba gratuita de 3 días.</li>
+    <li>Plan mensual: $4.99 USD por mes.</li>
+    <li>Plan anual: $24.99 USD por año (mejor valor).</li>
+  </ul>
+  <p>
+    Los precios pueden variar según impuestos locales aplicados por la tienda de aplicaciones. Las
+    suscripciones se renuevan automáticamente al final de cada periodo, salvo que se cancelen
+    antes de la fecha de renovación desde la configuración de tu cuenta de Google Play o App
+    Store.
+  </p>
+
+  <h2>4. Prueba gratuita</h2>
+  <p>
+    El plan semanal incluye una prueba gratuita de 3 días. Si no cancelas antes de que finalice la
+    prueba, se te cobrará el precio del plan seleccionado de forma automática.
+  </p>
+
+  <h2>5. Uso aceptable</h2>
+  <p>
+    Te comprometes a usar Kaxa únicamente para fines personales y lícitos. No debes intentar
+    acceder sin autorización a los sistemas de Kaxa, realizar ingeniería inversa de la app, ni
+    usarla de forma que pueda dañar, deshabilitar o sobrecargar el servicio.
+  </p>
+
+  <h2>6. Propiedad intelectual</h2>
+  <p>
+    Kaxa, su logotipo, diseño y contenido son propiedad de sus desarrolladores. No se concede
+    ningún derecho de propiedad sobre la app por el uso del servicio, únicamente una licencia
+    limitada, no exclusiva e intransferible para usarla conforme a estos términos.
+  </p>
+
+  <h2>7. Limitación de responsabilidad</h2>
+  <p>
+    Kaxa es una herramienta de organización personal. No nos hacemos responsables de decisiones
+    financieras tomadas con base en la información registrada en la app, ni de pérdidas derivadas
+    de errores de captura, fallos técnicos o interrupciones del servicio. La app se proporciona
+    "tal cual", sin garantías de ningún tipo.
+  </p>
+
+  <h2>8. Cambios al servicio</h2>
+  <p>
+    Podemos modificar, suspender o discontinuar funciones de Kaxa en cualquier momento. Si un
+    cambio afecta significativamente tu suscripción, intentaremos notificarte con anticipación
+    razonable.
+  </p>
+
+  <h2>9. Terminación</h2>
+  <p>
+    Puedes dejar de usar Kaxa y cancelar tu suscripción en cualquier momento desde la tienda de
+    aplicaciones correspondiente. Podemos suspender o terminar el acceso de cuentas que violen
+    estos términos.
+  </p>
+
+  <h2>10. Ley aplicable</h2>
+  <p>
+    Estos términos se rigen por las leyes de la República de Honduras, sin perjuicio de las
+    disposiciones de protección al consumidor de tu país de residencia.
+  </p>
+
+  <h2>11. Contacto</h2>
+  <p>
+    Si tienes preguntas sobre estos Términos de Servicio, escríbenos a
+    <a href={`mailto:${t.footer.contactEmail}`} class="text-primary underline">{t.footer.contactEmail}</a>.
+  </p>
+</LegalLayout>
