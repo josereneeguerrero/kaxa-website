@@ -1,0 +1,37 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import type { Lang, RouteKey } from '../i18n/routes';
+
+interface Props {
+  lang: Lang;
+  currentRoute: RouteKey;
+  title: string;
+  description: string;
+}
+
+const { lang, currentRoute, title, description } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header lang={lang} currentRoute={currentRoute} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} currentRoute={currentRoute} />
+  </body>
+</html>
