@@ -1,0 +1,32 @@
+---
+import PhoneMockup from './PhoneMockup.astro';
+import { PLAY_STORE_URL } from '../i18n/constants';
+import { translations } from '../i18n/translations';
+import type { Lang } from '../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = translations[lang];
+---
+<section class="bg-gradient-to-b from-white to-primary-light/30">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-24">
+    <div>
+      <p class="text-xs font-extrabold uppercase tracking-widest text-primary">{t.hero.eyebrow}</p>
+      <h1 class="mt-4 text-4xl font-black leading-tight text-ink sm:text-5xl">{t.hero.title}</h1>
+      <p class="mt-4 max-w-md text-base text-muted">{t.hero.subtitle}</p>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a
+          href={PLAY_STORE_URL}
+          class="rounded-btn bg-ink px-6 py-3 text-sm font-bold text-white hover:bg-primary"
+        >
+          {t.hero.cta}
+        </a>
+        <span class="text-xs font-bold text-muted">{t.hero.badge}</span>
+      </div>
+    </div>
+    <PhoneMockup mockup={t.hero.mockup} />
+  </div>
+</section>
