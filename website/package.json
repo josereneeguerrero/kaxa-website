@@ -13,6 +13,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource/nunito": "^5.2.7",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.6",
