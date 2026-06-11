@@ -1,12 +1,21 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Features from '../components/Features.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { translations } from '../i18n/translations';
+
+const lang = 'es' as const;
+const t = translations[lang];
 ---
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <title>Kaxa</title>
-  </head>
-  <body>
-    <h1 class="font-sans text-4xl font-black text-primary">Kaxa design tokens OK</h1>
-  </body>
-</html>
+<BaseLayout lang={lang} currentRoute="home" title={t.meta.title} description={t.meta.description}>
+  <Hero lang={lang} />
+  <HowItWorks lang={lang} />
+  <Features lang={lang} />
+  <Pricing lang={lang} />
+  <FAQ lang={lang} />
+  <CTASection lang={lang} />
+</BaseLayout>
