@@ -155,6 +155,14 @@ export const translations = {
         },
       ],
     },
+    support: {
+      title: 'Soporte',
+      subtitle:
+        '¿Tienes dudas sobre Kaxa? Aquí respondemos las preguntas más comunes. Si no encuentras lo que buscas, escríbenos.',
+      contactTitle: '¿Necesitas más ayuda?',
+      contactText: 'Escríbenos y te responderemos lo antes posible.',
+      contactButton: 'Enviar correo',
+    },
     cta: {
       title: 'Empieza a controlar tu dinero hoy',
       subtitle: 'Descarga Kaxa y organiza tus finanzas en minutos.',
@@ -326,6 +334,14 @@ export const translations = {
             'Kaxa does not have a free version, but the weekly plan includes a 3-day free trial so you can try it risk-free.',
         },
       ],
+    },
+    support: {
+      title: 'Support',
+      subtitle:
+        "Have questions about Kaxa? Here are answers to the most common ones. If you can't find what you're looking for, write to us.",
+      contactTitle: 'Need more help?',
+      contactText: "Send us a message and we'll get back to you as soon as possible.",
+      contactButton: 'Send email',
     },
     cta: {
       title: 'Start taking control of your money today',
