@@ -1,0 +1,26 @@
+---
+import { translations } from '../i18n/translations';
+import type { Lang } from '../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = translations[lang];
+---
+<section id="como-funciona" class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+  <h2 class="text-center text-3xl font-extrabold text-ink">{t.howItWorks.title}</h2>
+  <p class="mx-auto mt-3 max-w-xl text-center text-muted">{t.howItWorks.subtitle}</p>
+  <div class="mt-12 grid gap-8 md:grid-cols-3">
+    {t.howItWorks.steps.map((step) => (
+      <div class="rounded-card border border-surface-border bg-surface p-6 shadow-card">
+        <div class="flex h-10 w-10 items-center justify-center rounded-btn bg-primary text-lg font-extrabold text-white">
+          {step.number}
+        </div>
+        <h3 class="mt-4 text-lg font-bold text-ink">{step.title}</h3>
+        <p class="mt-2 text-sm text-muted">{step.description}</p>
+      </div>
+    ))}
+  </div>
+</section>
