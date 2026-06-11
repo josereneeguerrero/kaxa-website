@@ -1,43 +1,61 @@
-# Astro Starter Kit: Minimal
+# Kaxa Website
 
-```sh
-npm create astro@latest -- --template minimal
+Marketing website for [Kaxa](https://kaxa.lat) — landing page, legal pages (Privacy/Terms), and
+support/FAQ, in Spanish (default) and English.
+
+## Stack
+
+- [Astro](https://astro.build) (static site)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [@fontsource/nunito](https://fontsource.org/fonts/nunito)
+- [Vitest](https://vitest.dev) + Astro Container API for component tests
+
+## Development
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The dev server runs at `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Testing
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npx vitest run
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Build
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm run build
+npm run preview
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+`npm run build` outputs the static site to `dist/`.
 
-## 🧞 Commands
+## Pages
 
-All commands are run from the root of the project, from a terminal:
+| Route (ES) | Route (EN) |
+|---|---|
+| `/` | `/en/` |
+| `/privacidad/` | `/en/privacy/` |
+| `/terminos/` | `/en/terms/` |
+| `/soporte/` | `/en/support/` |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Deployment (Vercel)
 
-## 👀 Want to learn more?
+1. Import this repository into Vercel.
+2. Set the **Root Directory** to `website`.
+3. Framework preset: **Astro** (Vercel auto-detects `astro.config.mjs`).
+4. Build command: `npm run build` (default). Output directory: `dist` (default).
+5. Add the custom domain `kaxa.lat` in the Vercel project's Domains settings and follow Vercel's
+   DNS instructions to point the domain at Vercel.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+No environment variables are required — the site is fully static and does not call any APIs.
+
+## Updating content
+
+All copy lives in `src/i18n/translations.ts` (`es` and `en` objects, mirrored structure). Update
+both languages together — `tests/translations.test.ts` checks that the top-level keys, pricing
+plan count, and FAQ item count stay in sync between languages.
