@@ -18,7 +18,6 @@ export const translations = {
       subtitle:
         'Registra tus gastos e ingresos, organiza tus bolsillos y entiende a dónde va tu dinero, en tu moneda.',
       cta: 'Descargar en Google Play',
-      badge: 'Disponible en Google Play',
       mockup: {
         alt: 'Captura de pantalla de la app Kaxa mostrando el balance total y la actividad reciente',
       },
@@ -190,7 +189,6 @@ export const translations = {
       subtitle:
         'Track your expenses and income, organize your money into pockets, and understand where your money goes, in your currency.',
       cta: 'Get it on Google Play',
-      badge: 'Available on Google Play',
       mockup: {
         alt: 'Screenshot of the Kaxa app showing the total balance and recent activity',
       },
