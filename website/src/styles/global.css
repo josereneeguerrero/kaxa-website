@@ -88,6 +88,18 @@ body {
   background-size: 24px 24px;
 }
 
+/* Falling category icons behind the hero phone */
+@keyframes icon-rain {
+  0% { transform: translateY(-10%) rotate(0deg); }
+  100% { transform: translateY(110%) rotate(20deg); }
+}
+
+.animate-icon-rain {
+  position: absolute;
+  top: -10%;
+  animation: icon-rain linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
@@ -96,7 +108,12 @@ body {
   }
 
   .animate-float,
-  .animate-blob {
+  .animate-blob,
+  .animate-icon-rain {
     animation: none;
+  }
+
+  .animate-icon-rain {
+    display: none;
   }
 }
