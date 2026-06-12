@@ -1,6 +1,6 @@
 ---
 import PhoneMockup from './PhoneMockup.astro';
-import Icon, { type IconName } from './Icon.astro';
+import Icon from './Icon.astro';
 import { PLAY_STORE_URL } from '../i18n/constants';
 import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/routes';
@@ -12,19 +12,19 @@ interface Props {
 const { lang } = Astro.props;
 const t = translations[lang];
 
-const rainIcons: { name: IconName; left: number; size: string; duration: number; delay: number; opacity: string }[] = [
-  { name: 'currency-dollar', left: 2, size: 'h-7 w-7', duration: 18, delay: -2, opacity: 'text-primary/50' },
-  { name: 'shopping-bag', left: 16, size: 'h-6 w-6', duration: 22, delay: -10, opacity: 'text-primary/35' },
-  { name: 'truck', left: 30, size: 'h-8 w-8', duration: 16, delay: -6, opacity: 'text-primary/45' },
-  { name: 'home', left: 6, size: 'h-7 w-7', duration: 24, delay: -14, opacity: 'text-primary/35' },
-  { name: 'heart', left: 70, size: 'h-6 w-6', duration: 20, delay: -4, opacity: 'text-primary/50' },
-  { name: 'film', left: 88, size: 'h-7 w-7', duration: 17, delay: -9, opacity: 'text-primary/40' },
-  { name: 'academic-cap', left: 96, size: 'h-8 w-8', duration: 23, delay: -1, opacity: 'text-primary/35' },
-  { name: 'wallet', left: 22, size: 'h-6 w-6', duration: 25, delay: -18, opacity: 'text-primary/45' },
-  { name: 'banknotes', left: 80, size: 'h-7 w-7', duration: 19, delay: -7, opacity: 'text-primary/50' },
-  { name: 'flag', left: 60, size: 'h-6 w-6', duration: 21, delay: -12, opacity: 'text-primary/35' },
-  { name: 'currency-dollar', left: 92, size: 'h-6 w-6', duration: 15, delay: -3, opacity: 'text-primary/45' },
-  { name: 'shopping-bag', left: 48, size: 'h-7 w-7', duration: 26, delay: -16, opacity: 'text-primary/30' },
+const rainIcons: { icon: string; left: number; size: string; duration: number; delay: number; opacity: string }[] = [
+  { icon: 'income', left: 2, size: 'h-7 w-7', duration: 18, delay: -2, opacity: 'opacity-50' },
+  { icon: 'store', left: 16, size: 'h-6 w-6', duration: 22, delay: -10, opacity: 'opacity-35' },
+  { icon: 'transport', left: 30, size: 'h-8 w-8', duration: 16, delay: -6, opacity: 'opacity-45' },
+  { icon: 'home', left: 6, size: 'h-7 w-7', duration: 24, delay: -14, opacity: 'opacity-35' },
+  { icon: 'health', left: 70, size: 'h-6 w-6', duration: 20, delay: -4, opacity: 'opacity-50' },
+  { icon: 'entertainment', left: 88, size: 'h-7 w-7', duration: 17, delay: -9, opacity: 'opacity-40' },
+  { icon: 'education', left: 96, size: 'h-8 w-8', duration: 23, delay: -1, opacity: 'opacity-35' },
+  { icon: 'personal', left: 22, size: 'h-6 w-6', duration: 25, delay: -18, opacity: 'opacity-45' },
+  { icon: 'remesas', left: 80, size: 'h-7 w-7', duration: 19, delay: -7, opacity: 'opacity-50' },
+  { icon: 'services', left: 60, size: 'h-6 w-6', duration: 21, delay: -12, opacity: 'opacity-35' },
+  { icon: 'food', left: 92, size: 'h-6 w-6', duration: 15, delay: -3, opacity: 'opacity-45' },
+  { icon: 'inventory', left: 48, size: 'h-7 w-7', duration: 26, delay: -16, opacity: 'opacity-30' },
 ];
 ---
 <section class="relative overflow-hidden bg-gradient-to-b from-white to-primary-light/30">
@@ -59,9 +59,10 @@ const rainIcons: { name: IconName; left: number; size: string; duration: number;
     <div class="reveal relative" style="transition-delay: 150ms">
       <div class="-inset-x-10 -inset-y-12 absolute overflow-hidden" aria-hidden="true">
         {rainIcons.map((icon) => (
-          <Icon
-            name={icon.name}
-            class={`animate-icon-rain ${icon.size} ${icon.opacity}`}
+          <img
+            src={`/icons/categories/${icon.icon}.svg`}
+            alt=""
+            class={`animate-icon-rain rounded-lg ${icon.size} ${icon.opacity}`}
             style={`left: ${icon.left}%; animation-duration: ${icon.duration}s; animation-delay: ${icon.delay}s;`}
           />
         ))}
