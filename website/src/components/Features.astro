@@ -1,4 +1,5 @@
 ---
+import Icon, { type IconName } from './Icon.astro';
 import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/routes';
 
@@ -8,15 +9,26 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = translations[lang];
+
+const featureIcons: IconName[] = ['wallet', 'document-chart', 'banknotes', 'flag', 'chart-bar'];
 ---
-<section id="funciones" class="bg-surface py-16">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <h2 class="text-center text-3xl font-extrabold text-ink">{t.features.title}</h2>
-    <p class="mx-auto mt-3 max-w-xl text-center text-muted">{t.features.subtitle}</p>
+<section id="funciones" class="relative overflow-hidden bg-surface py-16">
+  <div class="bg-dot-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+    <h2 class="reveal text-center text-3xl font-extrabold text-ink">{t.features.title}</h2>
+    <p class="reveal mx-auto mt-3 max-w-xl text-center text-muted" style="transition-delay: 100ms">
+      {t.features.subtitle}
+    </p>
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {t.features.items.map((item) => (
-        <div class="rounded-card border border-surface-border bg-white p-6 shadow-card">
-          <h3 class="text-lg font-bold text-ink">{item.title}</h3>
+      {t.features.items.map((item, i) => (
+        <div
+          class="reveal group rounded-card border border-surface-border bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+          style={`transition-delay: ${(i % 3) * 120}ms`}
+        >
+          <div class="flex h-12 w-12 items-center justify-center rounded-btn bg-primary-light text-primary transition group-hover:bg-primary group-hover:text-white">
+            <Icon name={featureIcons[i]} class="h-6 w-6" />
+          </div>
+          <h3 class="mt-4 text-lg font-bold text-ink">{item.title}</h3>
           <p class="mt-2 text-sm text-muted">{item.description}</p>
         </div>
       ))}
