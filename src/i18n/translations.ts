@@ -16,7 +16,7 @@ export const translations = {
       eyebrow: 'App de finanzas · Honduras',
       title: 'El control de tu dinero, en tu bolsillo.',
       subtitle:
-        'Registra tus gastos e ingresos, organiza tus bolsillos y entiende a dónde va tu dinero, en lempiras.',
+        'Registra tus gastos e ingresos, organiza tus bolsillos y entiende a dónde va tu dinero, en tu moneda.',
       cta: 'Descargar en Google Play',
       badge: 'Disponible en Google Play',
       mockup: {
@@ -30,7 +30,7 @@ export const translations = {
         {
           number: '1',
           title: 'Registra',
-          description: 'Anota tus gastos e ingresos en segundos, en lempiras.',
+          description: 'Anota tus gastos e ingresos en segundos, en tu moneda.',
         },
         {
           number: '2',
@@ -131,7 +131,8 @@ export const translations = {
         },
         {
           question: '¿En qué moneda funciona Kaxa?',
-          answer: 'Kaxa está diseñada para Honduras y trabaja en lempiras (HNL).',
+          answer:
+            'Kaxa funciona con varias monedas: lempiras (HNL), dólares (USD) y quetzales (GTQ), con más monedas en camino. Eliges tu moneda principal al configurar la app.',
         },
         {
           question: '¿Cómo cancelo mi suscripción?',
@@ -187,7 +188,7 @@ export const translations = {
       eyebrow: 'Personal finance app · Honduras',
       title: 'Take control of your money, in your pocket.',
       subtitle:
-        'Track your expenses and income, organize your money into pockets, and understand where your money goes, in lempiras.',
+        'Track your expenses and income, organize your money into pockets, and understand where your money goes, in your currency.',
       cta: 'Get it on Google Play',
       badge: 'Available on Google Play',
       mockup: {
@@ -201,7 +202,7 @@ export const translations = {
         {
           number: '1',
           title: 'Track',
-          description: 'Log your expenses and income in seconds, in lempiras.',
+          description: 'Log your expenses and income in seconds, in your currency.',
         },
         {
           number: '2',
@@ -301,7 +302,8 @@ export const translations = {
         },
         {
           question: 'What currency does Kaxa use?',
-          answer: 'Kaxa is designed for Honduras and works in lempiras (HNL).',
+          answer:
+            'Kaxa works with several currencies: lempiras (HNL), US dollars (USD), and Guatemalan quetzales (GTQ), with more on the way. You choose your main currency when you set up the app.',
         },
         {
           question: 'How do I cancel my subscription?',
