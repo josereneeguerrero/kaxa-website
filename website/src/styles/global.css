@@ -100,6 +100,14 @@ body {
   animation: icon-rain linear infinite;
 }
 
+/* Fade icons in/out near the top and bottom of the rain area so they
+   appear to emerge from and dissolve into the glow, instead of
+   popping in/out abruptly. */
+.icon-rain-zone {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 80%, transparent 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
