@@ -13,7 +13,7 @@ export const translations = {
       download: 'Descargar',
     },
     hero: {
-      eyebrow: 'App de finanzas · Honduras',
+      eyebrow: 'De Honduras para el mundo',
       title: 'El control de tu dinero, en tu bolsillo.',
       subtitle:
         'Registra tus gastos e ingresos, organiza tus bolsillos y entiende a dónde va tu dinero, en tu moneda.',
@@ -184,7 +184,7 @@ export const translations = {
       download: 'Download',
     },
     hero: {
-      eyebrow: 'Personal finance app · Honduras',
+      eyebrow: 'From Honduras to the world',
       title: 'Take control of your money, in your pocket.',
       subtitle:
         'Track your expenses and income, organize your money into pockets, and understand where your money goes, in your currency.',
