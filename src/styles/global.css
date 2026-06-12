@@ -90,8 +90,8 @@ body {
 
 /* Falling category icons behind the hero phone */
 @keyframes icon-rain {
-  0% { transform: translateY(-10%) rotate(0deg); }
-  100% { transform: translateY(110%) rotate(20deg); }
+  0% { top: -10%; transform: rotate(0deg); }
+  100% { top: 110%; transform: rotate(20deg); }
 }
 
 .animate-icon-rain {

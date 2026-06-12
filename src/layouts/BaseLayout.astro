@@ -47,6 +47,32 @@ const { lang, currentRoute, title, description } = Astro.props;
       );
 
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      // Smooth-scroll to same-page anchors without leaving a #hash in the URL.
+      document.querySelectorAll('a[href*="#"]').forEach((link) => {
+        const url = new URL(link.getAttribute('href') ?? '', window.location.href);
+        if (url.pathname !== window.location.pathname || !url.hash) return;
+
+        link.addEventListener('click', (event) => {
+          const target = document.querySelector(url.hash);
+          if (!target) return;
+
+          event.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      // If the page loaded with a #hash (e.g. cross-page nav link), scroll to it
+      // and strip it from the address bar.
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          requestAnimationFrame(() => {
+            target.scrollIntoView({ block: 'start' });
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          });
+        }
+      }
     </script>
   </body>
 </html>
