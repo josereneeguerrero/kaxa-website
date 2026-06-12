@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/routes';
 
@@ -11,16 +12,43 @@ const t = translations[lang];
 ---
 <section id="faq" class="bg-surface py-16">
   <div class="mx-auto max-w-3xl px-4 sm:px-6">
-    <h2 class="text-center text-3xl font-extrabold text-ink">{t.faq.title}</h2>
-    <div class="mt-10 space-y-4">
-      {t.faq.items.map((item) => (
-        <details class="group rounded-card border border-surface-border bg-white p-5 shadow-card">
-          <summary class="cursor-pointer list-none text-base font-bold text-ink marker:content-none">
-            {item.question}
-          </summary>
-          <p class="mt-2 text-sm text-muted">{item.answer}</p>
-        </details>
+    <h2 class="reveal text-center text-3xl font-extrabold text-ink">{t.faq.title}</h2>
+    <div class="mt-10 space-y-3">
+      {t.faq.items.map((item, i) => (
+        <div
+          class="faq-item reveal overflow-hidden rounded-card border border-surface-border bg-white shadow-card transition-colors duration-300 hover:border-primary/30"
+          style={`transition-delay: ${(i % 5) * 80}ms`}
+        >
+          <button
+            type="button"
+            class="faq-toggle flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-bold text-ink transition-colors duration-300 hover:text-primary"
+            aria-expanded="false"
+          >
+            <span>{item.question}</span>
+            <Icon name="chevron-down" class="faq-icon h-5 w-5 flex-shrink-0 text-primary transition-transform duration-300 ease-out" />
+          </button>
+          <div class="faq-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out">
+            <div class="overflow-hidden">
+              <p class="px-5 pb-4 text-sm text-muted">{item.answer}</p>
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach((button) => {
+    button.addEventListener('click', () => {
+      const panel = button.nextElementSibling;
+      const icon = button.querySelector('.faq-icon');
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+      button.setAttribute('aria-expanded', String(!isOpen));
+      panel?.classList.toggle('grid-rows-[1fr]', !isOpen);
+      panel?.classList.toggle('grid-rows-[0fr]', isOpen);
+      icon?.classList.toggle('rotate-180', !isOpen);
+    });
+  });
+</script>

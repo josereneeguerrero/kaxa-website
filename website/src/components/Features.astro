@@ -22,10 +22,10 @@ const featureIcons: IconName[] = ['wallet', 'document-chart', 'banknotes', 'flag
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {t.features.items.map((item, i) => (
         <div
-          class="reveal group rounded-card border border-surface-border bg-white p-6 shadow-card transition hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+          class="reveal group rounded-card border border-surface-border bg-white p-6 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
           style={`transition-delay: ${(i % 3) * 120}ms`}
         >
-          <div class="flex h-12 w-12 items-center justify-center rounded-btn bg-primary-light text-primary transition group-hover:bg-primary group-hover:text-white">
+          <div class="flex h-12 w-12 items-center justify-center rounded-btn bg-primary-light text-primary transition-colors duration-300 ease-out group-hover:bg-primary group-hover:text-white">
             <Icon name={featureIcons[i]} class="h-6 w-6" />
           </div>
           <h3 class="mt-4 text-lg font-bold text-ink">{item.title}</h3>
