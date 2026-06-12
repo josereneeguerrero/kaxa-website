@@ -1,6 +1,5 @@
 ---
 import PhoneMockup from './PhoneMockup.astro';
-import Icon from './Icon.astro';
 import { PLAY_STORE_URL } from '../i18n/constants';
 import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/routes';
@@ -46,14 +45,15 @@ const rainIcons: { icon: string; left: number; size: string; duration: number; d
       <h1 class="mt-4 text-4xl font-black leading-tight text-ink sm:text-5xl">{t.hero.title}</h1>
       <p class="mt-4 max-w-md text-base text-muted">{t.hero.subtitle}</p>
       <div class="mt-8 flex flex-wrap items-center gap-4">
-        <a
-          href={PLAY_STORE_URL}
-          class="group inline-flex items-center gap-2 rounded-btn bg-ink px-6 py-3 text-sm font-bold text-white transition hover:bg-primary hover:shadow-lg hover:shadow-primary/30"
-        >
-          {t.hero.cta}
-          <Icon name="arrow-right" class="h-4 w-4 transition group-hover:translate-x-1" />
+        <a href={PLAY_STORE_URL} class="inline-block transition hover:opacity-90">
+          <img
+            src={`/badges/google-play-badge-${lang}.png`}
+            alt={t.hero.cta}
+            class="h-14 w-auto"
+            width="194"
+            height="75"
+          />
         </a>
-        <span class="text-xs font-bold text-muted">{t.hero.badge}</span>
       </div>
     </div>
     <div class="reveal relative" style="transition-delay: 150ms">
