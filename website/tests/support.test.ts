@@ -12,7 +12,7 @@ describe('Support page', () => {
     expect(result).toContain(translations.es.support.title);
     expect(result).toContain(translations.es.support.contactButton);
     expect(result).toContain(translations.es.faq.items[0].question);
-    expect(result).toContain('hola@kaxa.lat');
+    expect(result).toContain('soporte@kaxa.lat');
   });
 
   it('renders the English support page with FAQ and contact info', async () => {
@@ -22,6 +22,6 @@ describe('Support page', () => {
     expect(result).toContain(translations.en.support.title);
     expect(result).toContain(translations.en.support.contactButton);
     expect(result).toContain(translations.en.faq.items[0].question);
-    expect(result).toContain('hola@kaxa.lat');
+    expect(result).toContain('soporte@kaxa.lat');
   });
 });
