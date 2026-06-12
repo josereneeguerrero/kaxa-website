@@ -1,69 +1,19 @@
 ---
-interface MockupItem {
-  name: string;
-  date: string;
-  amount: string;
-  type: 'expense' | 'income';
-}
-
 interface Props {
   mockup: {
-    greeting: string;
-    status: string;
-    balanceLabel: string;
-    balanceAmount: string;
-    period: string;
-    chips: readonly string[];
-    activityTitle: string;
-    items: readonly MockupItem[];
+    alt: string;
   };
 }
 
 const { mockup } = Astro.props;
-const chipColors = [
-  'bg-amber-100 text-amber-800',
-  'bg-red-100 text-red-800',
-  'bg-violet-100 text-violet-800',
-];
 ---
-<div class="relative mx-auto h-[420px] w-[220px] overflow-hidden rounded-[32px] border-[8px] border-ink bg-white shadow-2xl">
-  <div class="px-4 pt-3 text-[11px] font-bold text-ink">
-    {mockup.greeting} 👋
-    <p class="text-[10px] font-semibold text-muted">{mockup.status}</p>
-  </div>
-
-  <div class="mx-3 mt-3 rounded-card border border-surface-border bg-surface p-4 text-center shadow-card">
-    <p class="text-[10px] font-bold text-muted">{mockup.balanceLabel}</p>
-    <p class="mt-1 text-2xl font-extrabold text-ink">{mockup.balanceAmount}</p>
-    <span class="mt-2 inline-block rounded-full bg-primary-light px-3 py-1 text-[10px] font-bold text-primary-dark">
-      {mockup.period} ▾
-    </span>
-  </div>
-
-  <div class="mx-3 mt-3 flex gap-2">
-    {mockup.chips.map((chip, i) => (
-      <div class={`flex-1 rounded-btn px-2 py-2 text-center text-[9px] font-extrabold ${chipColors[i % chipColors.length]}`}>
-        {chip}
-      </div>
-    ))}
-  </div>
-
-  <p class="mx-3 mt-4 text-[10px] font-extrabold text-ink">{mockup.activityTitle}</p>
-  {mockup.items.map((item) => (
-    <div class="mx-3 mt-2 flex items-center justify-between rounded-btn bg-surface px-3 py-2">
-      <div>
-        <p class="text-[9px] font-bold text-ink">{item.name}</p>
-        <p class="text-[8px] text-muted">{item.date}</p>
-      </div>
-      <p class={`text-[10px] font-extrabold ${item.type === 'expense' ? 'text-expense' : 'text-income'}`}>
-        {item.amount}
-      </p>
-    </div>
-  ))}
-
-  <div class="absolute bottom-0 left-0 right-0 flex h-14 items-center justify-around border-t border-surface-border bg-white">
-    <span class="text-[8px] font-bold text-muted">⌂</span>
-    <span class="flex h-9 w-9 items-center justify-center rounded-btn bg-primary text-lg font-black text-white">+</span>
-    <span class="text-[8px] font-bold text-muted">⋯</span>
-  </div>
+<div class="relative mx-auto aspect-[6/13] w-[240px] overflow-hidden rounded-[40px] border-[10px] border-ink bg-ink shadow-2xl">
+  <span class="absolute left-1/2 top-2.5 z-10 h-2 w-2 -translate-x-1/2 rounded-full bg-ink/70"></span>
+  <img
+    src="/images/app-screenshot-home.png"
+    alt={mockup.alt}
+    width="480"
+    height="1040"
+    class="h-full w-full object-cover"
+  />
 </div>

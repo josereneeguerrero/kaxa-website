@@ -20,17 +20,7 @@ export const translations = {
       cta: 'Descargar en Google Play',
       badge: 'Disponible en Google Play',
       mockup: {
-        greeting: 'Buenos días',
-        status: 'Sin gastos hoy',
-        balanceLabel: 'BALANCE TOTAL',
-        balanceAmount: 'L 12,450.00',
-        period: 'Este mes',
-        chips: ['Presupuestos', 'Deudas', 'Resumen'],
-        activityTitle: 'Actividad reciente',
-        items: [
-          { name: 'Supermercado', date: 'Hoy', amount: '-L 450', type: 'expense' as const },
-          { name: 'Salario', date: 'Ayer', amount: '+L 8,000', type: 'income' as const },
-        ],
+        alt: 'Captura de pantalla de la app Kaxa mostrando el balance total y la actividad reciente',
       },
     },
     howItWorks: {
@@ -201,17 +191,7 @@ export const translations = {
       cta: 'Get it on Google Play',
       badge: 'Available on Google Play',
       mockup: {
-        greeting: 'Good morning',
-        status: 'No expenses today',
-        balanceLabel: 'TOTAL BALANCE',
-        balanceAmount: 'L 12,450.00',
-        period: 'This month',
-        chips: ['Budgets', 'Debts', 'Summary'],
-        activityTitle: 'Recent activity',
-        items: [
-          { name: 'Groceries', date: 'Today', amount: '-L 450', type: 'expense' as const },
-          { name: 'Salary', date: 'Yesterday', amount: '+L 8,000', type: 'income' as const },
-        ],
+        alt: 'Screenshot of the Kaxa app showing the total balance and recent activity',
       },
     },
     howItWorks: {
