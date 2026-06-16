@@ -1,0 +1,78 @@
+<h2>¿Qué dirección visual para el Hero?</h2>
+<p class="subtitle">Tres tratamientos posibles, todos sobre la paleta Kaxa (blanco / esmeralda #10B981 / Nunito). Piensa en cuál se siente más "Kaxa" — minimalista tipo Apple Wallet, o cercano/ilustrado tipo MonAi.</p>
+
+<style>
+  .hero-mock { font-family: 'Nunito', sans-serif; border-radius: 16px; overflow: hidden; border: 1px solid #E5E7EB; background: #fff; }
+  .badge-row { display:flex; gap:8px; margin-top:16px; }
+  .badge { background:#111827; color:#fff; border-radius:8px; padding:8px 14px; font-size:11px; font-weight:700; }
+  .phone { width:140px; height:280px; background:#F9FAFB; border:6px solid #111827; border-radius:24px; flex-shrink:0; position:relative; overflow:hidden; }
+  .phone .bal { position:absolute; top:30px; left:14px; font-size:22px; font-weight:900; color:#111827; }
+  .phone .sub { position:absolute; top:58px; left:14px; font-size:10px; color:#6B7280; }
+  .phone .pill { position:absolute; left:14px; right:14px; height:34px; background:#fff; border:1px solid #E5E7EB; border-radius:10px; }
+  .pill1{ top:90px; } .pill2{ top:132px; } .pill3{ top:174px; }
+  .pill::after { content:''; }
+  .fab { position:absolute; bottom:14px; right:14px; width:44px; height:44px; background:#10B981; border-radius:12px; }
+</style>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="hero-mock" style="padding:24px; min-height:260px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:12px;">
+        <div style="font-size:11px; font-weight:800; color:#10B981; letter-spacing:1px;">CONTROL DE GASTOS</div>
+        <div style="font-size:34px; font-weight:900; color:#111827; line-height:1.1;">Tu dinero,<br>claro como el agua.</div>
+        <div style="font-size:13px; color:#6B7280;">Registra gastos en segundos. Mira a dónde se va tu plata, en lempiras.</div>
+        <div class="badge-row"><div class="badge">▶ Google Play</div><div class="badge"> App Store</div></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Minimalista / Apple Wallet</h3>
+      <p>Texto grande, mucho blanco, un solo acento esmeralda. Sin mockup de teléfono en el hero — el producto se ve más abajo. Foco total en el copy y la promesa.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="hero-mock" style="padding:24px; min-height:260px; display:flex; align-items:center; gap:20px;">
+        <div style="flex:1;">
+          <div style="font-size:28px; font-weight:900; color:#111827; line-height:1.15;">Mira tus gastos. Sin esfuerzo. 🥑</div>
+          <div style="font-size:13px; color:#6B7280; margin-top:8px;">Habla, escribe o automatiza. Kaxa hace el resto.</div>
+          <div class="badge-row"><div class="badge">▶ Google Play</div><div class="badge"> App Store</div></div>
+        </div>
+        <div class="phone">
+          <div class="bal">L 12,450</div>
+          <div class="sub">Saldo total</div>
+          <div class="pill pill1"></div>
+          <div class="pill pill2"></div>
+          <div class="pill pill3"></div>
+          <div class="fab"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Estilo MonAi (cercano)</h3>
+      <p>Mockup del teléfono con la app real al lado del titular, tono cercano/casual, emojis como acento. Más "amigo que te ayuda con la plata".</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="hero-mock" style="padding:24px; min-height:260px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px; background:linear-gradient(180deg,#fff 0%,#F0FDF9 100%);">
+        <div style="font-size:30px; font-weight:900; color:#111827; line-height:1.15;">El control de tus<br><span style="color:#10B981;">finanzas</span>, sin complicaciones.</div>
+        <div style="font-size:13px; color:#6B7280; max-width:260px;">Bolsillos, gastos e ingresos en una app hecha para Honduras.</div>
+        <div class="badge-row"><div class="badge">▶ Google Play</div><div class="badge"> App Store</div></div>
+        <div class="phone" style="margin-top:8px;">
+          <div class="bal">L 12,450</div>
+          <div class="sub">Saldo total</div>
+          <div class="pill pill1"></div>
+          <div class="pill pill2"></div>
+          <div class="pill pill3"></div>
+          <div class="fab"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Centrado / Producto hero</h3>
+      <p>Todo centrado, titular con la palabra clave en esmeralda, mockup del teléfono grande debajo como protagonista visual. Fondo con leve degradado a verde muy claro.</p>
+    </div>
+  </div>
+</div>

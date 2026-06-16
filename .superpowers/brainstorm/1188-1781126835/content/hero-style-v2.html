@@ -1,0 +1,81 @@
+<h2>Hero refinado — Opción B con calco real de Kaxa</h2>
+<p class="subtitle">Mockup basado en la pantalla de inicio real (saludo, Balance Total, accesos rápidos, nav inferior con FAB verde). Sin emojis prestados de MonAi. El copy de abajo es solo placeholder — elegimos titular en el siguiente paso.</p>
+
+<style>
+  .hero2 { font-family: 'Nunito', sans-serif; border-radius: 16px; overflow: hidden; border: 1px solid #E5E7EB; background: #fff; padding: 28px; display:flex; align-items:center; gap:28px; min-height: 320px; }
+  .hero2-text { flex: 1; }
+  .hero2-eyebrow { font-size:11px; font-weight:800; color:#10B981; letter-spacing:1.5px; text-transform:uppercase; }
+  .hero2-h1 { font-size:30px; font-weight:900; color:#111827; line-height:1.18; margin-top:8px; }
+  .hero2-sub { font-size:13px; color:#6B7280; margin-top:10px; max-width:280px; }
+  .hero2-badges { display:flex; gap:8px; margin-top:18px; }
+  .hero2-badge { background:#111827; color:#fff; border-radius:8px; padding:9px 14px; font-size:11px; font-weight:700; }
+
+  .phone2 { width:190px; height:400px; background:#fff; border:7px solid #111827; border-radius:30px; flex-shrink:0; position:relative; overflow:hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+  .p2-status { display:flex; justify-content:space-between; padding:8px 14px 0; font-size:9px; color:#9CA3AF; font-weight:700; }
+  .p2-greet { padding:10px 14px 0; font-size:13px; font-weight:800; color:#111827; }
+  .p2-greet span { font-size:10px; font-weight:600; color:#9CA3AF; display:block; }
+  .p2-card { margin:10px 14px; background:#F9FAFB; border:1px solid #E5E7EB; border-radius:14px; padding:14px; text-align:center; }
+  .p2-card .label { font-size:9px; color:#6B7280; font-weight:700; }
+  .p2-card .amount { font-size:24px; font-weight:900; color:#111827; margin-top:4px; }
+  .p2-card .pill { display:inline-block; margin-top:8px; background:#D1FAE5; color:#059669; font-size:9px; font-weight:800; padding:4px 10px; border-radius:20px; }
+  .p2-row { display:flex; gap:8px; margin:10px 14px; }
+  .p2-chip { flex:1; border-radius:12px; padding:10px 8px; font-size:9px; font-weight:800; text-align:center; }
+  .p2-chip.c1 { background:#FEF3C7; color:#92400E; }
+  .p2-chip.c2 { background:#FEE2E2; color:#991B1B; }
+  .p2-chip.c3 { background:#EDE9FE; color:#5B21B6; }
+  .p2-list-title { padding:10px 14px 4px; font-size:10px; font-weight:800; color:#111827; }
+  .p2-item { display:flex; justify-content:space-between; align-items:center; margin:0 14px 6px; background:#F9FAFB; border-radius:10px; padding:8px 10px; }
+  .p2-item .name { font-size:9px; font-weight:700; color:#111827; }
+  .p2-item .date { font-size:8px; color:#9CA3AF; }
+  .p2-item .amt { font-size:10px; font-weight:800; }
+  .p2-item .amt.neg { color:#EF4444; }
+  .p2-item .amt.pos { color:#10B981; }
+  .p2-nav { position:absolute; bottom:0; left:0; right:0; height:54px; background:#fff; border-top:1px solid #E5E7EB; display:flex; align-items:center; justify-content:space-around; }
+  .p2-nav .navlbl { font-size:8px; font-weight:700; color:#9CA3AF; }
+  .p2-fab { width:38px; height:38px; background:#10B981; border-radius:11px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:18px; }
+</style>
+
+<div class="hero2">
+  <div class="hero2-text">
+    <div class="hero2-eyebrow">App de finanzas · Honduras</div>
+    <div class="hero2-h1">[Titular por definir — ver opciones abajo]</div>
+    <div class="hero2-sub">Registra tus gastos e ingresos, organiza tus bolsillos y entiende a dónde va tu dinero, en lempiras.</div>
+    <div class="hero2-badges"><div class="hero2-badge">▶ Disponible en Google Play</div></div>
+  </div>
+  <div class="phone2">
+    <div class="p2-status"><span>9:41</span><span>📶 🔋</span></div>
+    <div class="p2-greet">Buenos días 👋<span>Sin gastos hoy</span></div>
+    <div class="p2-card">
+      <div class="label">BALANCE TOTAL</div>
+      <div class="amount">L 12,450.00</div>
+      <div class="pill">Este mes ▾</div>
+    </div>
+    <div class="p2-row">
+      <div class="p2-chip c1">Presupuestos</div>
+      <div class="p2-chip c2">Deudas</div>
+      <div class="p2-chip c3">Resumen</div>
+    </div>
+    <div class="p2-list-title">Actividad reciente</div>
+    <div class="p2-item"><div><div class="name">Supermercado</div><div class="date">Hoy</div></div><div class="amt neg">-L 450</div></div>
+    <div class="p2-item"><div><div class="name">Salario</div><div class="date">Ayer</div></div><div class="amt pos">+L 8,000</div></div>
+    <div class="p2-nav">
+      <div class="navlbl">⌂<br>Inicio</div>
+      <div class="p2-fab">+</div>
+      <div class="navlbl">⋯<br>Más</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:20px;">
+  <p class="label">¿Este nivel de fidelidad al producto real te convence?</p>
+  <div class="options">
+    <div class="option" data-choice="approve" onclick="toggleSelect(this)">
+      <div class="letter">✓</div>
+      <div class="content"><h3>Sí, esta dirección</h3><p>Cuando tengamos la captura real, la insertamos en este mismo layout (mockup de teléfono junto al titular).</p></div>
+    </div>
+    <div class="option" data-choice="adjust" onclick="toggleSelect(this)">
+      <div class="letter">✎</div>
+      <div class="content"><h3>Ajustar algo</h3><p>Dime qué cambiar (tamaño del teléfono, qué se ve en pantalla, posición, etc.) en el chat.</p></div>
+    </div>
+  </div>
+</div>

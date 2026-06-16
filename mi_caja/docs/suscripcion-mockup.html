@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suscripción — Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060e18;display:flex;justify-content:center;align-items:flex-start;
+  padding:40px 12px;gap:16px;flex-wrap:wrap;font-family:'Nunito Sans',sans-serif}
+
+.phone{
+  width:355px;background:#0B1C30;border-radius:44px;overflow:hidden;
+  padding:52px 0 36px;display:flex;flex-direction:column;
+  box-shadow:0 40px 120px rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.06);
+  position:relative;
+}
+
+.scroll-area{flex:1;overflow-y:auto;padding:0 24px;scrollbar-width:none}
+.scroll-area::-webkit-scrollbar{display:none}
+
+/* Progress */
+.prog-wrap{display:flex;justify-content:center;margin-bottom:20px;padding:0 24px}
+.prog{width:88px;height:4px;background:rgba(255,255,255,.12);border-radius:99px}
+.prog-fill{height:100%;border-radius:99px;background:#10B981;box-shadow:0 0 10px rgba(16,185,129,.5)}
+
+/* ── BADGE ── */
+.badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(16,185,129,.1);
+  border:1px solid rgba(16,185,129,.28);
+  border-radius:99px;padding:7px 14px;
+  font-size:10px;font-weight:700;color:#10B981;letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#10B981;
+  box-shadow:0 0 6px rgba(16,185,129,.8)}
+
+/* ── HEADLINE ── */
+.headline{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:34px;font-weight:800;line-height:1.05;
+  letter-spacing:-0.8px;color:white;
+  margin-bottom:10px;
+}
+.headline span{color:#10B981}
+.subline{
+  font-size:13px;line-height:1.6;
+  color:rgba(255,255,255,.50);
+  margin-bottom:22px;
+}
+
+/* ── FEATURES ── */
+.features{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.feat{
+  display:flex;align-items:flex-start;gap:12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;padding:14px;
+}
+.feat-icon{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.feat-text{}
+.feat-title{font-size:13px;font-weight:700;color:rgba(255,255,255,.90);margin-bottom:2px}
+.feat-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.5}
+
+/* ── PRICING ── */
+.pricing-section{margin-bottom:14px}
+.pricing-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.28);
+  letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:12px}
+
+.plans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+
+.plan{
+  border-radius:16px;padding:12px 10px;cursor:pointer;position:relative;
+  border:1.5px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.04);
+  transition:all .2s;
+}
+.plan.active{
+  background:rgba(16,185,129,.12);
+  border-color:rgba(16,185,129,.55);
+}
+.plan.featured{
+  background:rgba(16,185,129,.14);
+  border-color:#10B981;
+  border-width:2px;
+}
+
+.plan-badge{
+  position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+  background:#10B981;color:white;font-size:8px;font-weight:800;
+  letter-spacing:1px;padding:3px 9px;border-radius:99px;
+  white-space:nowrap;text-transform:uppercase;
+}
+.plan-name{font-size:10px;font-weight:700;color:rgba(255,255,255,.55);
+  text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.plan-name.green{color:#10B981}
+.plan-price{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;
+  color:white;letter-spacing:-0.5px;line-height:1.1}
+.plan-price.green{color:#10B981}
+.plan-per{font-size:9px;color:rgba(255,255,255,.38);margin-top:2px}
+.plan-tag{font-size:9px;font-weight:600;color:rgba(255,255,255,.45);margin-top:3px}
+.plan-tag.green{color:#10B981}
+
+.pricing-hint{
+  text-align:center;font-size:11px;color:rgba(255,255,255,.35);
+  padding:8px 0;border-top:1px solid rgba(255,255,255,.06);
+}
+
+/* ── CTA ── */
+.cta-area{padding:0 24px;margin-top:8px}
+.cta-btn{
+  width:100%;height:56px;background:#10B981;border:none;border-radius:99px;
+  font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;
+  color:white;letter-spacing:.3px;margin-bottom:10px;
+  box-shadow:0 8px 28px rgba(16,185,129,.32);cursor:pointer;
+}
+.cta-sub{text-align:center;font-size:11px;color:rgba(255,255,255,.32);
+  margin-bottom:12px;line-height:1.5}
+.restore{text-align:center;font-size:12px;font-weight:600;
+  color:rgba(255,255,255,.35);text-decoration:underline;
+  text-underline-offset:3px;cursor:pointer}
+
+/* label variations */
+.v-label{
+  font-size:11px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:2px;
+  text-transform:uppercase;text-align:center;margin-bottom:20px;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ VARIANT A — Features primero, Anual destacado ══ -->
+<div class="phone">
+  <div class="prog-wrap"><div class="prog"><div class="prog-fill" style="width:100%"></div></div></div>
+  <div class="v-label">A — ANUAL DEFAULT</div>
+
+  <div class="scroll-area">
+    <!-- Badge -->
+    <div style="display:flex;justify-content:center">
+      <div class="badge"><span class="badge-dot"></span>KAXA PRO</div>
+    </div>
+
+    <!-- Headline -->
+    <div class="headline" style="text-align:center">
+      Ya sabes cuánto gastas.<br><span>Ahora contrólalo.</span>
+    </div>
+    <div class="subline" style="text-align:center">
+      El 73% de usuarios Kaxa evitan cerrar el mes en rojo en sus primeros 30 días.
+    </div>
+
+    <!-- Features FIRST -->
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(16,185,129,.15)">📊</div>
+        <div class="feat-text">
+          <div class="feat-title">Desglose real, no estimados</div>
+          <div class="feat-desc">Ve exactamente en qué categoría se escapa el dinero cada mes.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(245,158,11,.12)">🔔</div>
+        <div class="feat-text">
+          <div class="feat-title">Alerta antes del límite</div>
+          <div class="feat-desc">Te avisamos cuando estás por pasarte — antes, no después.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(59,130,246,.12)">📅</div>
+        <div class="feat-text">
+          <div class="feat-title">Cierra el mes en verde</div>
+          <div class="feat-desc">Ajusta sobre la marcha. Sin sorpresas al final del mes.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing-section">
+      <div class="pricing-label">Elige tu plan</div>
+      <div class="plans">
+        <!-- Semanal -->
+        <div class="plan">
+          <div class="plan-name">Semanal</div>
+          <div class="plan-price">$1.99</div>
+          <div class="plan-per">/semana</div>
+          <div class="plan-tag">3 días gratis</div>
+        </div>
+        <!-- Anual — FEATURED -->
+        <div class="plan featured" style="margin-top:-4px;padding-top:18px">
+          <div class="plan-badge">✦ MEJOR VALOR</div>
+          <div class="plan-name green">Anual</div>
+          <div class="plan-price green">$24.99</div>
+          <div class="plan-per">/año · $2.08/mes</div>
+          <div class="plan-tag green">−58% vs mensual</div>
+        </div>
+        <!-- Mensual -->
+        <div class="plan">
+          <div class="plan-name">Mensual</div>
+          <div class="plan-price">$4.99</div>
+          <div class="plan-per">/mes</div>
+          <div class="plan-tag">Flexible</div>
+        </div>
+      </div>
+      <div class="pricing-hint">Anual: prueba 3 días gratis, luego $24.99/año</div>
+    </div>
+  </div>
+
+  <!-- CTA — sticky bottom -->
+  <div class="cta-area">
+    <button class="cta-btn">Probar 3 días gratis →</button>
+    <div class="cta-sub">luego $24.99/año · cancela cuando quieras</div>
+    <div class="restore">Restaurar compras</div>
+  </div>
+</div>
+
+<!-- ══ VARIANT B — Headline emocional diferente + savings emphasis ══ -->
+<div class="phone">
+  <div class="prog-wrap"><div class="prog"><div class="prog-fill" style="width:100%"></div></div></div>
+  <div class="v-label">B — HEADLINE ALTERNATIVO</div>
+
+  <div class="scroll-area">
+    <div style="display:flex;justify-content:center">
+      <div class="badge"><span class="badge-dot"></span>KAXA PRO</div>
+    </div>
+
+    <div class="headline" style="text-align:center">
+      Para de perder dinero<br><span>sin darte cuenta.</span>
+    </div>
+    <div class="subline" style="text-align:center">
+      Kaxa Pro te muestra exactamente dónde ajustar antes de cerrar el mes en rojo.
+    </div>
+
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(244,63,94,.12)">📉</div>
+        <div class="feat-text">
+          <div class="feat-title">Deja de adivinar</div>
+          <div class="feat-desc">Mira tu dinero moverse en tiempo real, no al final del mes cuando ya es tarde.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(16,185,129,.15)">✅</div>
+        <div class="feat-text">
+          <div class="feat-title">Presupuesto que se cumple</div>
+          <div class="feat-desc">Alertas inteligentes antes de pasarte. Ajusta, no lamentes.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(139,92,246,.12)">📈</div>
+        <div class="feat-text">
+          <div class="feat-title">Patrones que cambian hábitos</div>
+          <div class="feat-desc">Ve tendencias, no solo números. Decide mejor cada semana.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-section">
+      <div class="pricing-label">Elige tu plan</div>
+      <div class="plans">
+        <div class="plan">
+          <div class="plan-name">Semanal</div>
+          <div class="plan-price">$1.99</div>
+          <div class="plan-per">/semana</div>
+          <div class="plan-tag">3 días gratis</div>
+        </div>
+        <div class="plan featured" style="margin-top:-4px;padding-top:18px">
+          <div class="plan-badge">✦ MEJOR VALOR</div>
+          <div class="plan-name green">Anual</div>
+          <div class="plan-price green">$24.99</div>
+          <div class="plan-per">/año · $2.08/mes</div>
+          <div class="plan-tag green">−58% vs mensual</div>
+        </div>
+        <div class="plan">
+          <div class="plan-name">Mensual</div>
+          <div class="plan-price">$4.99</div>
+          <div class="plan-per">/mes</div>
+          <div class="plan-tag">Flexible</div>
+        </div>
+      </div>
+      <div class="pricing-hint">Anual: prueba 3 días gratis, luego $24.99/año</div>
+    </div>
+  </div>
+
+  <div class="cta-area">
+    <button class="cta-btn">Probar 3 días gratis →</button>
+    <div class="cta-sub">luego $24.99/año · cancela cuando quieras</div>
+    <div class="restore">Restaurar compras</div>
+  </div>
+</div>
+
+<!-- ══ VARIANT C — Solo 2 planes (Anual + Mensual), más limpio ══ -->
+<div class="phone">
+  <div class="prog-wrap"><div class="prog"><div class="prog-fill" style="width:100%"></div></div></div>
+  <div class="v-label">C — 2 PLANES, MÁS LIMPIO</div>
+
+  <div class="scroll-area">
+    <div style="display:flex;justify-content:center">
+      <div class="badge"><span class="badge-dot"></span>KAXA PRO</div>
+    </div>
+
+    <div class="headline" style="text-align:center">
+      Ya sabes cuánto gastas.<br><span>Ahora contrólalo.</span>
+    </div>
+    <div class="subline" style="text-align:center">
+      Kaxa Pro te muestra dónde ajustar antes de cerrar el mes en rojo.
+    </div>
+
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(16,185,129,.15)">📊</div>
+        <div class="feat-text">
+          <div class="feat-title">Desglose real, no estimados</div>
+          <div class="feat-desc">Ve exactamente en qué categoría se escapa el dinero cada mes.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(245,158,11,.12)">🔔</div>
+        <div class="feat-text">
+          <div class="feat-title">Alerta antes del límite</div>
+          <div class="feat-desc">Te avisamos cuando estás por pasarte — antes, no después.</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon" style="background:rgba(59,130,246,.12)">📅</div>
+        <div class="feat-text">
+          <div class="feat-title">Cierra el mes en verde</div>
+          <div class="feat-desc">Ajusta sobre la marcha. Sin sorpresas al final del mes.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-plan layout -->
+    <div class="pricing-section">
+      <div class="pricing-label">Elige tu plan</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:10px">
+        <!-- Anual — featured -->
+        <div class="plan featured" style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px">
+          <div class="plan-badge" style="position:static;transform:none;margin-bottom:4px;display:inline-block">✦ MEJOR VALOR</div>
+          <div style="margin-top:4px">
+            <div class="plan-name green" style="font-size:12px">Anual</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.4)">$24.99/año</div>
+          </div>
+          <div style="text-align:right">
+            <div class="plan-price green" style="font-size:28px">$2.08</div>
+            <div class="plan-per">/mes · −58%</div>
+          </div>
+        </div>
+        <!-- Mensual -->
+        <div class="plan" style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px">
+          <div>
+            <div class="plan-name" style="font-size:12px">Mensual</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.3)">Flexible</div>
+          </div>
+          <div style="text-align:right">
+            <div class="plan-price" style="font-size:24px">$4.99</div>
+            <div class="plan-per">/mes</div>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-hint">3 días gratis con cualquier plan</div>
+    </div>
+  </div>
+
+  <div class="cta-area">
+    <button class="cta-btn">Probar 3 días gratis →</button>
+    <div class="cta-sub">luego $24.99/año · cancela cuando quieras</div>
+    <div class="restore">Restaurar compras</div>
+  </div>
+</div>
+
+</body>
+</html>
