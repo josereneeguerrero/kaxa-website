@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 2,
+  "appName": "Kaxa",
+  "themeId": "kaxa-fintech",
+  "connectedCanvas": true,
+  "locales": [
+    "es",
+    "en"
+  ],
+  "locale": "es",
+  "device": "android",
+  "orientation": "portrait",
+  "appIcon": "/app-icon.png",
+  "slidesByDevice": {
+    "iphone": [],
+    "android": [
+      {
+        "id": "kaxa-01-hero",
+        "layout": "hero",
+        "label": {
+          "es": "INICIO",
+          "en": "HOME"
+        },
+        "headline": {
+          "es": "Tu dinero,\nde un vistazo",
+          "en": "Your money,\nat a glance"
+        },
+        "screenshot": "/screenshots/android/phone/es/01-home-hero.png",
+        "inverted": false
+      },
+      {
+        "id": "kaxa-02-speed",
+        "layout": "device-bottom",
+        "label": {
+          "es": "REGISTRAR",
+          "en": "TRACK"
+        },
+        "headline": {
+          "es": "Registra en\n2 segundos",
+          "en": "Track in\n2 seconds"
+        },
+        "screenshot": "/screenshots/android/phone/es/02-agregar-gasto.png",
+        "inverted": false
+      },
+      {
+        "id": "kaxa-03-budgets",
+        "layout": "device-top",
+        "label": {
+          "es": "PRESUPUESTOS",
+          "en": "BUDGETS"
+        },
+        "headline": {
+          "es": "Presupuestos\nque te cuidan",
+          "en": "Budgets that\nprotect you"
+        },
+        "screenshot": "/screenshots/android/phone/es/03-presupuestos.png",
+        "inverted": false
+      },
+      {
+        "id": "kaxa-04-goals",
+        "layout": "device-bottom",
+        "label": {
+          "es": "METAS",
+          "en": "GOALS"
+        },
+        "headline": {
+          "es": "Ahorra con\npropósito",
+          "en": "Save with\npurpose"
+        },
+        "screenshot": "/screenshots/android/phone/es/04-metas.png",
+        "inverted": false
+      },
+      {
+        "id": "kaxa-05-debts",
+        "layout": "device-top",
+        "label": {
+          "es": "DEUDAS",
+          "en": "DEBTS"
+        },
+        "headline": {
+          "es": "Deudas bajo\ncontrol",
+          "en": "Debts under\ncontrol"
+        },
+        "screenshot": "/screenshots/android/phone/es/05-deudas.png",
+        "inverted": true
+      },
+      {
+        "id": "kaxa-06-insights",
+        "layout": "device-bottom",
+        "label": {
+          "es": "RESUMEN",
+          "en": "INSIGHTS"
+        },
+        "headline": {
+          "es": "Entiende tus\nnúmeros",
+          "en": "Understand\nyour numbers"
+        },
+        "screenshot": "/screenshots/android/phone/es/06-resumen.png",
+        "inverted": false
+      },
+      {
+        "id": "kaxa-07-recurring",
+        "layout": "device-top",
+        "label": {
+          "es": "RECURRENTES",
+          "en": "RECURRING"
+        },
+        "headline": {
+          "es": "Pagos que\nno se olvidan",
+          "en": "Payments that\nnever forget"
+        },
+        "screenshot": "/screenshots/android/phone/es/07-recurrentes.png",
+        "inverted": false
+      },
+      {
+        "id": "kaxa-08-history",
+        "layout": "two-devices",
+        "label": {
+          "es": "HISTORIAL",
+          "en": "HISTORY"
+        },
+        "headline": {
+          "es": "Cada movimiento,\norganizado",
+          "en": "Every transaction,\norganized"
+        },
+        "screenshot": "/screenshots/android/phone/es/08-historial.png",
+        "inverted": false
+      }
+    ],
+    "ipad": [],
+    "android-7": [],
+    "android-10": [],
+    "feature-graphic": [
+      {
+        "id": "kaxa-fg-01",
+        "layout": "feature-graphic",
+        "label": {
+          "es": "Feature Graphic",
+          "en": "Feature Graphic"
+        },
+        "headline": {
+          "es": "Tu caja en el bolsillo",
+          "en": "Your pocket cash register"
+        },
+        "screenshot": "/screenshots/android/phone/es/01-home-hero.png",
+        "inverted": false
+      }
+    ]
+  },
+  "platform": "android",
+  "crossScreenMockupsByDevice": {
+    "iphone": [],
+    "ipad": [],
+    "android": [],
+    "android-7": [],
+    "android-10": [],
+    "feature-graphic": []
+  }
+}

@@ -13,6 +13,12 @@
       "skillPath": "skills/app-store-screens/SKILL.md",
       "computedHash": "c4df64b99160d34ba21213b50ea526698cf658c26c3cd846e44ba428062048b4"
     },
+    "app-store-screenshots": {
+      "source": "ParthJadhav/app-store-screenshots",
+      "sourceType": "github",
+      "skillPath": "skills/app-store-screenshots/SKILL.md",
+      "computedHash": "961685350664744a2dff7a308602aab1986e841e68d58b4e48f3905ab38e002d"
+    },
     "baseball-trend": {
       "source": "Pika-Labs/Pika-Plugins",
       "sourceType": "github",
