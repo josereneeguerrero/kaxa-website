@@ -55,27 +55,34 @@ export const translations = {
       subtitle: 'Funciones pensadas para tu día a día, sin complicaciones.',
       items: [
         {
-          title: 'Bolsillos',
-          description:
-            'Divide tu dinero en bolsillos (efectivo, billeteras digitales, cuentas bancarias) y mira cuánto tienes en cada uno.',
+          title: 'Sabé a dónde va cada lempira',
+          description: 'Registra gastos e ingresos en segundos. Separa tu dinero en bolsillos — efectivo, banco, billetera digital — y ve tu balance real de un vistazo.',
+          screenshot: '/screenshots/home.png',
+          bullets: ['Balance por bolsillo en tiempo real', 'Registro en 2 toques', 'Categorías con emojis personalizables'],
         },
         {
-          title: 'Presupuestos',
-          description:
-            'Define cuánto quieres gastar por categoría y recibe el control en tiempo real.',
+          title: 'Presupuestos que te avisan antes de pasarte',
+          description: 'Define cuánto querés gastar por categoría. Kaxa te alerta al 80% y te avisa cuando te pasás. Nada de sorpresas a fin de mes.',
+          screenshot: '/screenshots/presupuestos.png',
+          bullets: ['Límite mensual por categoría', 'Alertas al 80% y 100%', 'Barras de progreso visuales'],
         },
         {
-          title: 'Deudas',
-          description:
-            'Lleva el registro de lo que debes y lo que te deben, con fechas y montos claros.',
+          title: 'Metas de ahorro con nombre y fecha',
+          description: 'Vacaciones, emergencias, un capricho. Creá metas, aportá cuando puedas y celebrá cada avance con confetti real.',
+          screenshot: '/screenshots/metas.png',
+          bullets: ['Progreso visual con porcentaje', 'Aportes parciales sin límite', 'Notificaciones de hitos'],
         },
         {
-          title: 'Metas de ahorro',
-          description: 'Crea metas, define un monto objetivo y mira tu progreso.',
+          title: 'Deudas y cuotas bajo control',
+          description: 'Préstamos, tarjetas, cuotas de teléfono. Registra pagos, ve tu saldo pendiente y nunca olvides una fecha de pago.',
+          screenshot: '/screenshots/deudas.png',
+          bullets: ['7 tipos de deuda con íconos', 'Recordatorios automáticos', 'Progreso hasta liquidar'],
         },
         {
-          title: 'Resumen y reportes',
-          description: 'Visualiza tus ingresos y gastos por categoría y por periodo.',
+          title: 'Entiende tus números de un vistazo',
+          description: 'Gráficas por categoría, ingresos vs gastos, y un puntaje de salud financiera que te dice cómo vas.',
+          screenshot: '/screenshots/resumen.png',
+          bullets: ['Dona de gastos por categoría', 'Tendencias semanales', 'Puntaje de salud financiera'],
         },
       ],
     },
@@ -232,27 +239,34 @@ export const translations = {
       subtitle: 'Features built for your everyday life, without the hassle.',
       items: [
         {
-          title: 'Pockets',
-          description:
-            'Split your money into pockets (cash, digital wallets, bank accounts) and see how much you have in each one.',
+          title: 'Know where every dollar goes',
+          description: 'Track expenses and income in seconds. Split your money into pockets — cash, bank, digital wallet — and see your real balance at a glance.',
+          screenshot: '/screenshots/home.png',
+          bullets: ['Real-time balance per pocket', 'Register in 2 taps', 'Custom emoji categories'],
         },
         {
-          title: 'Budgets',
-          description:
-            'Set how much you want to spend per category and stay in control in real time.',
+          title: 'Budgets that warn you before you overspend',
+          description: 'Set how much you want to spend per category. Kaxa alerts you at 80% and lets you know when you go over. No end-of-month surprises.',
+          screenshot: '/screenshots/presupuestos.png',
+          bullets: ['Monthly limit per category', 'Alerts at 80% and 100%', 'Visual progress bars'],
         },
         {
-          title: 'Debts',
-          description:
-            'Keep track of what you owe and what you are owed, with clear dates and amounts.',
+          title: 'Savings goals with a name and a date',
+          description: 'Vacations, emergencies, a treat. Create goals, contribute when you can, and celebrate every milestone with real confetti.',
+          screenshot: '/screenshots/metas.png',
+          bullets: ['Visual progress with percentage', 'Unlimited partial contributions', 'Milestone notifications'],
         },
         {
-          title: 'Savings goals',
-          description: 'Create goals, set a target amount, and watch your progress.',
+          title: 'Debts and bills under control',
+          description: 'Loans, credit cards, phone plans. Log payments, see your remaining balance, and never miss a payment date.',
+          screenshot: '/screenshots/deudas.png',
+          bullets: ['7 debt types with icons', 'Automatic reminders', 'Progress until paid off'],
         },
         {
-          title: 'Summary & reports',
-          description: 'View your income and expenses by category and time period.',
+          title: 'Understand your numbers at a glance',
+          description: 'Charts by category, income vs expenses, and a financial health score that tells you how you are doing.',
+          screenshot: '/screenshots/resumen.png',
+          bullets: ['Spending donut by category', 'Weekly trends', 'Financial health score'],
         },
       ],
     },

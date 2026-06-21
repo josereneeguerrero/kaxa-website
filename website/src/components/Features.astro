@@ -1,5 +1,4 @@
 ---
-import Icon, { type IconName } from './Icon.astro';
 import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/routes';
 
@@ -9,29 +8,63 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = translations[lang];
-
-const featureIcons: IconName[] = ['wallet', 'document-chart', 'banknotes', 'flag', 'chart-bar'];
+const items = t.features.items as any[];
 ---
-<section id="funciones" class="relative overflow-hidden bg-surface py-16">
+<section id="funciones" class="relative overflow-hidden bg-surface py-16 sm:py-24">
   <div class="bg-dot-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
   <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
     <h2 class="reveal text-center text-3xl font-extrabold text-ink">{t.features.title}</h2>
     <p class="reveal mx-auto mt-3 max-w-xl text-center text-muted" style="transition-delay: 100ms">
       {t.features.subtitle}
     </p>
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {t.features.items.map((item, i) => (
-        <div
-          class="reveal group rounded-card border border-surface-border bg-white p-6 shadow-card transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
-          style={`transition-delay: ${(i % 3) * 120}ms`}
-        >
-          <div class="flex h-12 w-12 items-center justify-center rounded-btn bg-primary-light text-primary transition-colors duration-300 ease-out group-hover:bg-primary group-hover:text-white">
-            <Icon name={featureIcons[i]} class="h-6 w-6" />
+    <div class="mt-16 flex flex-col gap-20 sm:gap-28">
+      {items.map((item: any, i: number) => {
+        const reversed = i % 2 === 1;
+        return (
+          <div
+            class={`reveal flex flex-col items-center gap-8 sm:gap-12 md:flex-row ${reversed ? 'md:flex-row-reverse' : ''}`}
+            style={`transition-delay: ${i * 80}ms`}
+          >
+            <div class="flex-1 text-center md:text-left">
+              <h3 class="text-2xl font-extrabold text-ink sm:text-3xl">{item.title}</h3>
+              <p class="mt-3 text-base text-muted">{item.description}</p>
+              {item.bullets && (
+                <ul class="mt-4 space-y-2">
+                  {item.bullets.map((b: string) => (
+                    <li class="flex items-start gap-2 text-sm text-muted">
+                      <span class="mt-0.5 text-primary">✓</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <div class="w-full max-w-[280px] flex-shrink-0 sm:max-w-[320px]">
+              <div class="animate-float-subtle rounded-3xl border border-surface-border bg-white p-2 shadow-xl">
+                <img
+                  src={item.screenshot}
+                  alt={item.title}
+                  class="w-full rounded-2xl"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
-          <h3 class="mt-4 text-lg font-bold text-ink">{item.title}</h3>
-          <p class="mt-2 text-sm text-muted">{item.description}</p>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes float-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float-subtle {
+    animation: float-subtle 5s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float-subtle { animation: none; }
+  }
+</style>
