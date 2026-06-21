@@ -31,17 +31,17 @@ const t = translations[lang];
       <p class="mt-4 max-w-md text-base text-muted">{t.hero.subtitle}</p>
       <div class="mt-8 flex flex-wrap items-center gap-4">
         {t.hero.ctaWaitlist ? (
-          <form id="waitlist-form" class="flex w-full max-w-md gap-2">
+          <form id="waitlist-form" class="flex w-full max-w-md flex-col gap-2 sm:flex-row">
             <input
               type="email"
               name="email"
               required
               placeholder="tucorreo@ejemplo.com"
-              class="flex-1 rounded-xl border border-gray-200 px-4 py-3 text-sm text-ink shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-ink shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
             <button
               type="submit"
-              class="whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary/90 active:scale-95"
+              class="w-full rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary/90 active:scale-95 sm:w-auto sm:whitespace-nowrap"
             >
               {t.hero.cta}
             </button>
