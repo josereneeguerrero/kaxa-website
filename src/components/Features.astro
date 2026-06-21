@@ -9,44 +9,64 @@ interface Props {
 const { lang } = Astro.props;
 const t = translations[lang];
 const items = t.features.items as any[];
+
+const eyebrows = lang === 'es'
+  ? ['REGISTRO', 'PRESUPUESTOS', 'METAS', 'DEUDAS', 'RESUMEN']
+  : ['TRACKING', 'BUDGETS', 'GOALS', 'DEBTS', 'SUMMARY'];
 ---
-<section id="funciones" class="relative overflow-hidden bg-surface py-16 sm:py-24">
-  <div class="bg-dot-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
+<section id="funciones" class="relative overflow-hidden py-16 sm:py-24">
   <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
-    <h2 class="reveal text-center text-3xl font-extrabold text-ink">{t.features.title}</h2>
+    <h2 class="reveal text-center text-3xl font-extrabold text-ink sm:text-4xl">{t.features.title}</h2>
     <p class="reveal mx-auto mt-3 max-w-xl text-center text-muted" style="transition-delay: 100ms">
       {t.features.subtitle}
     </p>
-    <div class="mt-16 flex flex-col gap-20 sm:gap-28">
+    <div class="mt-16 flex flex-col gap-24 sm:gap-32">
       {items.map((item: any, i: number) => {
         const reversed = i % 2 === 1;
+        const isAlt = i % 2 === 1;
         return (
           <div
-            class={`reveal flex flex-col items-center gap-8 sm:gap-12 md:flex-row ${reversed ? 'md:flex-row-reverse' : ''}`}
+            class={`reveal flex flex-col items-center gap-10 sm:gap-16 md:flex-row ${reversed ? 'md:flex-row-reverse' : ''}`}
             style={`transition-delay: ${i * 80}ms`}
           >
+            {/* Text side */}
             <div class="flex-1 text-center md:text-left">
-              <h3 class="text-2xl font-extrabold text-ink sm:text-3xl">{item.title}</h3>
-              <p class="mt-3 text-base text-muted">{item.description}</p>
+              <span class="text-xs font-extrabold uppercase tracking-widest text-primary">
+                {eyebrows[i]}
+              </span>
+              <h3 class="mt-2 text-2xl font-extrabold leading-tight text-ink sm:text-3xl">{item.title}</h3>
+              <p class="mt-3 max-w-md text-base leading-relaxed text-muted">{item.description}</p>
               {item.bullets && (
-                <ul class="mt-4 space-y-2">
+                <ul class="mt-5 space-y-3">
                   {item.bullets.map((b: string) => (
-                    <li class="flex items-start gap-2 text-sm text-muted">
-                      <span class="mt-0.5 text-primary">✓</span>
+                    <li class="flex items-start gap-3 text-sm text-ink/80">
+                      <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">✓</span>
                       <span>{b}</span>
                     </li>
                   ))}
                 </ul>
               )}
             </div>
-            <div class="w-full max-w-[280px] flex-shrink-0 sm:max-w-[320px]">
-              <div class="animate-float-subtle rounded-3xl border border-surface-border bg-white p-2 shadow-xl">
-                <img
-                  src={item.screenshot}
-                  alt={item.title}
-                  class="w-full rounded-2xl"
-                  loading="lazy"
-                />
+            {/* Phone side */}
+            <div class="relative w-full max-w-[280px] flex-shrink-0 sm:max-w-[300px]">
+              {/* Glow behind phone */}
+              <div
+                class="pointer-events-none absolute -inset-8 rounded-full opacity-30 blur-3xl"
+                style={`background: ${isAlt ? 'radial-gradient(circle, #10B981 0%, transparent 70%)' : 'radial-gradient(circle, #2563EB 0%, transparent 70%)'}`}
+                aria-hidden="true"
+              ></div>
+              {/* Device frame */}
+              <div class="animate-float-subtle relative rounded-[2.5rem] border-[6px] border-ink/90 bg-ink/90 p-1.5 shadow-2xl">
+                <div class="overflow-hidden rounded-[2rem] bg-white">
+                  {/* Notch */}
+                  <div class="mx-auto h-5 w-24 rounded-b-xl bg-ink/90" aria-hidden="true"></div>
+                  <img
+                    src={item.screenshot}
+                    alt={item.title}
+                    class="w-full"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -63,6 +83,9 @@ const items = t.features.items as any[];
   }
   .animate-float-subtle {
     animation: float-subtle 5s ease-in-out infinite;
+  }
+  .animate-float-subtle:nth-child(2n) {
+    animation-delay: 2.5s;
   }
   @media (prefers-reduced-motion: reduce) {
     .animate-float-subtle { animation: none; }
