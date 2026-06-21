@@ -30,15 +30,36 @@ const t = translations[lang];
       <h1 class="mt-4 text-4xl font-black leading-tight text-ink sm:text-5xl">{t.hero.title}</h1>
       <p class="mt-4 max-w-md text-base text-muted">{t.hero.subtitle}</p>
       <div class="mt-8 flex flex-wrap items-center gap-4">
-        <a href={PLAY_STORE_URL} class="inline-block transition hover:opacity-90">
-          <img
-            src={`/badges/google-play-badge-${lang}.png`}
-            alt={t.hero.cta}
-            class="h-14 w-auto"
-            width="194"
-            height="75"
-          />
-        </a>
+        {t.hero.ctaWaitlist ? (
+          <form id="waitlist-form" class="flex w-full max-w-md gap-2">
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="tucorreo@ejemplo.com"
+              class="flex-1 rounded-xl border border-gray-200 px-4 py-3 text-sm text-ink shadow-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            />
+            <button
+              type="submit"
+              class="whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary/90 active:scale-95"
+            >
+              {t.hero.cta}
+            </button>
+          </form>
+          <p id="waitlist-success" class="hidden text-sm font-medium text-primary">
+            🎉 ¡Listo! Te avisaremos antes que nadie.
+          </p>
+        ) : (
+          <a href={PLAY_STORE_URL} class="inline-block transition hover:opacity-90">
+            <img
+              src={`/badges/google-play-badge-${lang}.png`}
+              alt={t.hero.cta}
+              class="h-14 w-auto"
+              width="194"
+              height="75"
+            />
+          </a>
+        )}
       </div>
     </div>
     <div class="reveal relative" style="transition-delay: 150ms">
@@ -48,3 +69,29 @@ const t = translations[lang];
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
+  const success = document.getElementById('waitlist-success');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = new FormData(form).get('email') as string;
+      const btn = form.querySelector('button')!;
+      btn.textContent = '...';
+      btn.disabled = true;
+      try {
+        await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        form.classList.add('hidden');
+        success?.classList.remove('hidden');
+      } catch {
+        btn.textContent = 'Reintentar';
+        btn.disabled = false;
+      }
+    });
+  }
+</script>
