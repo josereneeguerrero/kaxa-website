@@ -14,11 +14,15 @@ export const translations = {
     },
     hero: {
       eyebrow: 'Próximamente en Google Play',
-      title: 'Tu dinero merece orden. Kaxa lo resuelve.',
+      title: 'Tu dinero merece orden.',
+      titleHighlight: 'Kaxa lo resuelve.',
       subtitle:
         'La app de finanzas personales hecha en Honduras. Registra gastos, presupuestos, deudas y metas — en tu moneda, sin complicaciones.',
       cta: 'Avisarme cuando esté lista',
       ctaWaitlist: true,
+      badge: 'Hecha en Honduras 🇭🇳',
+      launchDate: 'Disponible en julio 2026',
+      socialProof: 'personas ya se registraron',
       mockup: {
         alt: 'Captura de pantalla de la app Kaxa mostrando el balance total y la actividad reciente',
       },
@@ -187,11 +191,15 @@ export const translations = {
     },
     hero: {
       eyebrow: 'Coming soon to Google Play',
-      title: 'Your money deserves order. Kaxa delivers.',
+      title: 'Your money deserves order.',
+      titleHighlight: 'Kaxa delivers.',
       subtitle:
         'The personal finance app made in Honduras. Track expenses, budgets, debts, and goals — in your currency, no hassle.',
       cta: 'Notify me when it\'s ready',
       ctaWaitlist: true,
+      badge: 'Made in Honduras 🇭🇳',
+      launchDate: 'Available July 2026',
+      socialProof: 'people already signed up',
       mockup: {
         alt: 'Screenshot of the Kaxa app showing the total balance and recent activity',
       },
