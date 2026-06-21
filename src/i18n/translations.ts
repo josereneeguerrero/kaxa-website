@@ -10,7 +10,7 @@ export const translations = {
       features: 'Funciones',
       pricing: 'Precios',
       support: 'Soporte',
-      download: 'Descargar',
+      download: 'Únete a la lista',
     },
     hero: {
       eyebrow: 'Próximamente en Google Play',
@@ -155,9 +155,10 @@ export const translations = {
       contactButton: 'Enviar correo',
     },
     cta: {
-      title: 'Empieza a controlar tu dinero hoy',
-      subtitle: 'Descarga Kaxa y organiza tus finanzas en minutos.',
-      button: 'Descargar en Google Play',
+      title: 'Sé de los primeros en probar Kaxa',
+      subtitle: 'Dejá tu correo y te avisamos antes que nadie.',
+      button: 'Avisarme cuando esté lista',
+      ctaWaitlist: true,
     },
     footer: {
       tagline: 'El control de tu dinero, en tu bolsillo.',
@@ -167,7 +168,7 @@ export const translations = {
       supportTitle: 'Soporte',
       supportLink: 'Centro de ayuda',
       contactEmail: 'soporte@kaxa.lat',
-      downloadTitle: 'Descarga',
+      downloadTitle: 'Próximamente',
       copyright: '© 2026 Kaxa. Todos los derechos reservados.',
     },
   },
@@ -182,7 +183,7 @@ export const translations = {
       features: 'Features',
       pricing: 'Pricing',
       support: 'Support',
-      download: 'Download',
+      download: 'Join the list',
     },
     hero: {
       eyebrow: 'Coming soon to Google Play',
@@ -326,9 +327,10 @@ export const translations = {
       contactButton: 'Send email',
     },
     cta: {
-      title: 'Start taking control of your money today',
-      subtitle: 'Download Kaxa and organize your finances in minutes.',
-      button: 'Get it on Google Play',
+      title: 'Be one of the first to try Kaxa',
+      subtitle: 'Leave your email and we\'ll notify you before anyone else.',
+      button: 'Notify me when it\'s ready',
+      ctaWaitlist: true,
     },
     footer: {
       tagline: 'Take control of your money, in your pocket.',
@@ -338,7 +340,7 @@ export const translations = {
       supportTitle: 'Support',
       supportLink: 'Help center',
       contactEmail: 'soporte@kaxa.lat',
-      downloadTitle: 'Download',
+      downloadTitle: 'Coming soon',
       copyright: '© 2026 Kaxa. All rights reserved.',
     },
   },
