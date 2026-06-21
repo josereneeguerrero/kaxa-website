@@ -33,7 +33,8 @@ const switchHref = routes[currentRoute][otherLang(lang)];
         {lang === 'es' ? 'EN' : 'ES'}
       </a>
       <a
-        href="#waitlist-form"
+        href="#"
+        onclick="window.scrollTo({top:0,behavior:'smooth'});return false"
         class="rounded-btn bg-primary px-4 py-2 text-sm font-bold text-white shadow-card hover:bg-primary-dark"
       >
         {t.nav.download}
