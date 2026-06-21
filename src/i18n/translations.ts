@@ -131,29 +131,44 @@ export const translations = {
       title: 'Preguntas frecuentes',
       items: [
         {
+          question: '¿Qué incluye Kaxa?',
+          answer:
+            'Registro de gastos e ingresos, presupuestos por categoría con alertas, metas de ahorro, control de deudas y cuotas, pagos recurrentes automáticos, resumen con gráficas, y bloqueo biométrico. Todo en una sola app.',
+        },
+        {
+          question: '¿En qué se diferencia de una hoja de Excel?',
+          answer:
+            'Excel no te avisa cuando te pasás del presupuesto, no te recuerda cuotas pendientes, y no te muestra gráficas al instante. Kaxa hace todo eso en 2 toques, sin fórmulas ni tablas.',
+        },
+        {
           question: '¿Mis datos están seguros?',
           answer:
-            'Sí. Tu información financiera se almacena de forma segura y nunca la compartimos ni vendemos a terceros. Puedes leer más en nuestra Política de Privacidad.',
+            'Tus datos financieros se guardan en tu dispositivo. No tenemos servidores que almacenen tu información. Además, podés activar bloqueo con huella dactilar para que nadie más acceda a la app.',
         },
         {
-          question: '¿Necesito conexión a internet para usar Kaxa?',
+          question: '¿Necesito conexión a internet?',
           answer:
-            'Puedes registrar tus movimientos sin conexión. Kaxa sincroniza tu información cuando vuelves a tener internet.',
+            'No. Kaxa funciona completamente sin internet. Solo necesitás conexión para la compra inicial de la suscripción.',
         },
         {
-          question: '¿En qué moneda funciona Kaxa?',
+          question: '¿En qué monedas funciona?',
           answer:
-            'Kaxa funciona con varias monedas: lempiras (HNL), dólares (USD) y quetzales (GTQ), con más monedas en camino. Eliges tu moneda principal al configurar la app.',
+            'Kaxa soporta 8 monedas: lempiras (HNL), dólares (USD), quetzales (GTQ), pesos mexicanos (MXN), pesos colombianos (COP), reales (BRL), pesos argentinos (ARS) y euros (EUR).',
+        },
+        {
+          question: '¿Puedo probarla gratis?',
+          answer:
+            'Sí. El plan semanal incluye 3 días de prueba gratis. Si no te convence, cancelás antes de que termine el trial y no se cobra nada. Sin compromisos.',
         },
         {
           question: '¿Cómo cancelo mi suscripción?',
           answer:
-            'Puedes cancelar en cualquier momento desde la configuración de tu cuenta de Google Play o App Store, sin penalidades.',
+            'Desde Google Play → Suscripciones → Kaxa → Cancelar. Sin penalidades, sin llamadas, sin formularios. Conservás el acceso hasta que termine tu periodo pagado.',
         },
         {
-          question: '¿Hay una versión gratuita?',
+          question: '¿Quién hizo Kaxa?',
           answer:
-            'Kaxa no tiene versión gratuita, pero el plan semanal incluye 3 días de prueba gratis para que la pruebes sin compromiso.',
+            'Kaxa es diseñada y desarrollada en Honduras. Es un proyecto independiente creado para resolver un problema real: que la gente sepa en qué se va su dinero, sin complicaciones.',
         },
       ],
     },
@@ -314,29 +329,44 @@ export const translations = {
       title: 'Frequently asked questions',
       items: [
         {
+          question: 'What does Kaxa include?',
+          answer:
+            'Expense and income tracking, category budgets with alerts, savings goals, debt and installment management, automatic recurring payments, charts and summaries, and biometric lock. All in one app.',
+        },
+        {
+          question: 'How is it different from a spreadsheet?',
+          answer:
+            'Excel won\'t alert you when you overspend, won\'t remind you about due payments, and won\'t show you charts instantly. Kaxa does all of that in 2 taps — no formulas, no tables.',
+        },
+        {
           question: 'Is my data safe?',
           answer:
-            'Yes. Your financial information is stored securely and we never share or sell it to third parties. Read more in our Privacy Policy.',
+            'Your financial data stays on your device. We don\'t have servers storing your information. You can also enable fingerprint lock so no one else can access the app.',
         },
         {
-          question: 'Do I need an internet connection to use Kaxa?',
+          question: 'Do I need an internet connection?',
           answer:
-            'You can log transactions offline. Kaxa syncs your information once you are back online.',
+            'No. Kaxa works completely offline. You only need a connection for the initial subscription purchase.',
         },
         {
-          question: 'What currency does Kaxa use?',
+          question: 'What currencies does it support?',
           answer:
-            'Kaxa works with several currencies: lempiras (HNL), US dollars (USD), and Guatemalan quetzales (GTQ), with more on the way. You choose your main currency when you set up the app.',
+            'Kaxa supports 8 currencies: Honduran lempiras (HNL), US dollars (USD), Guatemalan quetzales (GTQ), Mexican pesos (MXN), Colombian pesos (COP), Brazilian reais (BRL), Argentine pesos (ARS), and euros (EUR).',
+        },
+        {
+          question: 'Can I try it for free?',
+          answer:
+            'Yes. The weekly plan includes a 3-day free trial. If you\'re not convinced, cancel before the trial ends and you won\'t be charged. No strings attached.',
         },
         {
           question: 'How do I cancel my subscription?',
           answer:
-            'You can cancel anytime from your Google Play or App Store account settings, with no penalties.',
+            'Go to Google Play → Subscriptions → Kaxa → Cancel. No penalties, no calls, no forms. You keep access until the end of your paid period.',
         },
         {
-          question: 'Is there a free version?',
+          question: 'Who made Kaxa?',
           answer:
-            'Kaxa does not have a free version, but the weekly plan includes a 3-day free trial so you can try it risk-free.',
+            'Kaxa is designed and developed in Honduras. It\'s an independent project built to solve a real problem: helping people understand where their money goes, without the hassle.',
         },
       ],
     },
