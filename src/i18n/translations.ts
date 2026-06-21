@@ -13,11 +13,12 @@ export const translations = {
       download: 'Descargar',
     },
     hero: {
-      eyebrow: 'De Honduras para el mundo',
-      title: 'El control de tu dinero, en tu bolsillo.',
+      eyebrow: 'Próximamente en Google Play',
+      title: 'Tu dinero merece orden. Kaxa viene a dártelo.',
       subtitle:
-        'Registra tus gastos e ingresos, organiza tus bolsillos y entiende a dónde va tu dinero, en tu moneda.',
-      cta: 'Descargar en Google Play',
+        'La app de finanzas personales hecha en Honduras. Registra gastos, presupuestos, deudas y metas — en tu moneda, sin complicaciones.',
+      cta: 'Avisarme cuando esté lista',
+      ctaWaitlist: true,
       mockup: {
         alt: 'Captura de pantalla de la app Kaxa mostrando el balance total y la actividad reciente',
       },
@@ -184,11 +185,12 @@ export const translations = {
       download: 'Download',
     },
     hero: {
-      eyebrow: 'From Honduras to the world',
-      title: 'Take control of your money, in your pocket.',
+      eyebrow: 'Coming soon to Google Play',
+      title: 'Your money deserves order. Kaxa is here to give it.',
       subtitle:
-        'Track your expenses and income, organize your money into pockets, and understand where your money goes, in your currency.',
-      cta: 'Get it on Google Play',
+        'The personal finance app made in Honduras. Track expenses, budgets, debts, and goals — in your currency, no hassle.',
+      cta: 'Notify me when it\'s ready',
+      ctaWaitlist: true,
       mockup: {
         alt: 'Screenshot of the Kaxa app showing the total balance and recent activity',
       },
