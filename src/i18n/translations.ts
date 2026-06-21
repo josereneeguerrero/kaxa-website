@@ -55,7 +55,7 @@ export const translations = {
       subtitle: 'Funciones pensadas para tu día a día, sin complicaciones.',
       items: [
         {
-          title: 'Sabé a dónde va cada lempira',
+          title: 'Tu dinero, organizado al instante',
           description: 'Registra gastos e ingresos en segundos. Separa tu dinero en bolsillos — efectivo, banco, billetera digital — y ve tu balance real de un vistazo.',
           screenshot: '/screenshots/home.png',
           bullets: ['Balance por bolsillo en tiempo real', 'Registro en 2 toques', 'Categorías con emojis personalizables'],
@@ -254,7 +254,7 @@ export const translations = {
       subtitle: 'Features built for your everyday life, without the hassle.',
       items: [
         {
-          title: 'Know where every dollar goes',
+          title: 'Your money, organized instantly',
           description: 'Track expenses and income in seconds. Split your money into pockets — cash, bank, digital wallet — and see your real balance at a glance.',
           screenshot: '/screenshots/home.png',
           bullets: ['Real-time balance per pocket', 'Register in 2 taps', 'Custom emoji categories'],
