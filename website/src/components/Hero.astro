@@ -103,7 +103,22 @@ const socialProof = h.socialProof || '';
     </div>
     <div class="reveal relative" style="transition-delay: 150ms">
       <div class="animate-float relative">
-        <PhoneMockup mockup={t.hero.mockup} />
+        {isWaitlist ? (
+          <div class="mx-auto w-[280px] overflow-hidden rounded-[2.5rem] shadow-2xl">
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              class="w-full"
+              poster={t.hero.mockup?.src || '/screenshots/home.png'}
+            >
+              <source src="/kaxa-demo.mp4" type="video/mp4" />
+            </video>
+          </div>
+        ) : (
+          <PhoneMockup mockup={t.hero.mockup} />
+        )}
       </div>
     </div>
   </div>
