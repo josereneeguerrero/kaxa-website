@@ -49,25 +49,17 @@ const eyebrows = lang === 'es'
             </div>
             {/* Phone side */}
             <div class="relative w-full max-w-[280px] flex-shrink-0 sm:max-w-[300px]">
-              {/* Glow behind phone */}
               <div
                 class="pointer-events-none absolute -inset-8 rounded-full opacity-30 blur-3xl"
                 style={`background: ${isAlt ? 'radial-gradient(circle, #10B981 0%, transparent 70%)' : 'radial-gradient(circle, #2563EB 0%, transparent 70%)'}`}
                 aria-hidden="true"
               ></div>
-              {/* Device frame */}
-              <div class="animate-float-subtle relative rounded-[2.5rem] border-[6px] border-ink/90 bg-ink/90 p-1.5 shadow-2xl">
-                <div class="overflow-hidden rounded-[2rem] bg-white">
-                  {/* Notch */}
-                  <div class="mx-auto h-5 w-24 rounded-b-xl bg-ink/90" aria-hidden="true"></div>
-                  <img
-                    src={item.screenshot}
-                    alt={item.title}
-                    class="w-full"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+              <img
+                src={item.screenshot}
+                alt={item.title}
+                class="animate-float-subtle relative w-full rounded-3xl shadow-2xl"
+                loading="lazy"
+              />
             </div>
           </div>
         );
