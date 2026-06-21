@@ -10,11 +10,11 @@ export const translations = {
       features: 'Funciones',
       pricing: 'Precios',
       support: 'Soporte',
-      download: 'Únete a la lista',
+      download: 'Únete',
     },
     hero: {
       eyebrow: 'Próximamente en Google Play',
-      title: 'Tu dinero merece orden. Kaxa viene a dártelo.',
+      title: 'Tu dinero merece orden. Kaxa lo resuelve.',
       subtitle:
         'La app de finanzas personales hecha en Honduras. Registra gastos, presupuestos, deudas y metas — en tu moneda, sin complicaciones.',
       cta: 'Avisarme cuando esté lista',
@@ -187,7 +187,7 @@ export const translations = {
     },
     hero: {
       eyebrow: 'Coming soon to Google Play',
-      title: 'Your money deserves order. Kaxa is here to give it.',
+      title: 'Your money deserves order. Kaxa delivers.',
       subtitle:
         'The personal finance app made in Honduras. Track expenses, budgets, debts, and goals — in your currency, no hassle.',
       cta: 'Notify me when it\'s ready',
