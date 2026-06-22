@@ -186,6 +186,13 @@ export const translations = {
       button: 'Avisarme cuando esté lista',
       ctaWaitlist: true,
     },
+    waitlistUI: {
+      successTitle: '🎉 ¡Estás en la lista!',
+      successShare: 'Compartí con un amigo — ambos obtienen acceso anticipado.',
+      shareBtn: 'Compartir',
+      shareCopied: '✓ Link copiado',
+      comingSoon: 'Google Play — pronto',
+    },
     footer: {
       tagline: 'El control de tu dinero, en tu bolsillo.',
       legalTitle: 'Legal',
@@ -383,6 +390,13 @@ export const translations = {
       subtitle: 'Leave your email and we\'ll notify you before anyone else.',
       button: 'Notify me when it\'s ready',
       ctaWaitlist: true,
+    },
+    waitlistUI: {
+      successTitle: '🎉 You\'re on the list!',
+      successShare: 'Share with a friend — both get early access.',
+      shareBtn: 'Share',
+      shareCopied: '✓ Link copied',
+      comingSoon: 'Google Play — coming soon',
     },
     footer: {
       tagline: 'Take control of your money, in your pocket.',
