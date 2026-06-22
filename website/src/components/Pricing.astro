@@ -39,10 +39,10 @@ const t = translations[lang];
         </ul>
         <a
           href="#"
-          onclick="window.scrollTo({top:0,behavior:'smooth'});return false"
+          onclick="window.scrollTo({top:0,behavior:'smooth'});document.querySelector('#waitlist-form input')?.focus();return false"
           class="mt-6 rounded-btn bg-primary px-4 py-3 text-center text-sm font-bold text-white hover:bg-primary-dark"
         >
-          {plan.cta}
+          {t.hero.cta}
         </a>
       </div>
     ))}
