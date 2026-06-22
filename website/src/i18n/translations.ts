@@ -91,12 +91,7 @@ export const translations = {
       subtitle:
         'Elige el plan que mejor se acomode a ti. Cancela cuando quieras desde la tienda de aplicaciones.',
       note: 'El pago se procesa de forma segura dentro de la app, a través de Google Play o App Store.',
-      featuresList: [
-        'Bolsillos ilimitados',
-        'Presupuestos y metas de ahorro',
-        'Seguimiento de deudas',
-        'Resumen y reportes financieros',
-      ],
+      includes: 'Todos los planes incluyen: bolsillos ilimitados, presupuestos con alertas, metas de ahorro, control de deudas, pagos recurrentes, resumen con gráficas y bloqueo biométrico.',
       plans: [
         {
           id: 'weekly',
@@ -104,7 +99,7 @@ export const translations = {
           price: '$1.99',
           period: '/ semana',
           highlight: 'Prueba gratis 3 días',
-          cta: 'Probar gratis',
+          anchor: '🍬 Menos que un dulce al día',
           featured: false,
         },
         {
@@ -113,7 +108,7 @@ export const translations = {
           price: '$4.99',
           period: '/ mes',
           highlight: '',
-          cta: 'Empezar',
+          anchor: '☕ Lo que cuesta un café',
           featured: false,
         },
         {
@@ -122,7 +117,7 @@ export const translations = {
           price: '$24.99',
           period: '/ año',
           highlight: 'Mejor valor',
-          cta: 'Empezar',
+          anchor: '🎧 Menos que Spotify — todo el año',
           featured: true,
         },
       ],
@@ -181,9 +176,9 @@ export const translations = {
       contactButton: 'Enviar correo',
     },
     cta: {
-      title: 'Sé de los primeros en probar Kaxa',
-      subtitle: 'Dejá tu correo y te avisamos antes que nadie.',
-      button: 'Avisarme cuando esté lista',
+      title: 'No dejes que tu dinero se siga yendo sin avisar',
+      subtitle: 'Registrate y sé de los primeros en usar Kaxa cuando esté disponible.',
+      button: 'Quiero acceso anticipado',
       ctaWaitlist: true,
     },
     waitlistUI: {
@@ -296,12 +291,7 @@ export const translations = {
       title: 'Simple plans, no surprises',
       subtitle: 'Choose the plan that fits you best. Cancel anytime from the app store.',
       note: 'Payment is processed securely inside the app, through Google Play or the App Store.',
-      featuresList: [
-        'Unlimited pockets',
-        'Budgets and savings goals',
-        'Debt tracking',
-        'Financial summary and reports',
-      ],
+      includes: 'Every plan includes: unlimited pockets, budgets with alerts, savings goals, debt tracking, recurring payments, charts and summaries, and biometric lock.',
       plans: [
         {
           id: 'weekly',
@@ -309,7 +299,7 @@ export const translations = {
           price: '$1.99',
           period: '/ week',
           highlight: '3-day free trial',
-          cta: 'Try for free',
+          anchor: '🍬 Less than a candy a day',
           featured: false,
         },
         {
@@ -318,7 +308,7 @@ export const translations = {
           price: '$4.99',
           period: '/ month',
           highlight: '',
-          cta: 'Get started',
+          anchor: '☕ The price of a coffee',
           featured: false,
         },
         {
@@ -327,7 +317,7 @@ export const translations = {
           price: '$24.99',
           period: '/ year',
           highlight: 'Best value',
-          cta: 'Get started',
+          anchor: '🎧 Less than Spotify — all year',
           featured: true,
         },
       ],
@@ -386,9 +376,9 @@ export const translations = {
       contactButton: 'Send email',
     },
     cta: {
-      title: 'Be one of the first to try Kaxa',
-      subtitle: 'Leave your email and we\'ll notify you before anyone else.',
-      button: 'Notify me when it\'s ready',
+      title: 'Don\'t let your money keep slipping away',
+      subtitle: 'Sign up and be one of the first to use Kaxa when it launches.',
+      button: 'Get early access',
       ctaWaitlist: true,
     },
     waitlistUI: {
