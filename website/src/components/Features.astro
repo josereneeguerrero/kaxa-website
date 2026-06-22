@@ -8,7 +8,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = translations[lang];
-const items = t.features.items as any[];
+const items = t.features.items;
 
 const eyebrows = lang === 'es'
   ? ['REGISTRO', 'PRESUPUESTOS', 'METAS', 'DEUDAS', 'RESUMEN']
@@ -21,9 +21,8 @@ const eyebrows = lang === 'es'
       {t.features.subtitle}
     </p>
     <div class="mt-16 flex flex-col gap-24 sm:gap-32">
-      {items.map((item: any, i: number) => {
+      {items.map((item, i) => {
         const reversed = i % 2 === 1;
-        const isAlt = i % 2 === 1;
         return (
           <div
             class={`reveal flex flex-col items-center gap-10 sm:gap-16 md:flex-row ${reversed ? 'md:flex-row-reverse' : ''}`}
@@ -51,7 +50,7 @@ const eyebrows = lang === 'es'
             <div class="relative w-full max-w-[280px] flex-shrink-0 sm:max-w-[300px]">
               <div
                 class="pointer-events-none absolute -inset-8 rounded-full opacity-30 blur-3xl"
-                style={`background: ${isAlt ? 'radial-gradient(circle, #10B981 0%, transparent 70%)' : 'radial-gradient(circle, #2563EB 0%, transparent 70%)'}`}
+                style={`background: ${reversed ? 'radial-gradient(circle, #10B981 0%, transparent 70%)' : 'radial-gradient(circle, #2563EB 0%, transparent 70%)'}`}
                 aria-hidden="true"
               ></div>
               <img

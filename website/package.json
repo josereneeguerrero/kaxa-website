@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest run"
+    "test": "echo 'No tests yet'"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -20,8 +20,5 @@
     "astro": "^6.4.6",
     "resend": "^6.14.0",
     "tailwindcss": "^4.3.0"
-  },
-  "devDependencies": {
-    "vitest": "^4.1.8"
   }
 }
