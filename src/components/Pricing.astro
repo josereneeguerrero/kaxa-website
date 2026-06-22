@@ -9,7 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = translations[lang];
 const plans = t.pricing.plans as any[];
-const includes = (t.pricing as any).includes || '';
+const includes = (t.pricing as any).includesList || [];
 ---
 <section id="precios" class="bg-grain relative mx-auto max-w-6xl px-4 py-16 sm:px-6">
   <h2 class="text-center text-3xl font-extrabold text-ink">{t.pricing.title}</h2>
@@ -17,22 +17,29 @@ const includes = (t.pricing as any).includes || '';
   <div class="mt-12 grid gap-6 md:grid-cols-3">
     {plans.map((plan: any) => (
       <div
-        class={`flex flex-col items-center rounded-card p-6 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+        class={`flex flex-col justify-between rounded-card p-6 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
           plan.featured ? 'border-2 border-primary bg-primary-light/40' : 'glass-card'
         }`}
       >
-        {plan.highlight && (
-          <span class="mb-3 inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
-            {plan.highlight}
-          </span>
-        )}
-        <h3 class="text-lg font-bold text-ink">{plan.name}</h3>
-        <p class="mt-2 text-4xl font-extrabold text-ink">
-          {plan.price}<span class="text-sm font-semibold text-muted"> {plan.period}</span>
-        </p>
-        {plan.anchor && (
-          <p class="mt-2 text-xs text-muted">{plan.anchor}</p>
-        )}
+        <div>
+          {plan.highlight ? (
+            <span class="mb-3 inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
+              {plan.highlight}
+            </span>
+          ) : (
+            <div class="mb-3 h-6"></div>
+          )}
+          <h3 class="text-lg font-bold text-ink">{plan.name}</h3>
+          <p class="mt-2 text-4xl font-extrabold text-ink">
+            {plan.price}<span class="text-sm font-semibold text-muted"> {plan.period}</span>
+          </p>
+          {plan.anchor && (
+            <p class="mt-2 text-xs text-muted">{plan.anchor}</p>
+          )}
+          {plan.detail && (
+            <p class="mt-1 text-xs font-semibold text-primary">{plan.detail}</p>
+          )}
+        </div>
         <a
           href="#"
           onclick="window.scrollTo({top:0,behavior:'smooth'});document.querySelector('#waitlist-form input')?.focus();return false"
@@ -43,8 +50,22 @@ const includes = (t.pricing as any).includes || '';
       </div>
     ))}
   </div>
-  {includes && (
-    <p class="mx-auto mt-10 max-w-2xl text-center text-sm text-muted">{includes}</p>
+
+  {includes.length > 0 && (
+    <div class="mx-auto mt-12 max-w-2xl rounded-card border border-surface-border bg-white p-6 shadow-card">
+      <p class="mb-4 text-center text-sm font-bold uppercase tracking-wide text-primary">
+        {lang === 'es' ? 'Todos los planes incluyen' : 'Every plan includes'}
+      </p>
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        {includes.map((item: string) => (
+          <div class="flex items-start gap-2 text-sm text-ink/80">
+            <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">✓</span>
+            <span>{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   )}
-  <p class="mt-4 text-center text-xs text-muted/60">{t.pricing.note}</p>
+
+  <p class="mt-6 text-center text-xs text-muted/60">{t.pricing.note}</p>
 </section>
