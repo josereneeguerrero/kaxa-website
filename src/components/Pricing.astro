@@ -1,6 +1,5 @@
 ---
 import { translations } from '../i18n/translations';
-import { PLAY_STORE_URL } from '../i18n/constants';
 import type { Lang } from '../i18n/routes';
 
 interface Props {
@@ -9,43 +8,43 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = translations[lang];
+const plans = t.pricing.plans as any[];
+const includes = (t.pricing as any).includes || '';
 ---
 <section id="precios" class="bg-grain relative mx-auto max-w-6xl px-4 py-16 sm:px-6">
   <h2 class="text-center text-3xl font-extrabold text-ink">{t.pricing.title}</h2>
   <p class="mx-auto mt-3 max-w-xl text-center text-muted">{t.pricing.subtitle}</p>
   <div class="mt-12 grid gap-6 md:grid-cols-3">
-    {t.pricing.plans.map((plan) => (
+    {plans.map((plan: any) => (
       <div
-        class={`flex flex-col rounded-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+        class={`flex flex-col items-center rounded-card p-6 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
           plan.featured ? 'border-2 border-primary bg-primary-light/40' : 'glass-card'
         }`}
       >
         {plan.highlight && (
-          <span class="mb-2 inline-block w-fit rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
+          <span class="mb-3 inline-block rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
             {plan.highlight}
           </span>
         )}
         <h3 class="text-lg font-bold text-ink">{plan.name}</h3>
-        <p class="mt-2 text-3xl font-extrabold text-ink">
+        <p class="mt-2 text-4xl font-extrabold text-ink">
           {plan.price}<span class="text-sm font-semibold text-muted"> {plan.period}</span>
         </p>
-        <ul class="mt-4 flex-1 space-y-2 text-sm text-muted">
-          {t.pricing.featuresList.map((feature) => (
-            <li class="flex items-start gap-2">
-              <span class="text-primary">✓</span>
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
+        {plan.anchor && (
+          <p class="mt-2 text-xs text-muted">{plan.anchor}</p>
+        )}
         <a
           href="#"
           onclick="window.scrollTo({top:0,behavior:'smooth'});document.querySelector('#waitlist-form input')?.focus();return false"
-          class="mt-6 rounded-btn bg-primary px-4 py-3 text-center text-sm font-bold text-white hover:bg-primary-dark"
+          class="mt-6 w-full rounded-btn bg-primary px-4 py-3 text-center text-sm font-bold text-white hover:bg-primary-dark"
         >
           {t.hero.cta}
         </a>
       </div>
     ))}
   </div>
-  <p class="mt-8 text-center text-xs text-muted">{t.pricing.note}</p>
+  {includes && (
+    <p class="mx-auto mt-10 max-w-2xl text-center text-sm text-muted">{includes}</p>
+  )}
+  <p class="mt-4 text-center text-xs text-muted/60">{t.pricing.note}</p>
 </section>
