@@ -91,7 +91,17 @@ export const translations = {
       subtitle:
         'Elige el plan que mejor se acomode a ti. Cancela cuando quieras desde la tienda de aplicaciones.',
       note: 'El pago se procesa de forma segura dentro de la app, a través de Google Play o App Store.',
-      includes: 'Todos los planes incluyen: bolsillos ilimitados, presupuestos con alertas, metas de ahorro, control de deudas, pagos recurrentes, resumen con gráficas y bloqueo biométrico.',
+      includesList: [
+        'Bolsillos ilimitados',
+        'Presupuestos con alertas',
+        'Metas de ahorro',
+        'Control de deudas y cuotas',
+        'Pagos recurrentes',
+        'Resumen con gráficas',
+        'Puntaje de salud financiera',
+        'Bloqueo biométrico',
+        'Sin anuncios',
+      ],
       plans: [
         {
           id: 'weekly',
@@ -100,6 +110,7 @@ export const translations = {
           period: '/ semana',
           highlight: 'Prueba gratis 3 días',
           anchor: '🍬 Menos que un dulce al día',
+          detail: 'Probá sin compromiso',
           featured: false,
         },
         {
@@ -109,6 +120,7 @@ export const translations = {
           period: '/ mes',
           highlight: '',
           anchor: '☕ Lo que cuesta un café',
+          detail: 'Sin contrato, cancelá cuando quieras',
           featured: false,
         },
         {
@@ -118,6 +130,7 @@ export const translations = {
           period: '/ año',
           highlight: 'Mejor valor',
           anchor: '🎧 Menos que Spotify — todo el año',
+          detail: '$2.08/mes — el más popular',
           featured: true,
         },
       ],
@@ -291,7 +304,17 @@ export const translations = {
       title: 'Simple plans, no surprises',
       subtitle: 'Choose the plan that fits you best. Cancel anytime from the app store.',
       note: 'Payment is processed securely inside the app, through Google Play or the App Store.',
-      includes: 'Every plan includes: unlimited pockets, budgets with alerts, savings goals, debt tracking, recurring payments, charts and summaries, and biometric lock.',
+      includesList: [
+        'Unlimited pockets',
+        'Budgets with alerts',
+        'Savings goals',
+        'Debt and installment tracking',
+        'Recurring payments',
+        'Charts and summaries',
+        'Financial health score',
+        'Biometric lock',
+        'No ads',
+      ],
       plans: [
         {
           id: 'weekly',
@@ -300,6 +323,7 @@ export const translations = {
           period: '/ week',
           highlight: '3-day free trial',
           anchor: '🍬 Less than a candy a day',
+          detail: 'Try risk-free',
           featured: false,
         },
         {
@@ -309,6 +333,7 @@ export const translations = {
           period: '/ month',
           highlight: '',
           anchor: '☕ The price of a coffee',
+          detail: 'No contract, cancel anytime',
           featured: false,
         },
         {
@@ -318,6 +343,7 @@ export const translations = {
           period: '/ year',
           highlight: 'Best value',
           anchor: '🎧 Less than Spotify — all year',
+          detail: '$2.08/mo — most popular',
           featured: true,
         },
       ],
