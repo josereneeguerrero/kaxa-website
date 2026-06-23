@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import type { Lang, RouteKey } from '../i18n/routes';
+import { routes, otherLang } from '../i18n/routes';
 
 interface Props {
   lang: Lang;
@@ -12,6 +13,25 @@ interface Props {
 }
 
 const { lang, currentRoute, title, description } = Astro.props;
+const site = 'https://kaxa.lat';
+const canonical = `${site}${routes[currentRoute][lang]}`;
+const alt = otherLang(lang);
+const altUrl = `${site}${routes[currentRoute][alt]}`;
+const altLang = alt === 'es' ? 'es-HN' : 'en';
+
+const jsonLd = currentRoute === 'home' ? JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Kaxa',
+  operatingSystem: 'Android',
+  applicationCategory: 'FinanceApplication',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  description: description,
+}) : null;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -25,16 +45,22 @@ const { lang, currentRoute, title, description } = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang === 'es' ? 'es-HN' : 'en'} href={canonical} />
+    <link rel="alternate" hreflang={altLang} href={altUrl} />
+    <link rel="alternate" hreflang="x-default" href={`${site}${routes[currentRoute].es}`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://kaxa.lat/android-chrome-512x512.png" />
-    <meta property="og:url" content="https://kaxa.lat" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Kaxa" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_HN' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://kaxa.lat/android-chrome-512x512.png" />
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
   </head>
   <body class="flex min-h-screen flex-col">
     <Header lang={lang} currentRoute={currentRoute} />
