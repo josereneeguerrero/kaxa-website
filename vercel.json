@@ -1,4 +1,5 @@
 {
-  "buildCommand": "cd website && npm install && npm run build && mkdir -p ../.vercel && cp -r .vercel/output ../.vercel/output",
-  "installCommand": "echo skip"
+  "buildCommand": "cd website && npm install && npm run build",
+  "installCommand": "echo skip",
+  "outputDirectory": "website/dist"
 }
