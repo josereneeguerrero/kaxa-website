@@ -2,406 +2,237 @@
 import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/routes';
 
-interface Props {
-  lang: Lang;
-}
+interface Props { lang: Lang; }
 
 const { lang } = Astro.props;
 const t = translations[lang];
 
-const eyebrows = lang === 'es'
+const labels = lang === 'es'
   ? ['REGISTRO', 'PRESUPUESTOS', 'METAS', 'DEUDAS', 'RESUMEN']
   : ['TRACKING', 'BUDGETS', 'GOALS', 'DEBTS', 'SUMMARY'];
 
-const appFeatures = t.features.items;
+const features = t.features.items; // 5 items con screenshot
 
-const aiItem = lang === 'es'
+const ai = lang === 'es'
   ? {
-      eyebrow: 'INTELIGENCIA ARTIFICIAL',
+      label: 'INTELIGENCIA ARTIFICIAL',
       title: 'Registra con texto o voz — la IA lo entiende',
-      description: 'Escribe "gasté 50 en almuerzo" y Kaxa lo categoriza, le asigna el monto y lo guarda. Sin formularios. Sin menús.',
-      bullets: ['Entiende lenguaje natural', 'Categorización automática', 'Rápido como mandar un mensaje'],
+      desc: 'Escribe "gasté 50 en almuerzo" y Kaxa lo categoriza, asigna el monto y lo guarda. Sin formularios.',
+      bullets: ['Lenguaje natural', 'Categorización automática', 'Tan rápido como un mensaje'],
     }
   : {
-      eyebrow: 'ARTIFICIAL INTELLIGENCE',
+      label: 'ARTIFICIAL INTELLIGENCE',
       title: 'Log with text or voice — AI gets it',
-      description: 'Type "spent 50 on lunch" and Kaxa categorizes it, assigns the amount, and saves it. No forms. No menus.',
-      bullets: ['Understands natural language', 'Auto-categorization', 'As fast as sending a message'],
+      desc: 'Type "spent 50 on lunch" and Kaxa categorizes it, assigns the amount, and saves it. No forms.',
+      bullets: ['Natural language', 'Auto-categorization', 'As fast as a message'],
     };
-
-const micIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>`;
 ---
 
 <section id="funciones" class="bg-grain">
 
   <!-- Header -->
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-16 sm:pt-24 pb-4 text-center">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-16 sm:pt-24 pb-12 text-center">
     <h2 class="reveal text-3xl font-extrabold text-ink sm:text-4xl">{t.features.title}</h2>
     <p class="reveal mx-auto mt-3 max-w-xl text-muted" style="transition-delay:100ms">{t.features.subtitle}</p>
   </div>
 
-  <!-- ── DESKTOP: sticky scroll ── -->
-  <div class="features-desktop hidden lg:block mx-auto max-w-6xl px-6">
+  <!-- ── DESKTOP sticky scroll ── -->
+  <div class="hidden lg:flex mx-auto max-w-6xl px-6 pb-24" style="gap:0;">
 
-    <!-- Grid: left scrolls, right sticks -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;align-items:start;">
-
-      <!-- LEFT: scrollable steps -->
-      <div class="features-steps">
-        {appFeatures.map((f, i) => (
-          <div
-            class="feature-step"
-            data-index={String(i)}
-            style="height:100vh;display:flex;align-items:center;"
-          >
-            <div style="max-width:380px;padding-right:32px;">
-              <p class={`step-eyebrow text-xs font-extrabold uppercase tracking-widest mb-3 text-primary`}>
-                {eyebrows[i]}
-              </p>
-              <h3 class="step-title text-[1.75rem] font-extrabold text-ink leading-snug mb-4" style="text-wrap:balance">
-                {f.title}
-              </h3>
-              <p class="step-desc text-muted leading-relaxed mb-6">{f.description}</p>
-              <ul class="step-bullets space-y-3">
-                {f.bullets?.map((b: string) => (
-                  <li class="flex items-center gap-3 text-sm text-ink/80">
-                    <span class="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white bg-primary">✓</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
+    <!-- LEFT: scrollable steps -->
+    <div style="flex:1;">
+      {features.map((f, i) => (
+        <div class="f-step" data-i={String(i)} style="height:100vh;display:flex;align-items:center;">
+          <div style="max-width:400px;padding-right:48px;">
+            <p class="f-label" style={`font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;color:var(--color-primary,#1DB48B);opacity:.25;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease;`}>
+              {labels[i]}
+            </p>
+            <h3 class="f-title" style="font-size:1.8rem;font-weight:800;line-height:1.2;margin-bottom:16px;color:var(--color-ink,#111);opacity:.15;transform:translateY(10px);transition:opacity .45s .07s ease,transform .45s .07s ease;text-wrap:balance;">
+              {f.title}
+            </h3>
+            <p class="f-desc" style="color:var(--color-muted,#6b7280);line-height:1.7;margin-bottom:24px;opacity:.15;transform:translateY(10px);transition:opacity .45s .14s ease,transform .45s .14s ease;">
+              {f.description}
+            </p>
+            <ul class="f-bullets" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;opacity:.15;transform:translateY(10px);transition:opacity .45s .21s ease,transform .45s .21s ease;">
+              {f.bullets?.map((b: string) => (
+                <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--color-ink,#111);">
+                  <span style="width:20px;height:20px;border-radius:50%;background:var(--color-primary,#1DB48B);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;">✓</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
           </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- RIGHT: sticky phone + dots -->
+    <div style="position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;gap:24px;flex-shrink:0;align-self:start;">
+
+      <!-- Dots -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+        {features.map((_, i) => (
+          <div class="f-dot" data-dot={String(i)} style="width:6px;height:6px;border-radius:3px;background:rgba(0,0,0,.15);transition:height .3s ease,background .3s ease,border-radius .3s ease;flex-shrink:0;"></div>
         ))}
       </div>
 
-      <!-- RIGHT: sticky phone + dots -->
-      <div style="position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;gap:28px;">
-
-        <!-- Dots track -->
-        <div style="display:flex;flex-direction:column;gap:18px;align-items:center;">
-          {appFeatures.map((_, i) => (
-            <div
-              class="feat-dot"
-              data-dot={String(i)}
-            ></div>
-          ))}
-        </div>
-
-        <!-- Phone frame -->
-        <div class="phone-frame">
-          <!-- Bezel -->
-          <div class="phone-bezel">
-            <!-- Dynamic island -->
-            <div class="phone-island"></div>
-            <!-- Screen -->
-            <div class="phone-screen-wrap">
-              {appFeatures.map((f, i) => (
-                <img
-                  src={f.screenshot}
-                  alt={f.title}
-                  class="phone-screen"
-                  data-screen={String(i)}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                />
-              ))}
-              <!-- Glare -->
-              <div class="phone-glare"></div>
-            </div>
+      <!-- Phone (S24) -->
+      <div style="width:248px;height:534px;position:relative;">
+        <!-- frame -->
+        <div style="position:absolute;inset:0;border-radius:32px;background:#0f0f11;border:1.5px solid rgba(255,255,255,.1);box-shadow:0 24px 60px rgba(0,0,0,.4),0 4px 12px rgba(0,0,0,.25);">
+          <!-- punch-hole -->
+          <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:12px;height:12px;border-radius:50%;background:#000;z-index:5;"></div>
+          <!-- screen area -->
+          <div style="position:absolute;inset:6px;border-radius:27px;overflow:hidden;background:#eef0f5;">
+            {features.map((f, i) => (
+              <img
+                src={f.screenshot}
+                alt={f.title}
+                class="f-screen"
+                data-screen={String(i)}
+                style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .5s ease;opacity:${i===0?'1':'0'};`}
+                loading={i===0?'eager':'lazy'}
+              />
+            ))}
           </div>
+          <!-- subtle glare -->
+          <div style="position:absolute;inset:0;border-radius:32px;background:linear-gradient(130deg,rgba(255,255,255,.04) 0%,transparent 40%);pointer-events:none;"></div>
         </div>
-
       </div>
+
     </div>
   </div>
 
-  <!-- ── AI FEATURE: full-width banner ── -->
+  <!-- ── AI banner (desktop) ── -->
   <div class="hidden lg:block mx-auto max-w-6xl px-6 pb-24">
-    <div class="ai-banner reveal">
-      <div class="ai-banner-left">
-        <p class="text-xs font-extrabold uppercase tracking-widest mb-3 text-emerald-500">{aiItem.eyebrow}</p>
-        <h3 class="text-[1.75rem] font-extrabold text-white leading-snug mb-4" style="text-wrap:balance">{aiItem.title}</h3>
-        <p class="text-white/70 leading-relaxed mb-6">{aiItem.description}</p>
-        <ul class="space-y-3">
-          {aiItem.bullets.map((b) => (
-            <li class="flex items-center gap-3 text-sm text-white/80">
-              <span class="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-emerald-900 bg-emerald-400">✓</span>
+    <div class="reveal" style="background:linear-gradient(135deg,#064e3b 0%,#047857 100%);border-radius:24px;padding:52px 48px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;">
+      <div>
+        <p style="font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#6ee7b7;margin-bottom:12px;">{ai.label}</p>
+        <h3 style="font-size:1.75rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:16px;text-wrap:balance;">{ai.title}</h3>
+        <p style="color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:24px;">{ai.desc}</p>
+        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+          {ai.bullets.map((b) => (
+            <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.85);">
+              <span style="width:20px;height:20px;border-radius:50%;background:#6ee7b7;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#064e3b;flex-shrink:0;">✓</span>
               {b}
             </li>
           ))}
         </ul>
       </div>
-      <div class="ai-banner-right">
-        <div class="ai-orb">
-          <div class="ai-ring r1"></div>
-          <div class="ai-ring r2"></div>
-          <div class="ai-ring r3"></div>
-          <div class="ai-icon">
-            <Fragment set:html={micIcon} />
+      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+        <div style="position:relative;width:100px;height:100px;display:flex;align-items:center;justify-content:center;">
+          <div class="ai-r r1"></div>
+          <div class="ai-r r2"></div>
+          <div style="width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#fff;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
           </div>
         </div>
-        <p class="ai-quote">{lang === 'es' ? '"gasté 50 en el almuerzo"' : '"spent 50 on lunch"'}</p>
-        <div class="ai-bars">
-          {[14, 22, 32, 22, 14].map((h) => (
-            <div class="ai-bar" style={`height:${h}px`}></div>
+        <p style="color:rgba(255,255,255,.65);font-size:13px;font-style:italic;text-align:center;max-width:140px;line-height:1.5;">{lang==='es'?'"gasté 50 en almuerzo"':'"spent 50 on lunch"'}</p>
+        <div style="display:flex;gap:5px;align-items:center;">
+          {[12,20,30,20,12].map((h)=>(
+            <div class="ai-bar" style={`width:4px;height:${h}px;background:rgba(255,255,255,.5);border-radius:2px;`}></div>
           ))}
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── MOBILE: stacked ── -->
-  <div class="lg:hidden mx-auto max-w-sm px-4 pb-16 pt-8 space-y-14">
-    {appFeatures.map((f, i) => (
-      <div class="reveal" style={`transition-delay:${i * 60}ms`}>
-        <div style="border-radius:32px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.16);margin-bottom:24px;aspect-ratio:9/19.5;max-height:380px;">
-          <img
-            src={f.screenshot}
-            alt={f.title}
-            style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
-            loading="lazy"
-          />
+  <!-- ── MOBILE ── -->
+  <div class="lg:hidden mx-auto max-w-sm px-4 pb-16 pt-4 space-y-16">
+    {features.map((f, i) => (
+      <div class="reveal" style={`transition-delay:${i*60}ms`}>
+        <div style="border-radius:28px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.15);margin-bottom:20px;aspect-ratio:9/19.5;max-height:380px;">
+          <img src={f.screenshot} alt={f.title} style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;" loading="lazy" />
         </div>
-        <p class="text-xs font-extrabold uppercase tracking-widest mb-2 text-primary">{eyebrows[i]}</p>
-        <h3 class="text-xl font-extrabold text-ink mb-3 leading-snug">{f.title}</h3>
-        <p class="text-muted text-sm leading-relaxed mb-4">{f.description}</p>
-        <ul class="space-y-2">
-          {f.bullets?.map((b: string) => (
-            <li class="flex items-center gap-2 text-sm text-ink/70">
-              <span class="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white bg-primary">✓</span>
-              {b}
-            </li>
-          ))}
-        </ul>
+        <p style="font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-primary,#1DB48B);margin-bottom:8px;">{labels[i]}</p>
+        <h3 style="font-size:1.2rem;font-weight:800;color:var(--color-ink,#111);margin-bottom:10px;line-height:1.3;">{f.title}</h3>
+        <p style="color:var(--color-muted,#6b7280);font-size:14px;line-height:1.7;">{f.description}</p>
       </div>
     ))}
-    <!-- AI mobile -->
-    <div class="reveal ai-banner-mobile">
-      <p class="text-xs font-extrabold uppercase tracking-widest mb-2 text-emerald-500">{aiItem.eyebrow}</p>
-      <h3 class="text-xl font-extrabold text-white mb-3 leading-snug">{aiItem.title}</h3>
-      <p class="text-white/70 text-sm leading-relaxed">{aiItem.description}</p>
+    <div class="reveal" style="background:linear-gradient(135deg,#064e3b,#047857);border-radius:20px;padding:28px 24px;">
+      <p style="font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#6ee7b7;margin-bottom:8px;">{ai.label}</p>
+      <h3 style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3;">{ai.title}</h3>
+      <p style="color:rgba(255,255,255,.7);font-size:14px;line-height:1.7;">{ai.desc}</p>
     </div>
   </div>
 
 </section>
 
 <script>
-  const steps   = document.querySelectorAll<HTMLElement>('.feature-step');
-  const screens = document.querySelectorAll<HTMLElement>('.phone-screen');
-  const dots    = document.querySelectorAll<HTMLElement>('.feat-dot');
+(function () {
+  const steps   = Array.from(document.querySelectorAll<HTMLElement>('.f-step'));
+  const screens = Array.from(document.querySelectorAll<HTMLElement>('.f-screen'));
+  const dots    = Array.from(document.querySelectorAll<HTMLElement>('.f-dot'));
+  if (!steps.length) return;
 
-  let active = -1;
+  let cur = -1;
 
-  const activate = (i: number) => {
-    if (i === active) return;
-    active = i;
+  function activate(i: number) {
+    if (i === cur) return;
+    cur = i;
 
-    // screens
-    screens.forEach((s, idx) => {
-      s.style.opacity = idx === i ? '1' : '0';
+    screens.forEach((s, idx) => { s.style.opacity = idx === i ? '1' : '0'; });
+
+    dots.forEach((d, idx) => {
+      if (idx === i) {
+        d.style.height = '28px';
+        d.style.borderRadius = '3px';
+        d.style.background = 'var(--color-primary,#1DB48B)';
+      } else {
+        d.style.height = '6px';
+        d.style.borderRadius = '3px';
+        d.style.background = 'rgba(0,0,0,.15)';
+      }
     });
 
-    // text
     steps.forEach((step, idx) => {
-      step.classList.toggle('is-active', idx === i);
+      const active = idx === i;
+      const opacity = active ? '1' : '.15';
+      const ty = active ? '0' : '10px';
+      ['f-label','f-title','f-desc','f-bullets'].forEach(cls => {
+        const el = step.querySelector<HTMLElement>(`.${cls}`);
+        if (el) { el.style.opacity = opacity; el.style.transform = `translateY(${ty})`; }
+      });
     });
+  }
 
-    // dots
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle('dot-active', idx === i);
-    });
-  };
-
-  // init immediately
   activate(0);
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          activate(Number((e.target as HTMLElement).dataset.index ?? 0));
-        }
-      });
-    },
-    { threshold: 0, rootMargin: '-45% 0px -45% 0px' }
+  const obs = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) activate(Number((e.target as HTMLElement).dataset.i ?? 0));
+    }),
+    { rootMargin: '-42% 0px -42% 0px', threshold: 0 }
   );
 
-  steps.forEach((s) => observer.observe(s));
+  steps.forEach(s => obs.observe(s));
+})();
 </script>
 
 <style>
-  /* ── Phone frame (Samsung Galaxy S24) ── */
-  .phone-frame {
-    width: 248px;
-    height: 536px;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .phone-bezel {
-    position: absolute;
-    inset: 0;
-    border-radius: 30px;
-    background: #111114;
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,0.07),
-      0 24px 64px rgba(0,0,0,0.45),
-      0 6px 16px rgba(0,0,0,0.3);
-  }
-  /* punch-hole camera */
-  .phone-island {
-    position: absolute;
-    top: 11px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 13px;
-    height: 13px;
-    background: #050506;
-    border-radius: 50%;
-    z-index: 10;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
-  }
-  .phone-screen-wrap {
-    position: absolute;
-    inset: 7px;
-    border-radius: 24px;
-    overflow: hidden;
-    background: #f0f2f7;
-  }
-  .phone-screen {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: opacity 0.5s ease;
-    opacity: 0;
-  }
-  .phone-screen[data-screen="0"] { opacity: 1; }
-  .phone-glare {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(130deg, rgba(255,255,255,0.05) 0%, transparent 45%);
-    pointer-events: none;
-    z-index: 20;
-    border-radius: 24px;
-  }
-
-  /* ── Progress dots ── */
-  .feat-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.15);
-    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-radius 0.3s ease;
-    flex-shrink: 0;
-  }
-  .feat-dot.dot-active {
-    width: 7px;
-    height: 28px;
-    border-radius: 4px;
-    background: var(--color-primary, #1DB48B);
-  }
-
-  /* ── Step text animations ── */
-  .feature-step .step-eyebrow,
-  .feature-step .step-title,
-  .feature-step .step-desc,
-  .feature-step .step-bullets {
-    opacity: 0.2;
-    transform: translateY(14px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    will-change: opacity, transform;
-  }
-  .feature-step.is-active .step-eyebrow { opacity: 1; transform: translateY(0); }
-  .feature-step.is-active .step-title   { opacity: 1; transform: translateY(0); transition-delay: 0.07s; }
-  .feature-step.is-active .step-desc    { opacity: 1; transform: translateY(0); transition-delay: 0.14s; }
-  .feature-step.is-active .step-bullets { opacity: 1; transform: translateY(0); transition-delay: 0.21s; }
-
-  /* ── AI Banner ── */
-  .ai-banner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 48px;
-    align-items: center;
-    background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
-    border-radius: 28px;
-    padding: 56px 48px;
-    margin-top: 8px;
-  }
-  .ai-banner-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  .ai-orb {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .ai-ring {
+  .ai-r {
     position: absolute;
     border-radius: 50%;
-    border: 1.5px solid rgba(255,255,255,0.18);
-    animation: ai-pulse 2.4s ease-in-out infinite;
+    border: 1.5px solid rgba(255,255,255,.2);
+    animation: rpulse 2.4s ease-in-out infinite;
   }
-  .r1 { width: 120px; height: 120px; }
-  .r2 { width: 88px;  height: 88px;  animation-delay: 0.4s; }
-  .r3 { width: 60px;  height: 60px;  animation-delay: 0.8s; border-color: rgba(255,255,255,0.28); }
-  .ai-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    backdrop-filter: blur(4px);
-  }
-  .ai-quote {
-    color: rgba(255,255,255,0.75);
-    font-size: 13px;
-    font-weight: 500;
-    font-style: italic;
-    text-align: center;
-    max-width: 160px;
-    line-height: 1.5;
-  }
-  .ai-bars {
-    display: flex;
-    gap: 5px;
-    align-items: center;
+  .r1 { width:100px; height:100px; }
+  .r2 { width:70px;  height:70px;  animation-delay:.5s; }
+  @keyframes rpulse {
+    0%,100% { transform:scale(1);   opacity:.4; }
+    50%      { transform:scale(1.1); opacity:.1; }
   }
   .ai-bar {
-    width: 5px;
-    background: rgba(255,255,255,0.55);
-    border-radius: 3px;
-    animation: bar-wave 1.1s ease-in-out infinite;
+    animation: bwave 1.1s ease-in-out infinite;
     transform-origin: center;
   }
-  .ai-bar:nth-child(1) { animation-delay: 0s; }
-  .ai-bar:nth-child(2) { animation-delay: 0.15s; }
-  .ai-bar:nth-child(3) { animation-delay: 0.3s; }
-  .ai-bar:nth-child(4) { animation-delay: 0.15s; }
-  .ai-bar:nth-child(5) { animation-delay: 0s; }
-
-  .ai-banner-mobile {
-    background: linear-gradient(135deg, #064e3b, #047857);
-    border-radius: 24px;
-    padding: 32px 24px;
-  }
-
-  @keyframes ai-pulse {
-    0%, 100% { transform: scale(1);    opacity: 0.4; }
-    50%       { transform: scale(1.1); opacity: 0.1; }
-  }
-  @keyframes bar-wave {
-    0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
-    50%       { transform: scaleY(1);   opacity: 1; }
+  .ai-bar:nth-child(1) { animation-delay:0s; }
+  .ai-bar:nth-child(2) { animation-delay:.15s; }
+  .ai-bar:nth-child(3) { animation-delay:.3s; }
+  .ai-bar:nth-child(4) { animation-delay:.15s; }
+  .ai-bar:nth-child(5) { animation-delay:0s; }
+  @keyframes bwave {
+    0%,100% { transform:scaleY(.4); opacity:.5; }
+    50%      { transform:scaleY(1);  opacity:1; }
   }
 </style>
