@@ -45,32 +45,52 @@ const micIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" 
     <div class="mx-auto max-w-6xl px-6 pb-24">
       <div class="flex items-start gap-16">
 
-        <!-- Left: stacked feature steps -->
-        <div class="w-[50%] features-left">
-          {allFeatures.map((f, i) => (
-            <div
-              class="feature-step min-h-screen flex items-center py-16"
-              data-index={String(i)}
-            >
-              <div class="max-w-sm">
-                <p class={`text-xs font-extrabold uppercase tracking-widest mb-3 ${i === 5 ? 'text-emerald-500' : 'text-primary'}`}>
-                  {eyebrows[i]}
-                </p>
-                <h3 class="text-[1.6rem] font-extrabold text-ink leading-snug mb-4" style="text-wrap:balance">
-                  {f.title}
-                </h3>
-                <p class="text-muted leading-relaxed mb-6">{f.description}</p>
-                <ul class="space-y-2.5">
-                  {f.bullets?.map((b: string) => (
-                    <li class="flex items-center gap-2.5 text-sm text-ink/80">
-                      <span class={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white ${i === 5 ? 'bg-emerald-500' : 'bg-primary'}`}>✓</span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+        <!-- Left: progress dots + stacked feature steps -->
+        <div class="w-[50%] flex gap-8 features-left">
+
+          <!-- Progress dots column -->
+          <div class="flex flex-col items-center pt-[50vh] pb-[50vh] gap-0 flex-shrink-0" style="width:20px;">
+            {allFeatures.map((_, i) => (
+              <div class="flex flex-col items-center" style="flex:1;min-height:0;">
+                <div
+                  class={`progress-dot flex-shrink-0 rounded-full transition-all duration-400 ${i === 5 ? 'dot-ai' : 'dot-default'}`}
+                  data-dot={String(i)}
+                  style="width:8px;height:8px;"
+                ></div>
+                {i < allFeatures.length - 1 && (
+                  <div class="progress-line flex-1 w-px mt-2 mb-2" data-line={String(i)}></div>
+                )}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <!-- Steps -->
+          <div class="flex-1">
+            {allFeatures.map((f, i) => (
+              <div
+                class="feature-step min-h-screen flex items-center py-16"
+                data-index={String(i)}
+              >
+                <div class="max-w-sm">
+                  <p class={`step-eyebrow text-xs font-extrabold uppercase tracking-widest mb-3 ${i === 5 ? 'text-emerald-500' : 'text-primary'}`}>
+                    {eyebrows[i]}
+                  </p>
+                  <h3 class="step-title text-[1.6rem] font-extrabold text-ink leading-snug mb-4" style="text-wrap:balance">
+                    {f.title}
+                  </h3>
+                  <p class="step-desc text-muted leading-relaxed mb-6">{f.description}</p>
+                  <ul class="step-bullets space-y-2.5">
+                    {f.bullets?.map((b: string) => (
+                      <li class="flex items-center gap-2.5 text-sm text-ink/80">
+                        <span class={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white ${i === 5 ? 'bg-emerald-500' : 'bg-primary'}`}>✓</span>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <!-- Right: sticky phone frame -->
@@ -169,13 +189,49 @@ const micIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" 
 <script>
   const steps = document.querySelectorAll<HTMLElement>('.feature-step');
   const screens = document.querySelectorAll<HTMLElement>('.phone-screen');
+  const dots = document.querySelectorAll<HTMLElement>('[data-dot]');
 
   if (steps.length > 0 && screens.length > 0) {
+    let currentIndex = 0;
+
     const setActive = (index: number) => {
-      screens.forEach((s, i) => {
-        (s as HTMLElement).style.opacity = i === index ? '1' : '0';
+      if (index === currentIndex) return;
+      currentIndex = index;
+
+      // phone screens
+      screens.forEach((s, i) => { s.style.opacity = i === index ? '1' : '0'; });
+
+      // step text animations
+      steps.forEach((step, i) => {
+        if (i === index) {
+          step.classList.add('is-active');
+        } else {
+          step.classList.remove('is-active');
+        }
+      });
+
+      // progress dots
+      dots.forEach((dot, i) => {
+        const isAi = dot.classList.contains('dot-ai');
+        if (i === index) {
+          dot.style.width = '10px';
+          dot.style.height = '10px';
+          dot.style.background = isAi ? '#10B981' : 'var(--color-primary, #1DB48B)';
+        } else {
+          dot.style.width = '6px';
+          dot.style.height = '6px';
+          dot.style.background = 'rgba(0,0,0,0.15)';
+        }
       });
     };
+
+    // init first step
+    steps[0]?.classList.add('is-active');
+    if (dots[0]) {
+      dots[0].style.width = '10px';
+      dots[0].style.height = '10px';
+      dots[0].style.background = 'var(--color-primary, #1DB48B)';
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -194,6 +250,37 @@ const micIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" 
 </script>
 
 <style>
+  /* Step text animations */
+  .feature-step .step-eyebrow,
+  .feature-step .step-title,
+  .feature-step .step-desc,
+  .feature-step .step-bullets {
+    opacity: 0.25;
+    transform: translateY(10px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .feature-step.is-active .step-eyebrow {
+    opacity: 1; transform: translateY(0);
+  }
+  .feature-step.is-active .step-title {
+    opacity: 1; transform: translateY(0); transition-delay: 0.06s;
+  }
+  .feature-step.is-active .step-desc {
+    opacity: 1; transform: translateY(0); transition-delay: 0.12s;
+  }
+  .feature-step.is-active .step-bullets {
+    opacity: 1; transform: translateY(0); transition-delay: 0.18s;
+  }
+
+  /* Progress dots */
+  .progress-dot {
+    background: rgba(0,0,0,0.15);
+    transition: width 0.35s ease, height 0.35s ease, background 0.35s ease;
+  }
+  .progress-line {
+    background: rgba(0,0,0,0.1);
+  }
+
   @keyframes ring-pulse {
     0%, 100% { transform: scale(1); opacity: 0.35; }
     50% { transform: scale(1.12); opacity: 0.08; }
