@@ -1,46 +1,46 @@
 export const translations = {
   es: {
     meta: {
-      title: 'Kaxa — El control de tu dinero, en tu bolsillo',
+      title: 'Kaxa — App de Control de Gastos y Presupuesto Personal',
       description:
-        'Kaxa es la app de finanzas personales para Honduras. Registra gastos e ingresos, organiza tus bolsillos y controla presupuestos, deudas y metas.',
+        'Controla gastos, presupuestos, deudas y metas de ahorro desde tu bolsillo. Con IA integrada. Sin anuncios. Gratis en Google Play.',
     },
     nav: {
       howItWorks: 'Cómo funciona',
       features: 'Funciones',
       pricing: 'Precios',
       support: 'Soporte',
-      download: 'Únete',
+      download: 'Descargar',
     },
     hero: {
-      eyebrow: 'Próximamente en Google Play',
+      eyebrow: 'Ya disponible en Google Play',
       title: 'Tu dinero merece orden.',
       titleHighlight: 'Kaxa lo resuelve.',
       subtitle:
-        'La app de finanzas personales hecha en Honduras. Registra gastos, presupuestos, deudas y metas — en tu moneda, sin complicaciones.',
-      cta: 'Avisarme cuando esté lista',
-      ctaWaitlist: true,
-      badge: 'Hecha en Honduras 🇭🇳',
-      launchDate: 'Disponible en julio 2026',
-      socialProof: 'personas ya se registraron',
+        '¿A fin de mes no sabes en qué se fue tu sueldo? Kaxa lo registra, organiza y analiza — para que tú tomes el control.',
+      cta: 'Descargar gratis',
+      ctaWaitlist: false,
+      badge: '',
+      launchDate: '',
+      socialProof: '',
       mockup: {
         alt: 'Captura de pantalla de la app Kaxa mostrando el balance total y la actividad reciente',
       },
     },
     howItWorks: {
-      title: 'Cómo funciona',
-      subtitle: 'Tres pasos para tomar control de tu dinero.',
+      title: 'Listo en 3 pasos',
+      subtitle: 'Simple desde el primer día — sin curva de aprendizaje.',
       steps: [
         {
           number: '1',
           title: 'Registra',
-          description: 'Anota tus gastos e ingresos en segundos, en tu moneda.',
+          description: 'Anota gastos e ingresos en segundos. Con texto, voz o manual — tú eliges.',
         },
         {
           number: '2',
           title: 'Organiza en bolsillos',
           description:
-            'Separa tu dinero en bolsillos como Efectivo, Tigo Money o tu cuenta de banco.',
+            'Separa tu dinero en bolsillos — efectivo, cuenta bancaria o billetera digital — y ve tu balance real.',
         },
         {
           number: '3',
@@ -52,7 +52,7 @@ export const translations = {
     },
     features: {
       title: 'Todo lo que necesitas para ordenar tu dinero',
-      subtitle: 'Funciones pensadas para tu día a día, sin complicaciones.',
+      subtitle: 'Todo lo que Excel no hace: alertas automáticas, metas de ahorro, IA y más.',
       items: [
         {
           title: 'Tu dinero, organizado al instante',
@@ -62,13 +62,13 @@ export const translations = {
         },
         {
           title: 'Presupuestos que te avisan antes de pasarte',
-          description: 'Define cuánto querés gastar por categoría. Kaxa te alerta al 80% y te avisa cuando te pasás. Nada de sorpresas a fin de mes.',
+          description: 'Define cuánto quieres gastar por categoría. Kaxa te alerta al 80% y te avisa cuando te pasas. Nada de sorpresas a fin de mes.',
           screenshot: '/screenshots/presupuestos.png',
           bullets: ['Límite mensual por categoría', 'Alertas al 80% y 100%', 'Barras de progreso visuales'],
         },
         {
           title: 'Metas de ahorro con nombre y fecha',
-          description: 'Vacaciones, emergencias, un capricho. Creá metas, aportá cuando puedas y celebrá cada avance con confetti real.',
+          description: 'Vacaciones, emergencias, un capricho. Crea metas, aporta cuando puedas y celebra cada avance con confetti real.',
           screenshot: '/screenshots/metas.png',
           bullets: ['Progreso visual con porcentaje', 'Aportes parciales sin límite', 'Notificaciones de hitos'],
         },
@@ -82,7 +82,7 @@ export const translations = {
           title: 'Entiende tus números de un vistazo',
           description: 'Gráficas por categoría, ingresos vs gastos, y un puntaje de salud financiera que te dice cómo vas.',
           screenshot: '/screenshots/resumen.png',
-          bullets: ['Dona de gastos por categoría', 'Tendencias semanales', 'Puntaje de salud financiera'],
+          bullets: ['Gráfica de dona por categoría', 'Tendencias semanales', 'Puntaje de salud financiera'],
         },
       ],
     },
@@ -90,7 +90,7 @@ export const translations = {
       title: 'Planes simples, sin sorpresas',
       subtitle:
         'Elige el plan que mejor se acomode a ti. Cancela cuando quieras desde la tienda de aplicaciones.',
-      note: 'El pago se procesa de forma segura dentro de la app, a través de Google Play o App Store.',
+      note: 'El pago se procesa de forma segura dentro de la app, a través de Google Play.',
       includesList: [
         'Bolsillos ilimitados',
         'Presupuestos con alertas',
@@ -141,42 +141,47 @@ export const translations = {
         {
           question: '¿Qué incluye Kaxa?',
           answer:
-            'Registro de gastos e ingresos, presupuestos por categoría con alertas, metas de ahorro, control de deudas y cuotas, pagos recurrentes automáticos, resumen con gráficas, y bloqueo biométrico. Todo en una sola app.',
+            'Registro de gastos e ingresos, bolsillos para organizar tu dinero, presupuestos por categoría con alertas automáticas, metas de ahorro, control de deudas y cuotas, pagos recurrentes, resumen con gráficas y puntaje de salud financiera. Todo en una sola app, sin anuncios.',
         },
         {
-          question: '¿En qué se diferencia de una hoja de Excel?',
+          question: '¿Cómo funciona la IA?',
           answer:
-            'Excel no te avisa cuando te pasás del presupuesto, no te recuerda cuotas pendientes, y no te muestra gráficas al instante. Kaxa hace todo eso en 2 toques, sin fórmulas ni tablas.',
+            'Hablale a Kaxa: decí "gasté 50 en el supermercado" y ella detecta el monto, lo categoriza y lo registra sola. No hay menús que navegar ni campos que llenar. La inteligencia artificial entiende lenguaje natural para que anotar un gasto sea tan rápido como mandar un audio.',
+        },
+        {
+          question: '¿Qué son los bolsillos?',
+          answer:
+            'Los bolsillos son la forma en que Kaxa organiza tu dinero real. Creas uno por efectivo, otro por tu cuenta bancaria, otro por tu billetera digital — los que necesites. Cada bolsillo tiene su propio balance y todos suman a tu total. Así sabes exactamente dónde está cada peso, no solo cuánto tienes.',
+        },
+        {
+          question: '¿En qué se diferencia de Excel u otras apps?',
+          answer:
+            'Excel no te avisa cuando te pasás del presupuesto, no te recuerda una cuota pendiente y no tiene IA. Otras apps te piden conectar tu banco o crear una cuenta antes de hacer nada. Kaxa abre y funciona desde el primer segundo, sin login, sin sincronización bancaria, sin fricción.',
         },
         {
           question: '¿Mis datos están seguros?',
           answer:
-            'Tus datos financieros se guardan en tu dispositivo. No tenemos servidores que almacenen tu información. Además, podés activar bloqueo con huella dactilar para que nadie más acceda a la app.',
+            'Tus datos financieros se guardan únicamente en tu dispositivo. No hay servidores que los almacenen, no hay cuentas que hackear, no hay nada que vender. Solo tú tienes acceso. Y si quieres una capa extra, activas el bloqueo biométrico con huella o reconocimiento facial.',
         },
         {
           question: '¿Necesito conexión a internet?',
           answer:
-            'No. Kaxa funciona completamente sin internet. Solo necesitás conexión para la compra inicial de la suscripción.',
+            'No. Kaxa funciona completamente sin internet. Registrás, consultás y analizás tus finanzas en cualquier lugar, sin datos móviles. Solo necesitás conexión para procesar la compra de la suscripción.',
         },
         {
           question: '¿En qué monedas funciona?',
           answer:
-            'Kaxa soporta 8 monedas: lempiras (HNL), dólares (USD), quetzales (GTQ), pesos mexicanos (MXN), pesos colombianos (COP), reales (BRL), pesos argentinos (ARS) y euros (EUR).',
+            'Kaxa soporta 8 monedas: dólares (USD), euros (EUR), pesos mexicanos (MXN), pesos colombianos (COP), reales brasileños (BRL), pesos argentinos (ARS), quetzales (GTQ) y lempiras (HNL). Elegís la tuya al configurar la app.',
         },
         {
           question: '¿Puedo probarla gratis?',
           answer:
-            'Sí. El plan semanal incluye 3 días de prueba gratis. Si no te convence, cancelás antes de que termine el trial y no se cobra nada. Sin compromisos.',
+            'Sí. El plan semanal incluye 3 días de prueba completamente gratis. Si no te convence, cancelas antes de que termine y no se cobra absolutamente nada. Sin tarjeta guardada de forma forzosa, sin compromisos.',
         },
         {
           question: '¿Cómo cancelo mi suscripción?',
           answer:
-            'Desde Google Play → Suscripciones → Kaxa → Cancelar. Sin penalidades, sin llamadas, sin formularios. Conservás el acceso hasta que termine tu periodo pagado.',
-        },
-        {
-          question: '¿Quién hizo Kaxa?',
-          answer:
-            'Kaxa es diseñada y desarrollada en Honduras. Es un proyecto independiente creado para resolver un problema real: que la gente sepa en qué se va su dinero, sin complicaciones.',
+            'Desde Google Play → Suscripciones → Kaxa → Cancelar. Sin llamadas, sin formularios, sin penalidades. Conservás el acceso completo hasta que termine tu periodo pagado.',
         },
       ],
     },
@@ -189,10 +194,10 @@ export const translations = {
       contactButton: 'Enviar correo',
     },
     cta: {
-      title: 'No dejes que tu dinero se siga yendo sin avisar',
-      subtitle: 'Registrate y sé de los primeros en usar Kaxa cuando esté disponible.',
-      button: 'Quiero acceso anticipado',
-      ctaWaitlist: true,
+      title: 'Empieza gratis hoy. Tus finanzas claras en minutos.',
+      subtitle: 'Disponible en Google Play. Sin tarjeta de crédito.',
+      button: 'Descargar en Google Play',
+      ctaWaitlist: false,
     },
     waitlistUI: {
       successTitle: '🎉 ¡Estás en la lista!',
@@ -209,52 +214,52 @@ export const translations = {
       supportTitle: 'Soporte',
       supportLink: 'Centro de ayuda',
       contactEmail: 'soporte@kaxa.lat',
-      downloadTitle: 'Próximamente',
+      downloadTitle: 'Disponible en',
       copyright: '© 2026 Kaxa. Todos los derechos reservados.',
     },
   },
   en: {
     meta: {
-      title: 'Kaxa — Take control of your money, in your pocket',
+      title: 'Kaxa — Personal Finance App: Track Expenses & Budgets',
       description:
-        'Kaxa is the personal finance app for Honduras. Track expenses and income, organize your money into pockets, and manage budgets, debts, and goals.',
+        'Track expenses, manage budgets, debts, and savings goals — all in one app. Built-in AI. No ads. Free on Google Play.',
     },
     nav: {
       howItWorks: 'How it works',
       features: 'Features',
       pricing: 'Pricing',
       support: 'Support',
-      download: 'Join the list',
+      download: 'Download',
     },
     hero: {
-      eyebrow: 'Coming soon to Google Play',
+      eyebrow: 'Now available on Google Play',
       title: 'Your money deserves order.',
       titleHighlight: 'Kaxa delivers.',
       subtitle:
-        'The personal finance app made in Honduras. Track expenses, budgets, debts, and goals — in your currency, no hassle.',
-      cta: 'Notify me when it\'s ready',
-      ctaWaitlist: true,
-      badge: 'Made in Honduras 🇭🇳',
-      launchDate: 'Available July 2026',
-      socialProof: 'people already signed up',
+        'Not sure where your paycheck went this month? Kaxa tracks, organizes, and analyzes it — so you can finally take control.',
+      cta: 'Download free',
+      ctaWaitlist: false,
+      badge: '',
+      launchDate: '',
+      socialProof: '',
       mockup: {
         alt: 'Screenshot of the Kaxa app showing the total balance and recent activity',
       },
     },
     howItWorks: {
-      title: 'How it works',
-      subtitle: 'Three steps to take control of your money.',
+      title: 'Up and running in 3 steps',
+      subtitle: 'Simple from day one — no learning curve.',
       steps: [
         {
           number: '1',
           title: 'Track',
-          description: 'Log your expenses and income in seconds, in your currency.',
+          description: 'Log expenses and income in seconds. Text, voice, or manual — your choice.',
         },
         {
           number: '2',
           title: 'Organize into pockets',
           description:
-            'Split your money into pockets like Cash, Tigo Money, or your bank account.',
+            'Split your money into pockets — cash, bank account, or digital wallet — and see your real balance.',
         },
         {
           number: '3',
@@ -266,7 +271,7 @@ export const translations = {
     },
     features: {
       title: 'Everything you need to organize your money',
-      subtitle: 'Features built for your everyday life, without the hassle.',
+      subtitle: 'Everything Excel can\'t do: automatic alerts, savings goals, AI, and more.',
       items: [
         {
           title: 'Your money, organized instantly',
@@ -303,7 +308,7 @@ export const translations = {
     pricing: {
       title: 'Simple plans, no surprises',
       subtitle: 'Choose the plan that fits you best. Cancel anytime from the app store.',
-      note: 'Payment is processed securely inside the app, through Google Play or the App Store.',
+      note: 'Payment is processed securely inside the app, through Google Play.',
       includesList: [
         'Unlimited pockets',
         'Budgets with alerts',
@@ -354,42 +359,47 @@ export const translations = {
         {
           question: 'What does Kaxa include?',
           answer:
-            'Expense and income tracking, category budgets with alerts, savings goals, debt and installment management, automatic recurring payments, charts and summaries, and biometric lock. All in one app.',
+            'Expense and income tracking, pockets to organize your money, category budgets with automatic alerts, savings goals, debt and installment management, recurring payments, charts and summaries, and a financial health score. All in one app, no ads.',
         },
         {
-          question: 'How is it different from a spreadsheet?',
+          question: 'How does the AI work?',
           answer:
-            'Excel won\'t alert you when you overspend, won\'t remind you about due payments, and won\'t show you charts instantly. Kaxa does all of that in 2 taps — no formulas, no tables.',
+            'Just talk to Kaxa: say "spent 50 at the supermarket" and she detects the amount, categorizes it, and logs it on her own. No menus to navigate, no fields to fill in. The built-in AI understands natural language so recording an expense is as fast as sending a voice note.',
+        },
+        {
+          question: 'What are pockets?',
+          answer:
+            'Pockets are how Kaxa organizes your real money. You create one for cash, one for your bank account, one for your digital wallet — as many as you need. Each pocket has its own balance and they all add up to your total. That way you know exactly where every dollar is, not just how much you have.',
+        },
+        {
+          question: 'How is it different from Excel or other apps?',
+          answer:
+            'Excel won\'t alert you when you overspend, won\'t remind you of a due payment, and has no AI. Other apps ask you to connect your bank or create an account before you can do anything. Kaxa opens and works from the first second — no login, no bank sync, no friction.',
         },
         {
           question: 'Is my data safe?',
           answer:
-            'Your financial data stays on your device. We don\'t have servers storing your information. You can also enable fingerprint lock so no one else can access the app.',
+            'Your financial data is stored only on your device. No servers holding it, no accounts to get hacked, nothing to sell. Only you have access. And if you want an extra layer of protection, turn on biometric lock with fingerprint or face recognition.',
         },
         {
           question: 'Do I need an internet connection?',
           answer:
-            'No. Kaxa works completely offline. You only need a connection for the initial subscription purchase.',
+            'No. Kaxa works completely offline. You can log, review, and analyze your finances anywhere, without mobile data. You only need a connection to process the subscription purchase.',
         },
         {
           question: 'What currencies does it support?',
           answer:
-            'Kaxa supports 8 currencies: Honduran lempiras (HNL), US dollars (USD), Guatemalan quetzales (GTQ), Mexican pesos (MXN), Colombian pesos (COP), Brazilian reais (BRL), Argentine pesos (ARS), and euros (EUR).',
+            'Kaxa supports 8 currencies: US dollars (USD), euros (EUR), Mexican pesos (MXN), Colombian pesos (COP), Brazilian reais (BRL), Argentine pesos (ARS), Guatemalan quetzales (GTQ), and Honduran lempiras (HNL). You choose yours when setting up the app.',
         },
         {
           question: 'Can I try it for free?',
           answer:
-            'Yes. The weekly plan includes a 3-day free trial. If you\'re not convinced, cancel before the trial ends and you won\'t be charged. No strings attached.',
+            'Yes. The weekly plan includes a 3-day free trial. If you\'re not convinced, cancel before it ends and you won\'t be charged a thing. No forced commitment, no strings attached.',
         },
         {
           question: 'How do I cancel my subscription?',
           answer:
-            'Go to Google Play → Subscriptions → Kaxa → Cancel. No penalties, no calls, no forms. You keep access until the end of your paid period.',
-        },
-        {
-          question: 'Who made Kaxa?',
-          answer:
-            'Kaxa is designed and developed in Honduras. It\'s an independent project built to solve a real problem: helping people understand where their money goes, without the hassle.',
+            'Go to Google Play → Subscriptions → Kaxa → Cancel. No calls, no forms, no penalties. You keep full access until the end of your paid period.',
         },
       ],
     },
@@ -402,10 +412,10 @@ export const translations = {
       contactButton: 'Send email',
     },
     cta: {
-      title: 'Don\'t let your money keep slipping away',
-      subtitle: 'Sign up and be one of the first to use Kaxa when it launches.',
-      button: 'Get early access',
-      ctaWaitlist: true,
+      title: 'Start free today. Clear finances in minutes.',
+      subtitle: 'Available on Google Play. No credit card required.',
+      button: 'Download on Google Play',
+      ctaWaitlist: false,
     },
     waitlistUI: {
       successTitle: '🎉 You\'re on the list!',
@@ -422,7 +432,7 @@ export const translations = {
       supportTitle: 'Support',
       supportLink: 'Help center',
       contactEmail: 'soporte@kaxa.lat',
-      downloadTitle: 'Coming soon',
+      downloadTitle: 'Available on',
       copyright: '© 2026 Kaxa. All rights reserved.',
     },
   },
