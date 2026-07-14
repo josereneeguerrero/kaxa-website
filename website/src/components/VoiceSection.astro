@@ -1,0 +1,351 @@
+---
+import type { Lang } from '../i18n/routes';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = lang === 'es' ? {
+  eyebrow: 'INTELIGENCIA ARTIFICIAL',
+  title: 'Di lo que gastaste. Kaxa lo entiende.',
+  subtitle: 'Sin formularios. Sin categorías manuales. Solo habla — o escribe en lenguaje natural — y Kaxa hace el resto.',
+  bullets: [
+    { icon: '🎤', label: 'Voz natural', desc: '"Gasté 120 en el super" → registrado y categorizado' },
+    { icon: '⚡', label: 'Instantáneo', desc: 'Más rápido que abrir Excel' },
+    { icon: '🧠', label: 'Aprende tu estilo', desc: 'La IA entiende tu forma de hablar' },
+  ],
+  demo: [
+    { text: '"Gasté 120 en el super"', type: 'voice' },
+    { text: '🛒 Compras · $120', type: 'tag' },
+    { text: '"Pagué la renta 5,500"', type: 'voice' },
+    { text: '🏠 Hogar · $5,500', type: 'tag' },
+    { text: '"Gané 3,000 de freelance"', type: 'voice' },
+    { text: '💼 Ingreso · +$3,000', type: 'tag', green: true },
+  ],
+  cta: 'Descárgala gratis',
+} : {
+  eyebrow: 'ARTIFICIAL INTELLIGENCE',
+  title: 'Say what you spent. Kaxa gets it.',
+  subtitle: 'No forms. No manual categories. Just speak — or write naturally — and Kaxa takes care of the rest.',
+  bullets: [
+    { icon: '🎤', label: 'Natural voice', desc: '"Spent 120 at the supermarket" → logged and categorized' },
+    { icon: '⚡', label: 'Instant', desc: 'Faster than opening Excel' },
+    { icon: '🧠', label: 'Learns your style', desc: 'The AI understands how you talk' },
+  ],
+  demo: [
+    { text: '"Spent 120 at the supermarket"', type: 'voice' },
+    { text: '🛒 Groceries · $120', type: 'tag' },
+    { text: '"Paid rent 1,500"', type: 'voice' },
+    { text: '🏠 Housing · $1,500', type: 'tag' },
+    { text: '"Made 3,000 freelancing"', type: 'voice' },
+    { text: '💼 Income · +$3,000', type: 'tag', green: true },
+  ],
+  cta: 'Download free',
+};
+
+const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneeguerrero.kaxa';
+---
+
+<section class="vs-section">
+  <div class="vs-inner">
+
+    <!-- Left: text -->
+    <div class="vs-text reveal">
+      <p class="vs-eyebrow">{copy.eyebrow}</p>
+      <h2 class="vs-title">{copy.title}</h2>
+      <p class="vs-sub">{copy.subtitle}</p>
+      <ul class="vs-bullets">
+        {copy.bullets.map(b => (
+          <li class="vs-bullet">
+            <span class="vs-bicon">{b.icon}</span>
+            <div>
+              <strong>{b.label}</strong>
+              <span class="vs-bdesc">{b.desc}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <a href={playStoreUrl} target="_blank" rel="noopener" class="vs-cta">{copy.cta}</a>
+    </div>
+
+    <!-- Right: animated demo -->
+    <div class="vs-demo reveal" style="transition-delay:120ms">
+      <div class="vs-card">
+        <!-- Mic pulse -->
+        <div class="vs-mic-wrap">
+          <div class="vs-ring r1"></div>
+          <div class="vs-ring r2"></div>
+          <div class="vs-ring r3"></div>
+          <div class="vs-mic">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Waveform -->
+        <div class="vs-wave">
+          {[6,14,22,30,22,14,6,14,22,14,6].map((h: number) => (
+            <div class="vs-bar" style={`height:${h}px`}></div>
+          ))}
+        </div>
+
+        <!-- Conversation -->
+        <div class="vs-convo" id="vs-convo">
+          {copy.demo.map((item, i) => (
+            <div
+              class={`vs-line ${item.type === 'voice' ? 'vs-voice' : 'vs-tag'} ${(item as any).green ? 'vs-green' : ''}`}
+              data-idx={String(i)}
+              style="opacity:0;transform:translateY(8px);"
+            >
+              {item.type === 'voice' && (
+                <span class="vs-voice-dot">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </span>
+              )}
+              {item.text}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  const lines = Array.from(document.querySelectorAll<HTMLElement>('#vs-convo .vs-line'));
+  if (!lines.length) return;
+
+  let started = false;
+
+  function runSequence() {
+    if (started) return;
+    started = true;
+    lines.forEach((el, i) => {
+      setTimeout(() => {
+        el.style.transition = 'opacity .4s ease, transform .4s ease';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 400 + i * 700);
+    });
+  }
+
+  const section = document.querySelector('.vs-section');
+  if (!section) return;
+
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { runSequence(); obs.disconnect(); }
+  }, { threshold: 0.25 });
+  obs.observe(section);
+})();
+</script>
+
+<style>
+  .vs-section {
+    background: #080e0c;
+    padding: 96px 0;
+    overflow: hidden;
+  }
+  .vs-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .vs-inner { grid-template-columns: 1fr; gap: 48px; }
+    .vs-section { padding: 64px 0; }
+  }
+
+  /* Text side */
+  .vs-eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #1DB48B;
+    margin-bottom: 16px;
+  }
+  .vs-title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 20px;
+    text-wrap: balance;
+  }
+  .vs-sub {
+    color: rgba(255,255,255,.55);
+    line-height: 1.75;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+  .vs-bullets {
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .vs-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .vs-bicon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .vs-bullet strong {
+    display: block;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .vs-bdesc {
+    color: rgba(255,255,255,.45);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .vs-cta {
+    display: inline-block;
+    background: #1DB48B;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .vs-cta:hover { opacity: .88; transform: translateY(-1px); }
+
+  /* Demo card */
+  .vs-card {
+    background: #0f1a17;
+    border: 1px solid rgba(29,180,139,.18);
+    border-radius: 24px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* Mic */
+  .vs-mic-wrap {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vs-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(29,180,139,.25);
+    animation: vsring 2.4s ease-in-out infinite;
+  }
+  .r1 { width: 76px; height: 76px; animation-delay: 0s; }
+  .r2 { width: 54px; height: 54px; animation-delay: .4s; }
+  .r3 { width: 34px; height: 34px; animation-delay: .8s; }
+  @keyframes vsring {
+    0%,100% { transform: scale(1); opacity: .3; }
+    50% { transform: scale(1.12); opacity: .08; }
+  }
+  .vs-mic {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #1DB48B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 24px rgba(29,180,139,.35);
+  }
+
+  /* Wave */
+  .vs-wave {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 32px;
+  }
+  .vs-bar {
+    width: 3px;
+    border-radius: 2px;
+    background: #1DB48B;
+    animation: vsbar 1.2s ease-in-out infinite;
+    transform-origin: center;
+  }
+  .vs-bar:nth-child(1)  { animation-delay: 0s; }
+  .vs-bar:nth-child(2)  { animation-delay: .1s; }
+  .vs-bar:nth-child(3)  { animation-delay: .2s; }
+  .vs-bar:nth-child(4)  { animation-delay: .3s; }
+  .vs-bar:nth-child(5)  { animation-delay: .2s; }
+  .vs-bar:nth-child(6)  { animation-delay: .1s; }
+  .vs-bar:nth-child(7)  { animation-delay: 0s; }
+  .vs-bar:nth-child(8)  { animation-delay: .1s; }
+  .vs-bar:nth-child(9)  { animation-delay: .2s; }
+  .vs-bar:nth-child(10) { animation-delay: .1s; }
+  .vs-bar:nth-child(11) { animation-delay: 0s; }
+  @keyframes vsbar {
+    0%,100% { transform: scaleY(.3); opacity: .4; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+
+  /* Conversation */
+  .vs-convo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .vs-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    line-height: 1.4;
+  }
+  .vs-voice {
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.75);
+    align-self: flex-end;
+    max-width: 90%;
+  }
+  .vs-tag {
+    background: rgba(29,180,139,.12);
+    color: #4ade80;
+    font-weight: 600;
+    font-size: 13px;
+    align-self: flex-start;
+  }
+  .vs-green {
+    color: #86efac;
+    background: rgba(134,239,172,.1);
+  }
+  .vs-voice-dot {
+    color: #1DB48B;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+</style>
