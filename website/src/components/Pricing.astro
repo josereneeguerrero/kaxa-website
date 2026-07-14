@@ -1,6 +1,7 @@
 ---
 import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/routes';
+import { PLAY_STORE_URL } from '../i18n/constants';
 
 interface Props {
   lang: Lang;
@@ -38,6 +39,18 @@ const includes = t.pricing.includesList;
         {plan.detail && (
           <p class="mt-1 text-sm font-semibold text-primary">{plan.detail}</p>
         )}
+        <a
+          href={PLAY_STORE_URL}
+          target="_blank"
+          rel="noopener"
+          class={`mt-6 inline-block w-full rounded-btn px-5 py-2.5 text-sm font-bold transition hover:opacity-90 ${
+            plan.featured
+              ? 'bg-primary text-white shadow-card'
+              : 'border border-primary bg-white text-primary'
+          }`}
+        >
+          {lang === 'es' ? 'Empezar' : 'Get started'}
+        </a>
       </div>
     ))}
   </div>
@@ -60,8 +73,9 @@ const includes = t.pricing.includesList;
 
   <div class="mx-auto mt-8 max-w-md text-center">
     <a
-      href="#"
-      onclick="window.scrollTo({top:0,behavior:'smooth'});document.querySelector('#waitlist-form input')?.focus();return false"
+      href={PLAY_STORE_URL}
+      target="_blank"
+      rel="noopener"
       class="inline-block w-full rounded-btn bg-primary px-8 py-4 text-base font-bold text-white shadow-card hover:bg-primary-dark"
     >
       {t.hero.cta}

@@ -11,84 +11,161 @@ const t = translations[lang];
   title={`${t.footer.privacy} — Kaxa`}
   description={t.meta.description}
   heading="Política de Privacidad"
-  updated="Última actualización: 10 de junio de 2026"
+  updated="Última actualización: 8 de julio de 2026"
 >
   <h2>1. Introducción</h2>
   <p>
     En Kaxa ("Kaxa", "nosotros") respetamos tu privacidad y nos comprometemos a proteger tu
     información personal y financiera. Esta Política de Privacidad explica qué información
-    recopilamos, cómo la usamos y qué derechos tienes sobre ella.
+    recopilamos, cómo la usamos, con quién la compartimos y qué derechos tienes sobre ella.
   </p>
 
   <h2>2. Información que recopilamos</h2>
   <ul>
     <li>
-      Información financiera que ingresas manualmente: gastos, ingresos, bolsillos, presupuestos,
-      deudas y metas de ahorro. Esta información se guarda únicamente en tu dispositivo.
+      <strong>Información financiera local:</strong> gastos, ingresos, bolsillos, presupuestos,
+      deudas y metas de ahorro que ingresas manualmente. Esta información se almacena únicamente
+      en tu dispositivo y no se transmite a nuestros servidores.
     </li>
     <li>
-      Información relacionada con tu suscripción (estado del plan, identificadores de compra),
-      gestionada por Google Play y/o App Store a través de RevenueCat.
+      <strong>Texto de entrada para la función de IA:</strong> cuando usas la función de registro
+      por texto o voz, el texto que escribes se envía al servicio de inteligencia artificial de
+      Groq (groq.com) para su procesamiento. Este texto puede incluir descripciones de tus gastos
+      o ingresos. Groq procesa este texto y devuelve una respuesta estructurada; no almacenamos
+      el texto en nuestros servidores, pero Groq puede retenerlo según su propia política de
+      privacidad.
     </li>
     <li>
-      Información técnica básica del dispositivo (modelo, sistema operativo) que estas
-      plataformas utilizan para procesar tu suscripción.
+      <strong>Información de suscripción:</strong> estado del plan e identificadores de compra,
+      gestionados por Google Play y/o App Store a través de RevenueCat.
+    </li>
+    <li>
+      <strong>Información técnica básica del dispositivo</strong> (modelo, sistema operativo)
+      utilizada por las plataformas de pago para procesar tu suscripción.
     </li>
   </ul>
 
   <h2>3. Cómo usamos tu información</h2>
   <ul>
-    <li>
-      Operar y mantener las funciones principales de Kaxa (registro de movimientos, bolsillos,
-      presupuestos, deudas y metas) directamente en tu dispositivo.
-    </li>
+    <li>Operar las funciones principales de Kaxa directamente en tu dispositivo.</li>
+    <li>Procesar tu texto de entrada a través del servicio de IA para categorizar movimientos automáticamente.</li>
     <li>Generar tus reportes y resúmenes financieros.</li>
     <li>Gestionar tu suscripción y prueba gratuita.</li>
     <li>Comunicarnos contigo sobre cambios importantes en el servicio, si nos contactas.</li>
   </ul>
 
-  <h2>4. Almacenamiento y seguridad</h2>
+  <h2>4. Servicios de terceros</h2>
+  <p>Kaxa utiliza los siguientes servicios de terceros. Te recomendamos revisar sus políticas de privacidad:</p>
+  <ul>
+    <li>
+      <strong>RevenueCat</strong> — gestión de suscripciones.
+      <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener" class="text-primary underline">Política de privacidad de RevenueCat</a>.
+    </li>
+    <li>
+      <strong>Groq</strong> — procesamiento de IA para la función de registro por texto/voz. El texto que ingresas en esta función se transmite a sus servidores (ubicados en Estados Unidos).
+      <a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener" class="text-primary underline">Política de privacidad de Groq</a>.
+    </li>
+    <li>
+      <strong>Google Play / Apple App Store</strong> — distribución de la app y procesamiento de pagos.
+    </li>
+  </ul>
+
+  <h2>5. Almacenamiento y seguridad</h2>
   <p>
-    Tu información financiera (gastos, ingresos, bolsillos, presupuestos, deudas y metas) se
-    almacena localmente en tu dispositivo y no se envía a nuestros servidores. La información
-    relacionada con tu suscripción se procesa de forma segura a través de RevenueCat, Google Play
-    y/o App Store.
+    Tu información financiera se almacena localmente en tu dispositivo con protección opcional de
+    bloqueo biométrico. No tenemos acceso a tus datos financieros. La información de suscripción
+    se procesa de forma segura a través de RevenueCat. El texto enviado a Groq se transmite por
+    conexión HTTPS cifrada.
+  </p>
+  <p>
+    Los servidores de Groq y RevenueCat están ubicados en Estados Unidos. Si te encuentras en la
+    Unión Europea, esta transferencia internacional se realiza bajo las garantías aplicables de
+    las leyes de protección de datos de cada proveedor.
   </p>
 
-  <h2>5. Suscripciones y pagos</h2>
+  <h2>6. Suscripciones y pagos</h2>
   <p>
-    Las suscripciones de Kaxa se procesan a través de Google Play y/o App Store mediante
-    RevenueCat. Kaxa no almacena ni tiene acceso a los datos completos de tu tarjeta de pago;
-    estos son gestionados directamente por la tienda de aplicaciones correspondiente.
+    Las suscripciones se procesan a través de Google Play y/o App Store mediante RevenueCat.
+    Kaxa no almacena ni tiene acceso a los datos completos de tu tarjeta de pago; estos son
+    gestionados directamente por la tienda de aplicaciones correspondiente.
   </p>
 
-  <h2>6. Compartir información con terceros</h2>
+  <h2>7. Compartir información</h2>
   <p>
     No vendemos tu información financiera ni la compartimos con terceros con fines publicitarios.
-    La información relacionada con tu suscripción se comparte únicamente con RevenueCat y las
-    tiendas de aplicaciones correspondientes para procesar tu pago.
+    Compartimos información únicamente en los siguientes casos:
   </p>
+  <ul>
+    <li>Con RevenueCat y las tiendas de aplicaciones para procesar pagos.</li>
+    <li>Con Groq para procesar el texto que ingresas en la función de IA (solo cuando usas esa función).</li>
+    <li>Cuando la ley lo exija.</li>
+  </ul>
 
-  <h2>7. Tus derechos</h2>
+  <h2>8. Tus derechos</h2>
+  <p>En cualquier momento puedes:</p>
+  <ul>
+    <li>Acceder, corregir o eliminar tu información financiera directamente desde la app.</li>
+    <li>Desinstalar Kaxa para eliminar permanentemente todos tus datos del dispositivo.</li>
+    <li>Dejar de usar la función de IA para evitar que tu texto se envíe a Groq.</li>
+  </ul>
+
+  <h2>9. Derechos de usuarios en la Unión Europea (GDPR)</h2>
   <p>
-    Puedes acceder, corregir o eliminar tu información financiera en cualquier momento desde la
-    app. Si desinstalas Kaxa o eliminas sus datos, esta información se elimina de tu dispositivo
-    de forma permanente.
+    Si resides en el Espacio Económico Europeo, tienes los siguientes derechos sobre tus datos
+    personales conforme al Reglamento General de Protección de Datos (GDPR):
   </p>
-
-  <h2>8. Menores de edad</h2>
+  <ul>
+    <li><strong>Acceso:</strong> solicitar una copia de los datos que procesamos sobre ti.</li>
+    <li><strong>Rectificación:</strong> corregir datos inexactos.</li>
+    <li><strong>Supresión:</strong> solicitar la eliminación de tus datos ("derecho al olvido").</li>
+    <li><strong>Portabilidad:</strong> recibir tus datos en formato estructurado.</li>
+    <li><strong>Oposición:</strong> oponerte al procesamiento de tus datos.</li>
+    <li><strong>Limitación:</strong> solicitar que restrinjamos el procesamiento de tus datos.</li>
+  </ul>
   <p>
-    Kaxa no está dirigida a menores de 13 años y no recopilamos intencionalmente información de
-    menores.
+    Dado que los datos financieros se almacenan localmente en tu dispositivo, el control es
+    directo a través de la app. Para datos procesados por servicios de terceros (RevenueCat,
+    Groq), deberás ejercer tus derechos directamente ante ellos. Para cualquier consulta sobre
+    tus derechos GDPR, escríbenos a <a href="mailto:soporte@kaxa.lat" class="text-primary underline">soporte@kaxa.lat</a>.
+    También puedes presentar una reclamación ante la autoridad de protección de datos de tu país.
+  </p>
+  <p>
+    <strong>Base legal de procesamiento:</strong> procesamos los datos enviados a Groq sobre la
+    base de tu consentimiento implícito al usar la función de IA. Los datos de suscripción se
+    procesan para la ejecución del contrato.
   </p>
 
-  <h2>9. Cambios a esta política</h2>
+  <h2>10. Privacidad de usuarios en California (CCPA)</h2>
+  <p>
+    Si resides en California, tienes derechos adicionales conforme a la California Consumer
+    Privacy Act (CCPA). <strong>Kaxa no vende información personal.</strong> Puedes solicitar
+    información sobre los datos que recopilamos escribiéndonos a
+    <a href="mailto:soporte@kaxa.lat" class="text-primary underline">soporte@kaxa.lat</a>.
+  </p>
+
+  <h2>11. Menores de edad</h2>
+  <p>
+    Kaxa no está dirigida a menores de 13 años (o la edad mínima requerida por la ley de tu
+    país, si es superior). No recopilamos intencionalmente información de menores. Si detectamos
+    que un menor nos ha proporcionado información, la eliminaremos de inmediato.
+  </p>
+
+  <h2>12. Retención de datos</h2>
+  <p>
+    Los datos financieros residen en tu dispositivo y se eliminan cuando desinstalás la app o
+    borras sus datos. Los datos de suscripción procesados por RevenueCat se retienen según su
+    política, generalmente mientras la suscripción esté activa y por el período requerido por
+    ley. El texto enviado a Groq se retiene según la política de Groq.
+  </p>
+
+  <h2>13. Cambios a esta política</h2>
   <p>
     Podemos actualizar esta Política de Privacidad ocasionalmente. Publicaremos cualquier cambio
-    en esta página con una nueva fecha de "última actualización".
+    en esta página con una nueva fecha de "última actualización". Para cambios materiales,
+    notificaremos en la app.
   </p>
 
-  <h2>10. Contacto</h2>
+  <h2>14. Contacto</h2>
   <p>
     Si tienes preguntas sobre esta Política de Privacidad, escríbenos a
     <a href={`mailto:${t.footer.contactEmail}`} class="text-primary underline">{t.footer.contactEmail}</a>.

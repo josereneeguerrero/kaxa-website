@@ -11,80 +11,159 @@ const t = translations[lang];
   title={`${t.footer.privacy} — Kaxa`}
   description={t.meta.description}
   heading="Privacy Policy"
-  updated="Last updated: June 10, 2026"
+  updated="Last updated: July 8, 2026"
 >
   <h2>1. Introduction</h2>
   <p>
-    At Kaxa ("Kaxa", "we") we respect your privacy and are committed to protecting your personal
-    and financial information. This Privacy Policy explains what information we collect, how we
-    use it, and what rights you have over it.
+    At Kaxa ("Kaxa", "we", "us") we respect your privacy and are committed to protecting your
+    personal and financial information. This Privacy Policy explains what information we collect,
+    how we use it, who we share it with, and what rights you have over it.
   </p>
 
   <h2>2. Information we collect</h2>
   <ul>
     <li>
-      Financial information you enter manually: expenses, income, pockets, budgets, debts, and
-      savings goals. This information is stored only on your device.
+      <strong>Local financial information:</strong> expenses, income, pockets, budgets, debts, and
+      savings goals that you enter manually. This information is stored only on your device and is
+      never transmitted to our servers.
     </li>
     <li>
-      Information related to your subscription (plan status, purchase identifiers), managed by
+      <strong>AI feature text input:</strong> when you use the text or voice entry feature, the
+      text you type is sent to Groq (groq.com), a third-party AI service, for processing. This
+      text may include descriptions of your expenses or income. Groq processes the text and returns
+      a structured response; we do not store the text on our servers, but Groq may retain it
+      according to their own privacy policy.
+    </li>
+    <li>
+      <strong>Subscription information:</strong> plan status and purchase identifiers, managed by
       Google Play and/or the App Store through RevenueCat.
     </li>
     <li>
-      Basic technical device information (model, operating system) used by these platforms to
-      process your subscription.
+      <strong>Basic device technical information</strong> (model, operating system) used by the
+      payment platforms to process your subscription.
     </li>
   </ul>
 
   <h2>3. How we use your information</h2>
   <ul>
-    <li>
-      To operate and maintain Kaxa's core features (transaction tracking, pockets, budgets, debts,
-      and goals) directly on your device.
-    </li>
+    <li>To operate Kaxa's core features directly on your device.</li>
+    <li>To process your text input through the AI service for automatic transaction categorization.</li>
     <li>To generate your financial reports and summaries.</li>
     <li>To manage your subscription and free trial.</li>
     <li>To communicate with you about important changes to the service, if you contact us.</li>
   </ul>
 
-  <h2>4. Storage and security</h2>
+  <h2>4. Third-party services</h2>
+  <p>Kaxa uses the following third-party services. We encourage you to review their privacy policies:</p>
+  <ul>
+    <li>
+      <strong>RevenueCat</strong> — subscription management.
+      <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener" class="text-primary underline">RevenueCat Privacy Policy</a>.
+    </li>
+    <li>
+      <strong>Groq</strong> — AI processing for the text/voice entry feature. Text you enter in
+      this feature is transmitted to their servers (located in the United States).
+      <a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener" class="text-primary underline">Groq Privacy Policy</a>.
+    </li>
+    <li>
+      <strong>Google Play / Apple App Store</strong> — app distribution and payment processing.
+    </li>
+  </ul>
+
+  <h2>5. Storage and security</h2>
   <p>
-    Your financial information (expenses, income, pockets, budgets, debts, and goals) is stored
-    locally on your device and is not sent to our servers. Information related to your
-    subscription is processed securely through RevenueCat, Google Play, and/or the App Store.
+    Your financial information is stored locally on your device with optional biometric lock
+    protection. We have no access to your financial data. Subscription data is processed securely
+    through RevenueCat. Text sent to Groq is transmitted over an encrypted HTTPS connection.
+  </p>
+  <p>
+    Groq and RevenueCat servers are located in the United States. If you are in the European
+    Union, this international transfer is made under the applicable data protection safeguards of
+    each provider.
   </p>
 
-  <h2>5. Subscriptions and payments</h2>
+  <h2>6. Subscriptions and payments</h2>
   <p>
-    Kaxa subscriptions are processed through Google Play and/or the App Store via RevenueCat.
-    Kaxa does not store or have access to your full payment card details; these are managed
-    directly by the corresponding app store.
+    Subscriptions are processed through Google Play and/or the App Store via RevenueCat. Kaxa
+    does not store or have access to your full payment card details; these are managed directly
+    by the corresponding app store.
   </p>
 
-  <h2>6. Sharing information with third parties</h2>
+  <h2>7. Sharing information</h2>
   <p>
     We do not sell your financial information or share it with third parties for advertising
-    purposes. Information related to your subscription is shared only with RevenueCat and the
-    corresponding app stores to process your payment.
+    purposes. We share information only in the following cases:
   </p>
+  <ul>
+    <li>With RevenueCat and app stores to process payments.</li>
+    <li>With Groq to process text you enter in the AI feature (only when you use that feature).</li>
+    <li>When required by law.</li>
+  </ul>
 
-  <h2>7. Your rights</h2>
+  <h2>8. Your rights</h2>
+  <p>At any time you can:</p>
+  <ul>
+    <li>Access, correct, or delete your financial information directly from the app.</li>
+    <li>Uninstall Kaxa to permanently delete all your data from your device.</li>
+    <li>Stop using the AI feature to prevent your text from being sent to Groq.</li>
+  </ul>
+
+  <h2>9. Rights of users in the European Union (GDPR)</h2>
   <p>
-    You can access, correct, or delete your financial information at any time from the app. If
-    you uninstall Kaxa or delete its data, this information is permanently removed from your
-    device.
+    If you reside in the European Economic Area, you have the following rights over your personal
+    data under the General Data Protection Regulation (GDPR):
+  </p>
+  <ul>
+    <li><strong>Access:</strong> request a copy of the data we process about you.</li>
+    <li><strong>Rectification:</strong> correct inaccurate data.</li>
+    <li><strong>Erasure:</strong> request deletion of your data ("right to be forgotten").</li>
+    <li><strong>Portability:</strong> receive your data in a structured format.</li>
+    <li><strong>Objection:</strong> object to the processing of your data.</li>
+    <li><strong>Restriction:</strong> request that we restrict the processing of your data.</li>
+  </ul>
+  <p>
+    Since financial data is stored locally on your device, you have direct control through the
+    app. For data processed by third-party services (RevenueCat, Groq), you must exercise your
+    rights directly with them. For any GDPR-related inquiries, write to us at
+    <a href="mailto:soporte@kaxa.lat" class="text-primary underline">soporte@kaxa.lat</a>.
+    You may also file a complaint with the data protection authority in your country.
+  </p>
+  <p>
+    <strong>Legal basis for processing:</strong> we process data sent to Groq on the basis of
+    your implicit consent when you use the AI feature. Subscription data is processed for the
+    performance of the contract.
   </p>
 
-  <h2>8. Children's privacy</h2>
-  <p>Kaxa is not directed at children under 13, and we do not knowingly collect information from children.</p>
+  <h2>10. California privacy rights (CCPA)</h2>
+  <p>
+    If you reside in California, you have additional rights under the California Consumer Privacy
+    Act (CCPA). <strong>Kaxa does not sell personal information.</strong> You may request
+    information about the data we collect by writing to us at
+    <a href="mailto:soporte@kaxa.lat" class="text-primary underline">soporte@kaxa.lat</a>.
+  </p>
 
-  <h2>9. Changes to this policy</h2>
+  <h2>11. Children's privacy</h2>
+  <p>
+    Kaxa is not directed at children under 13 years of age (or the minimum age required by the
+    law of your country, if higher). We do not knowingly collect information from children.
+    If we learn that a child has provided us with information, we will delete it promptly.
+  </p>
+
+  <h2>12. Data retention</h2>
+  <p>
+    Financial data resides on your device and is deleted when you uninstall the app or clear its
+    data. Subscription data processed by RevenueCat is retained according to their policy,
+    generally while the subscription is active and for the period required by law. Text sent to
+    Groq is retained according to Groq's policy.
+  </p>
+
+  <h2>13. Changes to this policy</h2>
   <p>
     We may update this Privacy Policy from time to time. We will post any changes on this page
-    with a new "last updated" date.
+    with a new "last updated" date. For material changes, we will notify you within the app.
   </p>
 
-  <h2>10. Contact</h2>
+  <h2>14. Contact</h2>
   <p>
     If you have questions about this Privacy Policy, write to us at
     <a href={`mailto:${t.footer.contactEmail}`} class="text-primary underline">{t.footer.contactEmail}</a>.
