@@ -6,39 +6,55 @@ const { lang } = Astro.props;
 const copy = lang === 'es' ? {
   eyebrow: 'INTELIGENCIA ARTIFICIAL',
   title: 'Di lo que gastaste. Kaxa lo entiende.',
-  subtitle: 'Sin formularios. Sin categorías manuales. Solo habla — o escribe en lenguaje natural — y Kaxa hace el resto.',
+  subtitle: 'Toca el micrófono, habla como siempre. Kaxa detecta el monto, la categoría y lo guarda solo.',
   bullets: [
-    { icon: '🎤', label: 'Voz natural', desc: '"Gasté 120 en el super" → registrado y categorizado' },
-    { icon: '⚡', label: 'Instantáneo', desc: 'Más rápido que abrir Excel' },
-    { icon: '🧠', label: 'Aprende tu estilo', desc: 'La IA entiende tu forma de hablar' },
-  ],
-  demo: [
-    { text: '"Gasté 120 en el super"', type: 'voice' },
-    { text: '🛒 Compras · $120', type: 'tag' },
-    { text: '"Pagué la renta 5,500"', type: 'voice' },
-    { text: '🏠 Hogar · $5,500', type: 'tag' },
-    { text: '"Gané 3,000 de freelance"', type: 'voice' },
-    { text: '💼 Ingreso · +$3,000', type: 'tag', green: true },
+    { icon: '🎤', label: 'Toca y habla', desc: 'El micrófono está siempre en la barra principal' },
+    { icon: '⚡', label: 'Parseo instantáneo', desc: 'Monto, categoría y descripción en menos de 2 segundos' },
+    { icon: '✓', label: 'Confirmas y listo', desc: 'Revisa los datos y guarda con un toque' },
   ],
   cta: 'Descárgala gratis',
+  step1Label: 'Toca el micrófono',
+  step2Label: 'Kaxa escucha…',
+  step3Label: 'Listo para guardar',
+  phrase: 'Gasté 120 en el super',
+  balance: '$ 1,677.00',
+  income: '$ 2.9K',
+  expense: '$ 1.2K',
+  greeting: 'Buenas tardes',
+  recentActivity: 'Actividad reciente',
+  category: '🛒  Compras',
+  description: 'Super / Mercado',
+  amount: '$ 120.00',
+  saveBtn: 'Guardar',
+  cancelBtn: 'Cancelar',
+  listening: 'Escuchando…',
+  confirm: 'Transacción detectada',
 } : {
   eyebrow: 'ARTIFICIAL INTELLIGENCE',
   title: 'Say what you spent. Kaxa gets it.',
-  subtitle: 'No forms. No manual categories. Just speak — or write naturally — and Kaxa takes care of the rest.',
+  subtitle: 'Tap the mic, talk naturally. Kaxa detects the amount, category and saves it for you.',
   bullets: [
-    { icon: '🎤', label: 'Natural voice', desc: '"Spent 120 at the supermarket" → logged and categorized' },
-    { icon: '⚡', label: 'Instant', desc: 'Faster than opening Excel' },
-    { icon: '🧠', label: 'Learns your style', desc: 'The AI understands how you talk' },
-  ],
-  demo: [
-    { text: '"Spent 120 at the supermarket"', type: 'voice' },
-    { text: '🛒 Groceries · $120', type: 'tag' },
-    { text: '"Paid rent 1,500"', type: 'voice' },
-    { text: '🏠 Housing · $1,500', type: 'tag' },
-    { text: '"Made 3,000 freelancing"', type: 'voice' },
-    { text: '💼 Income · +$3,000', type: 'tag', green: true },
+    { icon: '🎤', label: 'Tap and speak', desc: 'The mic is always in the main bar' },
+    { icon: '⚡', label: 'Instant parsing', desc: 'Amount, category and description in under 2 seconds' },
+    { icon: '✓', label: 'Confirm and done', desc: 'Review the data and save with one tap' },
   ],
   cta: 'Download free',
+  step1Label: 'Tap the microphone',
+  step2Label: 'Kaxa is listening…',
+  step3Label: 'Ready to save',
+  phrase: 'Spent 120 at the supermarket',
+  balance: '$ 1,677.00',
+  income: '$ 2.9K',
+  expense: '$ 1.2K',
+  greeting: 'Good afternoon',
+  recentActivity: 'Recent activity',
+  category: '🛒  Groceries',
+  description: 'Supermarket',
+  amount: '$ 120.00',
+  saveBtn: 'Save',
+  cancelBtn: 'Cancel',
+  listening: 'Listening…',
+  confirm: 'Transaction detected',
 };
 
 const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneeguerrero.kaxa';
@@ -52,102 +68,263 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
       <p class="vs-eyebrow">{copy.eyebrow}</p>
       <h2 class="vs-title">{copy.title}</h2>
       <p class="vs-sub">{copy.subtitle}</p>
-      <ul class="vs-bullets">
-        {copy.bullets.map(b => (
-          <li class="vs-bullet">
-            <span class="vs-bicon">{b.icon}</span>
+      <ol class="vs-steps">
+        {copy.bullets.map((b, i) => (
+          <li class="vs-step" id={`vs-step-${i}`}>
+            <div class="vs-step-num">{String(i + 1)}</div>
             <div>
               <strong>{b.label}</strong>
               <span class="vs-bdesc">{b.desc}</span>
             </div>
           </li>
         ))}
-      </ul>
+      </ol>
       <a href={playStoreUrl} target="_blank" rel="noopener" class="vs-cta">{copy.cta}</a>
     </div>
 
-    <!-- Right: animated demo -->
-    <div class="vs-demo reveal" style="transition-delay:120ms">
-      <div class="vs-card">
-        <!-- Mic pulse -->
-        <div class="vs-mic-wrap">
-          <div class="vs-ring r1"></div>
-          <div class="vs-ring r2"></div>
-          <div class="vs-ring r3"></div>
-          <div class="vs-mic">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-              <line x1="12" y1="19" x2="12" y2="22"/>
-            </svg>
+    <!-- Right: phone mockup -->
+    <div class="vs-phone-wrap reveal" style="transition-delay:120ms">
+
+      <!-- Step label above phone -->
+      <div class="vs-step-label">
+        <span class="vs-dot active" id="vsd0"></span>
+        <span class="vs-dot" id="vsd1"></span>
+        <span class="vs-dot" id="vsd2"></span>
+        <span id="vs-label" class="vs-label-text">{copy.step1Label}</span>
+      </div>
+
+      <!-- Phone frame -->
+      <div class="vs-phone">
+        <!-- status bar -->
+        <div class="vs-status">
+          <span>9:41</span>
+          <span style="display:flex;align-items:center;gap:4px;">
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><rect x="0" y="3" width="3" height="7" rx="1"/><rect x="4" y="2" width="3" height="8" rx="1"/><rect x="8" y="0" width="3" height="10" rx="1"/><rect x="12" y="1" width="2" height="8" rx="1" opacity=".3"/></svg>
+            <svg width="12" height="10" viewBox="0 0 24 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 18h.01M2 7a14.5 14.5 0 0 1 20 0M5.5 11a9.5 9.5 0 0 1 13 0M8.5 15a5 5 0 0 1 7 0"/></svg>
+          </span>
+        </div>
+
+        <!-- ── STATE 0: Home screen ── -->
+        <div class="vs-screen" id="vs-s0">
+          <div class="vs-home">
+            <div class="vs-home-header">
+              <div>
+                <p class="vs-greeting">{copy.greeting}</p>
+                <p class="vs-date">Mar, 14 jul</p>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <div class="vs-icon-btn">🔔</div>
+                <div class="vs-icon-btn">⚙️</div>
+              </div>
+            </div>
+            <div class="vs-balance-card">
+              <p class="vs-balance-label">BALANCE TOTAL</p>
+              <p class="vs-balance-num">{copy.balance}</p>
+              <div class="vs-balance-row">
+                <span class="vs-income">↑ {copy.income}</span>
+                <span class="vs-divider-v"></span>
+                <span class="vs-expense">↓ {copy.expense}</span>
+              </div>
+            </div>
+            <div class="vs-pockets">
+              {['🎮','❤️','🍔','📚'].map((e, i) => (
+                <div class="vs-pocket" style={`background:${['#ddd6fe','#fde68a','#d1fae5','#bfdbfe'][i]}`}>
+                  <span>{e}</span>
+                </div>
+              ))}
+            </div>
+            <div class="vs-activity-label">{copy.recentActivity}</div>
+          </div>
+          <!-- bottom nav -->
+          <div class="vs-nav">
+            <button class="vs-nav-home">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span>Inicio</span>
+            </button>
+            <div class="vs-nav-pill" id="vs-mic-btn">
+              <span class="vs-mic-icon" id="vs-mic-anim">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+              </span>
+              <span class="vs-plus-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+              <span class="vs-cam-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </span>
+            </div>
+            <button class="vs-nav-more">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              <span>Más</span>
+            </button>
           </div>
         </div>
 
-        <!-- Waveform -->
-        <div class="vs-wave">
-          {[6,14,22,30,22,14,6,14,22,14,6].map((h: number) => (
-            <div class="vs-bar" style={`height:${h}px`}></div>
-          ))}
+        <!-- ── STATE 1: Listening sheet ── -->
+        <div class="vs-screen" id="vs-s1" style="display:none;">
+          <div class="vs-listen-bg">
+            <div class="vs-overlay"></div>
+            <div class="vs-listen-sheet">
+              <div class="vs-sheet-handle"></div>
+              <p class="vs-listen-label">{copy.listening}</p>
+              <!-- animated mic -->
+              <div class="vs-listen-mic-wrap">
+                <div class="vs-lring lr1"></div>
+                <div class="vs-lring lr2"></div>
+                <div class="vs-listen-mic">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+                </div>
+              </div>
+              <!-- waveform -->
+              <div class="vs-waveform">
+                {[5,12,20,28,20,12,5,12,20,12,5].map((h: number) => (
+                  <div class="vs-wbar" style={`height:${h}px`}></div>
+                ))}
+              </div>
+              <!-- phrase typing animation -->
+              <div class="vs-phrase-wrap">
+                <span class="vs-phrase" id="vs-phrase"></span><span class="vs-cursor">|</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Conversation -->
-        <div class="vs-convo" id="vs-convo">
-          {copy.demo.map((item, i) => (
-            <div
-              class={`vs-line ${item.type === 'voice' ? 'vs-voice' : 'vs-tag'} ${(item as any).green ? 'vs-green' : ''}`}
-              data-idx={String(i)}
-              style="opacity:0;transform:translateY(8px);"
-            >
-              {item.type === 'voice' && (
-                <span class="vs-voice-dot">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke="currentColor" stroke-width="2"/>
-                  </svg>
-                </span>
-              )}
-              {item.text}
+        <!-- ── STATE 2: Result / confirm ── -->
+        <div class="vs-screen" id="vs-s2" style="display:none;">
+          <div class="vs-result-bg">
+            <div class="vs-overlay"></div>
+            <div class="vs-result-sheet">
+              <div class="vs-sheet-handle"></div>
+              <div class="vs-result-header">
+                <span class="vs-result-badge">✓ {copy.confirm}</span>
+              </div>
+
+              <div class="vs-result-row">
+                <span class="vs-result-icon">🛒</span>
+                <div class="vs-result-info">
+                  <p class="vs-result-cat">{lang === 'es' ? 'Compras' : 'Groceries'}</p>
+                  <p class="vs-result-desc">{copy.description}</p>
+                </div>
+                <p class="vs-result-amount">{copy.amount}</p>
+              </div>
+
+              <div class="vs-result-fields">
+                <div class="vs-field">
+                  <span class="vs-field-label">{lang === 'es' ? 'Bolsillo' : 'Pocket'}</span>
+                  <span class="vs-field-val">💵 {lang === 'es' ? 'Efectivo' : 'Cash'}</span>
+                </div>
+                <div class="vs-field">
+                  <span class="vs-field-label">{lang === 'es' ? 'Fecha' : 'Date'}</span>
+                  <span class="vs-field-val">Hoy</span>
+                </div>
+              </div>
+
+              <div class="vs-result-actions">
+                <button class="vs-btn-cancel">{copy.cancelBtn}</button>
+                <button class="vs-btn-save">{copy.saveBtn}</button>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </div>
+
+      </div><!-- /phone -->
+    </div><!-- /wrap -->
 
   </div>
 </section>
 
-<script>
+<script define:vars={{ phrase: copy.phrase, step1: copy.step1Label, step2: copy.step2Label, step3: copy.step3Label }}>
 (function () {
-  const lines = Array.from(document.querySelectorAll<HTMLElement>('#vs-convo .vs-line'));
-  if (!lines.length) return;
+  const screens = [
+    document.getElementById('vs-s0'),
+    document.getElementById('vs-s1'),
+    document.getElementById('vs-s2'),
+  ];
+  const dots = [
+    document.getElementById('vsd0'),
+    document.getElementById('vsd1'),
+    document.getElementById('vsd2'),
+  ];
+  const labelEl = document.getElementById('vs-label');
+  const phraseEl = document.getElementById('vs-phrase');
+  const stepEls = [
+    document.getElementById('vs-step-0'),
+    document.getElementById('vs-step-1'),
+    document.getElementById('vs-step-2'),
+  ];
+  const labels = [step1, step2, step3];
 
-  let started = false;
+  let state = 0;
+  let typingTimer = null;
+  let cycleTimer = null;
 
-  function runSequence() {
-    if (started) return;
-    started = true;
-    lines.forEach((el, i) => {
-      setTimeout(() => {
-        el.style.transition = 'opacity .4s ease, transform .4s ease';
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      }, 400 + i * 700);
+  function showState(i) {
+    screens.forEach((s, idx) => {
+      if (s) s.style.display = idx === i ? 'flex' : 'none';
+    });
+    dots.forEach((d, idx) => {
+      if (d) d.classList.toggle('active', idx === i);
+    });
+    if (labelEl) labelEl.textContent = labels[i];
+    stepEls.forEach((el, idx) => {
+      if (el) el.classList.toggle('active', idx === i);
     });
   }
 
-  const section = document.querySelector('.vs-section');
-  if (!section) return;
+  function typePhrase(text, el, cb) {
+    if (!el) return;
+    el.textContent = '';
+    let i = 0;
+    clearInterval(typingTimer);
+    typingTimer = setInterval(() => {
+      el.textContent += text[i];
+      i++;
+      if (i >= text.length) { clearInterval(typingTimer); if (cb) cb(); }
+    }, 55);
+  }
 
-  const obs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) { runSequence(); obs.disconnect(); }
-  }, { threshold: 0.25 });
-  obs.observe(section);
+  function cycle() {
+    state = (state + 1) % 3;
+    showState(state);
+
+    if (state === 1) {
+      // start typing after a short pause
+      setTimeout(() => typePhrase(phrase, phraseEl, null), 600);
+      // advance to state 2 after listening
+      clearTimeout(cycleTimer);
+      cycleTimer = setTimeout(cycle, 3800);
+    } else if (state === 2) {
+      // stay on result for a bit, then back to home
+      clearTimeout(cycleTimer);
+      cycleTimer = setTimeout(cycle, 3500);
+    } else {
+      // home screen
+      clearTimeout(cycleTimer);
+      cycleTimer = setTimeout(cycle, 2800);
+    }
+  }
+
+  showState(0);
+
+  // start cycling when section enters view
+  const section = document.querySelector('.vs-section');
+  let started = false;
+  if (section) {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !started) {
+        started = true;
+        obs.disconnect();
+        cycleTimer = setTimeout(cycle, 2000);
+      }
+    }, { threshold: 0.3 });
+    obs.observe(section);
+  }
 })();
 </script>
 
 <style>
+  /* ── Section shell ── */
   .vs-section {
-    background: #080e0c;
+    background: #070d0b;
     padding: 96px 0;
     overflow: hidden;
   }
@@ -156,196 +333,274 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
     margin: 0 auto;
     padding: 0 24px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 1fr 420px;
+    gap: 72px;
     align-items: center;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .vs-inner { grid-template-columns: 1fr; gap: 48px; }
     .vs-section { padding: 64px 0; }
+    .vs-phone-wrap { display: flex; flex-direction: column; align-items: center; }
   }
 
-  /* Text side */
+  /* ── Left text ── */
   .vs-eyebrow {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: #1DB48B;
-    margin-bottom: 16px;
+    font-size: 11px; font-weight: 800; letter-spacing: .14em;
+    text-transform: uppercase; color: #1DB48B; margin-bottom: 16px;
   }
   .vs-title {
-    font-size: clamp(1.75rem, 4vw, 2.75rem);
-    font-weight: 900;
-    line-height: 1.15;
-    color: #fff;
-    margin-bottom: 20px;
-    text-wrap: balance;
+    font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 900;
+    line-height: 1.15; color: #fff; margin-bottom: 18px; text-wrap: balance;
   }
   .vs-sub {
-    color: rgba(255,255,255,.55);
-    line-height: 1.75;
-    margin-bottom: 36px;
-    max-width: 480px;
+    color: rgba(255,255,255,.5); line-height: 1.75;
+    margin-bottom: 36px; max-width: 440px; font-size: 15px;
   }
-  .vs-bullets {
-    list-style: none;
-    margin: 0 0 40px;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  .vs-steps {
+    list-style: none; margin: 0 0 40px; padding: 0;
+    display: flex; flex-direction: column; gap: 20px;
   }
-  .vs-bullet {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
+  .vs-step {
+    display: flex; align-items: flex-start; gap: 14px;
+    transition: opacity .3s ease;
+    opacity: .4;
   }
-  .vs-bicon {
-    font-size: 20px;
-    flex-shrink: 0;
-    margin-top: 2px;
+  .vs-step.active { opacity: 1; }
+  .vs-step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(29,180,139,.15); border: 1.5px solid rgba(29,180,139,.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: #1DB48B; flex-shrink: 0;
   }
-  .vs-bullet strong {
-    display: block;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 2px;
+  .vs-step.active .vs-step-num {
+    background: #1DB48B; border-color: #1DB48B; color: #fff;
   }
-  .vs-bdesc {
-    color: rgba(255,255,255,.45);
-    font-size: 13.5px;
-    line-height: 1.5;
+  .vs-step strong {
+    display: block; color: #fff; font-size: 14px;
+    font-weight: 700; margin-bottom: 2px;
   }
+  .vs-bdesc { color: rgba(255,255,255,.4); font-size: 13px; line-height: 1.5; }
   .vs-cta {
-    display: inline-block;
-    background: #1DB48B;
-    color: #fff;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 14px 28px;
-    border-radius: 12px;
-    text-decoration: none;
+    display: inline-block; background: #1DB48B; color: #fff;
+    font-weight: 700; font-size: 15px; padding: 13px 26px;
+    border-radius: 12px; text-decoration: none;
     transition: opacity .2s, transform .2s;
   }
   .vs-cta:hover { opacity: .88; transform: translateY(-1px); }
 
-  /* Demo card */
-  .vs-card {
-    background: #0f1a17;
-    border: 1px solid rgba(29,180,139,.18);
-    border-radius: 24px;
-    padding: 36px 28px;
+  /* ── Step label + dots ── */
+  .vs-step-label {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 16px; padding-left: 4px;
+  }
+  .vs-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,.2); transition: background .3s, width .3s;
+    flex-shrink: 0;
+  }
+  .vs-dot.active { background: #1DB48B; width: 18px; border-radius: 3px; }
+  .vs-label-text {
+    font-size: 12px; color: rgba(255,255,255,.45);
+    font-weight: 600; letter-spacing: .04em;
+  }
+
+  /* ── Phone frame ── */
+  .vs-phone {
+    width: 260px;
+    background: #f0f1f5;
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06);
+    position: relative;
+    aspect-ratio: 9 / 19.5;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 24px;
   }
 
-  /* Mic */
-  .vs-mic-wrap {
-    position: relative;
-    width: 76px;
-    height: 76px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .vs-ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(29,180,139,.25);
-    animation: vsring 2.4s ease-in-out infinite;
-  }
-  .r1 { width: 76px; height: 76px; animation-delay: 0s; }
-  .r2 { width: 54px; height: 54px; animation-delay: .4s; }
-  .r3 { width: 34px; height: 34px; animation-delay: .8s; }
-  @keyframes vsring {
-    0%,100% { transform: scale(1); opacity: .3; }
-    50% { transform: scale(1.12); opacity: .08; }
-  }
-  .vs-mic {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #1DB48B;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 0 24px rgba(29,180,139,.35);
+  /* status bar */
+  .vs-status {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px 4px;
+    font-size: 10px; font-weight: 700; color: #111;
+    background: #f0f1f5; flex-shrink: 0;
   }
 
-  /* Wave */
-  .vs-wave {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    height: 32px;
+  /* ── Screens ── */
+  .vs-screen {
+    flex: 1; display: flex; flex-direction: column;
+    overflow: hidden; position: relative;
   }
-  .vs-bar {
-    width: 3px;
-    border-radius: 2px;
-    background: #1DB48B;
-    animation: vsbar 1.2s ease-in-out infinite;
-    transform-origin: center;
+
+  /* ── STATE 0: Home ── */
+  .vs-home {
+    flex: 1; padding: 8px 10px 4px; overflow: hidden;
+    display: flex; flex-direction: column; gap: 8px;
   }
-  .vs-bar:nth-child(1)  { animation-delay: 0s; }
-  .vs-bar:nth-child(2)  { animation-delay: .1s; }
-  .vs-bar:nth-child(3)  { animation-delay: .2s; }
-  .vs-bar:nth-child(4)  { animation-delay: .3s; }
-  .vs-bar:nth-child(5)  { animation-delay: .2s; }
-  .vs-bar:nth-child(6)  { animation-delay: .1s; }
-  .vs-bar:nth-child(7)  { animation-delay: 0s; }
-  .vs-bar:nth-child(8)  { animation-delay: .1s; }
-  .vs-bar:nth-child(9)  { animation-delay: .2s; }
-  .vs-bar:nth-child(10) { animation-delay: .1s; }
-  .vs-bar:nth-child(11) { animation-delay: 0s; }
-  @keyframes vsbar {
+  .vs-home-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .vs-greeting { font-size: 12px; font-weight: 800; color: #111; line-height: 1.2; }
+  .vs-date { font-size: 9px; color: #888; margin-top: 1px; }
+  .vs-icon-btn { font-size: 11px; }
+  .vs-balance-card {
+    background: #fff; border-radius: 14px; padding: 10px 10px 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .vs-balance-label { font-size: 7px; font-weight: 700; letter-spacing: .1em; color: #999; }
+  .vs-balance-num { font-size: 20px; font-weight: 900; color: #111; line-height: 1.2; margin: 2px 0; }
+  .vs-balance-row { display: flex; justify-content: center; gap: 8px; align-items: center; font-size: 9px; }
+  .vs-income { color: #1DB48B; font-weight: 700; }
+  .vs-expense { color: #ef4444; font-weight: 700; }
+  .vs-divider-v { width: 1px; height: 10px; background: #e5e7eb; }
+  .vs-pockets {
+    display: flex; gap: 6px;
+  }
+  .vs-pocket {
+    flex: 1; height: 44px; border-radius: 12px;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 4px; font-size: 14px;
+  }
+  .vs-activity-label { font-size: 9px; font-weight: 700; color: #111; }
+
+  /* bottom nav */
+  .vs-nav {
+    background: #f0f1f5; padding: 6px 10px 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+    border-top: 1px solid rgba(0,0,0,.06);
+  }
+  .vs-nav-home, .vs-nav-more {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    background: none; border: none; cursor: pointer;
+    color: #9ca3af; font-size: 7px; font-weight: 600; padding: 0 6px;
+  }
+  .vs-nav-pill {
+    background: #1DB48B; border-radius: 24px; padding: 8px 12px;
+    display: flex; gap: 10px; align-items: center;
+    box-shadow: 0 4px 16px rgba(29,180,139,.4);
+  }
+  .vs-mic-icon, .vs-plus-icon, .vs-cam-icon { color: #fff; display: flex; align-items: center; }
+  .vs-mic-icon { animation: micpulse 1.8s ease-in-out infinite; }
+  @keyframes micpulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .65; transform: scale(.9); }
+  }
+
+  /* ── STATE 1: Listening ── */
+  .vs-listen-bg {
+    flex: 1; background: #f0f1f5; position: relative;
+    display: flex; flex-direction: column;
+  }
+  .vs-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,.35);
+    backdrop-filter: blur(2px); z-index: 1;
+  }
+  .vs-listen-sheet {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+    background: #fff; border-radius: 20px 20px 0 0;
+    padding: 12px 16px 20px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .vs-sheet-handle {
+    width: 32px; height: 3px; background: #e5e7eb;
+    border-radius: 2px; margin-bottom: 4px;
+  }
+  .vs-listen-label { font-size: 10px; font-weight: 700; color: #6b7280; letter-spacing: .06em; text-transform: uppercase; }
+  .vs-listen-mic-wrap {
+    position: relative; width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .vs-lring {
+    position: absolute; border-radius: 50%;
+    border: 1.5px solid rgba(29,180,139,.3);
+    animation: lring 2s ease-in-out infinite;
+  }
+  .lr1 { width: 56px; height: 56px; }
+  .lr2 { width: 38px; height: 38px; animation-delay: .5s; }
+  @keyframes lring {
+    0%,100% { transform: scale(1); opacity: .4; }
+    50% { transform: scale(1.15); opacity: .1; }
+  }
+  .vs-listen-mic {
+    width: 38px; height: 38px; border-radius: 50%; background: #1DB48B;
+    display: flex; align-items: center; justify-content: center; color: #fff;
+    position: relative; z-index: 1; box-shadow: 0 0 18px rgba(29,180,139,.4);
+  }
+  .vs-waveform { display: flex; align-items: center; gap: 3px; height: 24px; }
+  .vs-wbar {
+    width: 3px; border-radius: 2px; background: #1DB48B;
+    animation: wbar 1s ease-in-out infinite; transform-origin: center;
+  }
+  .vs-wbar:nth-child(1)  { animation-delay: 0s; }
+  .vs-wbar:nth-child(2)  { animation-delay: .09s; }
+  .vs-wbar:nth-child(3)  { animation-delay: .18s; }
+  .vs-wbar:nth-child(4)  { animation-delay: .27s; }
+  .vs-wbar:nth-child(5)  { animation-delay: .18s; }
+  .vs-wbar:nth-child(6)  { animation-delay: .09s; }
+  .vs-wbar:nth-child(7)  { animation-delay: 0s; }
+  .vs-wbar:nth-child(8)  { animation-delay: .09s; }
+  .vs-wbar:nth-child(9)  { animation-delay: .18s; }
+  .vs-wbar:nth-child(10) { animation-delay: .09s; }
+  .vs-wbar:nth-child(11) { animation-delay: 0s; }
+  @keyframes wbar {
     0%,100% { transform: scaleY(.3); opacity: .4; }
     50% { transform: scaleY(1); opacity: 1; }
   }
+  .vs-phrase-wrap {
+    min-height: 28px; text-align: center; width: 100%;
+    display: flex; align-items: center; justify-content: center; gap: 1px;
+  }
+  .vs-phrase { font-size: 11px; font-weight: 600; color: #111; }
+  .vs-cursor {
+    font-size: 13px; color: #1DB48B; font-weight: 300;
+    animation: blink .9s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 
-  /* Conversation */
-  .vs-convo {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  /* ── STATE 2: Result ── */
+  .vs-result-bg {
+    flex: 1; background: #f0f1f5; position: relative;
+    display: flex; flex-direction: column;
   }
-  .vs-line {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    line-height: 1.4;
+  .vs-result-sheet {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+    background: #fff; border-radius: 20px 20px 0 0;
+    padding: 12px 14px 20px;
+    display: flex; flex-direction: column; gap: 10px;
   }
-  .vs-voice {
-    background: rgba(255,255,255,.06);
-    color: rgba(255,255,255,.75);
-    align-self: flex-end;
-    max-width: 90%;
+  .vs-result-header { display: flex; justify-content: center; }
+  .vs-result-badge {
+    font-size: 9px; font-weight: 800; color: #1DB48B;
+    background: rgba(29,180,139,.1); padding: 4px 10px; border-radius: 20px;
+    letter-spacing: .04em;
   }
-  .vs-tag {
-    background: rgba(29,180,139,.12);
-    color: #4ade80;
-    font-weight: 600;
-    font-size: 13px;
-    align-self: flex-start;
+  .vs-result-row {
+    display: flex; align-items: center; gap: 10px;
+    background: #f9fafb; border-radius: 12px; padding: 10px 10px;
   }
-  .vs-green {
-    color: #86efac;
-    background: rgba(134,239,172,.1);
+  .vs-result-icon { font-size: 22px; flex-shrink: 0; }
+  .vs-result-info { flex: 1; }
+  .vs-result-cat { font-size: 11px; font-weight: 700; color: #111; margin: 0; }
+  .vs-result-desc { font-size: 9px; color: #9ca3af; margin: 0; }
+  .vs-result-amount { font-size: 13px; font-weight: 900; color: #111; white-space: nowrap; }
+  .vs-result-fields {
+    display: flex; gap: 8px;
   }
-  .vs-voice-dot {
-    color: #1DB48B;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
+  .vs-field {
+    flex: 1; background: #f3f4f6; border-radius: 10px; padding: 7px 8px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .vs-field-label { font-size: 7.5px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: .06em; }
+  .vs-field-val { font-size: 10px; font-weight: 600; color: #374151; }
+  .vs-result-actions { display: flex; gap: 8px; }
+  .vs-btn-cancel {
+    flex: 1; padding: 9px; border-radius: 10px; border: 1.5px solid #e5e7eb;
+    background: #fff; font-size: 11px; font-weight: 700; color: #6b7280; cursor: pointer;
+  }
+  .vs-btn-save {
+    flex: 2; padding: 9px; border-radius: 10px; border: none;
+    background: #1DB48B; font-size: 11px; font-weight: 800; color: #fff; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(29,180,139,.35);
   }
 </style>
