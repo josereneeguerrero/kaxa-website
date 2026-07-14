@@ -1,0 +1,74 @@
+---
+import type { Lang } from '../i18n/routes';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const isEs = lang === 'es';
+
+const heading    = isEs ? 'Construida para durar, no para impresionar' : 'Built to last, not to impress';
+const subheading = isEs
+  ? 'Tres decisiones de diseño que cambian cómo llevas tus finanzas.'
+  : 'Three design decisions that change how you manage your money.';
+
+const cards = isEs
+  ? [
+      {
+        icon: '🔒',
+        title: 'Sin cuentas. Sin servidores.',
+        text: 'Tus datos nunca salen de tu teléfono. No hay base de datos que hackear, no hay empresa que venda tu información. Solo tú y tu dinero.',
+      },
+      {
+        icon: '⚡',
+        title: 'Abre y funciona.',
+        text: 'Sin onboarding de 10 pasos, sin conectar tu banco, sin permisos invasivos. Instalas, abres y en 30 segundos estás registrando tu primer gasto.',
+      },
+      {
+        icon: '🎯',
+        title: 'Todo en uno, sin ruido.',
+        text: 'Gastos, presupuestos, metas, deudas y pagos recurrentes en una sola app. Sin módulos de pago extra, sin funciones escondidas detrás de más suscripciones.',
+      },
+    ]
+  : [
+      {
+        icon: '🔒',
+        title: 'No accounts. No servers.',
+        text: 'Your data never leaves your phone. No database to hack, no company selling your information. Just you and your money.',
+      },
+      {
+        icon: '⚡',
+        title: 'Open and go.',
+        text: 'No 10-step onboarding, no bank connection required, no invasive permissions. Install, open, and in 30 seconds you\'re logging your first expense.',
+      },
+      {
+        icon: '🎯',
+        title: 'Everything in one, no noise.',
+        text: 'Expenses, budgets, goals, debts, and recurring payments in one app. No extra paid modules, no features hidden behind more subscriptions.',
+      },
+    ];
+---
+
+<section class="bg-surface py-16 sm:py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <h2 class="reveal text-center text-3xl font-extrabold text-ink sm:text-4xl">{heading}</h2>
+    <p class="reveal mx-auto mt-3 max-w-md text-center text-sm text-muted" style="transition-delay: 100ms">
+      {subheading}
+    </p>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-3">
+      {cards.map((c, i) => (
+        <div
+          class="reveal glass-card flex flex-col gap-4 rounded-2xl border border-surface-border p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+          style={`transition-delay: ${i * 80}ms`}
+        >
+          <span class="text-3xl" aria-hidden="true">{c.icon}</span>
+          <p class="flex-1 text-sm leading-relaxed text-ink/80">{c.text}</p>
+          <p class="text-sm font-bold text-ink">{c.title}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
