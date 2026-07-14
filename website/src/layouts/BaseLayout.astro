@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 import type { Lang, RouteKey } from '../i18n/routes';
 import { routes, otherLang } from '../i18n/routes';
@@ -17,21 +18,40 @@ const site = 'https://kaxa.lat';
 const canonical = `${site}${routes[currentRoute][lang]}`;
 const alt = otherLang(lang);
 const altUrl = `${site}${routes[currentRoute][alt]}`;
-const altLang = alt === 'es' ? 'es-HN' : 'en';
+const altLang = alt === 'es' ? 'es' : 'en';
 
-const jsonLd = currentRoute === 'home' ? JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'Kaxa',
-  operatingSystem: 'Android',
-  applicationCategory: 'FinanceApplication',
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'USD',
+import { translations } from '../i18n/translations';
+
+const faqItems = currentRoute === 'home' ? translations[lang].faq.items : [];
+
+const jsonLd = currentRoute === 'home' ? JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Kaxa',
+    operatingSystem: 'Android',
+    applicationCategory: 'FinanceApplication',
+    offers: {
+      '@type': 'AggregateOffer',
+      lowPrice: '0',
+      highPrice: '24.99',
+      priceCurrency: 'USD',
+    },
+    description: description,
   },
-  description: description,
-}) : null;
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  },
+]) : null;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -46,20 +66,23 @@ const jsonLd = currentRoute === 'home' ? JSON.stringify({
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang={lang === 'es' ? 'es-HN' : 'en'} href={canonical} />
+    <link rel="alternate" hreflang={lang === 'es' ? 'es' : 'en'} href={canonical} />
     <link rel="alternate" hreflang={altLang} href={altUrl} />
     <link rel="alternate" hreflang="x-default" href={`${site}${routes[currentRoute].es}`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://kaxa.lat/android-chrome-512x512.png" />
+    <meta property="og:image" content="https://kaxa.lat/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Kaxa" />
-    <meta property="og:locale" content={lang === 'es' ? 'es_HN' : 'en_US'} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://kaxa.lat/android-chrome-512x512.png" />
+    <meta name="twitter:image" content="https://kaxa.lat/og-image.png" />
     {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
   </head>
   <body class="flex min-h-screen flex-col">
@@ -68,6 +91,7 @@ const jsonLd = currentRoute === 'home' ? JSON.stringify({
       <slot />
     </main>
     <Footer lang={lang} currentRoute={currentRoute} />
+    <Analytics />
     <script>
       const observer = new IntersectionObserver(
         (entries) => {
