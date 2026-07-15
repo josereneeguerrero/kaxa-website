@@ -69,6 +69,7 @@ const bolsillos = [
 
     <!-- ── ROW 1: demos ── -->
     <div class="hiw-demo hiw-demo-1 reveal" id="hiw-demo-1">
+      <div class="hd1-wrap">
       <div class="hd1-voice" id="hd1-rec">
         <div class="hd1-mic-wrap">
           <div class="hd1-ring hd1-r1"></div>
@@ -118,6 +119,7 @@ const bolsillos = [
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
 
@@ -342,7 +344,8 @@ const bolsillos = [
   }
 
   /* ── Demo shell ── */
-  .hiw-demo-1 {
+  .hiw-demo-1 { }
+  .hd1-wrap {
     position:relative; height:196px; width:260px; margin:0 auto;
     background:#fff; border-radius:16px;
     box-shadow:0 2px 16px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04);
@@ -442,7 +445,8 @@ const bolsillos = [
 
   /* ══ DEMO 3: bolsillos 2×2 grid (calco de _BolsillosPage) ══ */
   .hd3-card   {
-    background:#fff; border-radius:16px; padding:16px; margin:0 auto;
+    width:252px; margin:0 auto;
+    background:#fff; border-radius:16px; padding:16px;
     box-shadow:0 4px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
   }
   .hd3-box    { display:flex; flex-direction:column; align-items:center; gap:0; }
