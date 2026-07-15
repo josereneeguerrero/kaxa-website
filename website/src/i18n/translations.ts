@@ -14,10 +14,10 @@ export const translations = {
     },
     hero: {
       eyebrow: 'Ya disponible en Google Play',
-      title: 'Tu dinero merece orden.',
-      titleHighlight: 'Kaxa lo resuelve.',
+      title: 'Sabe a dónde va tu dinero.',
+      titleHighlight: 'Por fin.',
       subtitle:
-        '¿A fin de mes no sabes en qué se fue tu sueldo? Kaxa lo registra, organiza y analiza — para que tú tomes el control.',
+        'Registra con voz, texto o manual — Kaxa categoriza, alerta y te muestra el panorama completo.',
       cta: 'Descargar gratis',
       ctaWaitlist: false,
       badge: '',
@@ -233,10 +233,10 @@ export const translations = {
     },
     hero: {
       eyebrow: 'Now available on Google Play',
-      title: 'Your money deserves order.',
-      titleHighlight: 'Kaxa delivers.',
+      title: 'Know where your money goes.',
+      titleHighlight: 'Finally.',
       subtitle:
-        'Not sure where your paycheck went this month? Kaxa tracks, organizes, and analyzes it — so you can finally take control.',
+        'Log with voice, text, or manually — Kaxa categorizes, alerts, and gives you the full picture.',
       cta: 'Download free',
       ctaWaitlist: false,
       badge: '',
