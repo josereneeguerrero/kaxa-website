@@ -304,7 +304,12 @@ const pills = [
 
   /* ── Demo shell ── */
   .hiw-demo   { width:100%; display:flex; align-items:center; justify-content:center; }
-  .hiw-demo-1 { position:relative; min-height:130px; flex-direction:column; }
+  .hiw-demo-1 {
+    position:relative; height:160px; max-width:260px;
+    background:#fff; border-radius:16px;
+    box-shadow:0 2px 16px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04);
+    overflow:hidden;
+  }
   .hiw-demo-2 { }
   .hiw-demo-3 { height:220px; }
 
@@ -350,9 +355,8 @@ const pills = [
 
   /* _SheetItemCard calco — KaxaColors exact */
   .hd1-card {
-    width:100%; border-radius:14px;
+    position:absolute; inset:0;
     background:#F8F9FF; padding:12px 14px;
-    box-shadow:0 2px 12px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.04);
     display:flex; align-items:center; gap:12px;
     opacity:0; transform:translateY(14px);
   }
