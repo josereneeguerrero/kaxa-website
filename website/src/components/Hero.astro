@@ -28,14 +28,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
       </a>
     </div>
 
-    <!-- RIGHT: phone screenshot -->
-    <div class="hero-mockup reveal" style="transition-delay:160ms">
-      <div class="hero-phone">
-        <video autoplay muted loop playsinline class="hero-video" poster="/screenshots/home.png">
-          <source src="/kaxa-demo.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </div>
+    <!-- RIGHT: placeholder -->
+    <div></div>
 
   </div>
 </section>
@@ -44,7 +38,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
   .hero-section {
     background: #fff;
     overflow: hidden;
-    padding: 80px 0 0;
+    padding: 80px 0 80px;
   }
   .hero-inner {
     max-width: 1160px;
@@ -56,13 +50,10 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
     gap: 40px;
     min-height: calc(100vh - 64px);
   }
-
-  /* LEFT */
   .hero-text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
   }
   .hero-h1 {
     font-size: clamp(2.8rem, 5.5vw, 4.5rem);
@@ -82,51 +73,19 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
   }
   .hero-badge-link {
     display: inline-block;
-    margin-bottom: 16px;
     transition: opacity .2s, transform .15s;
   }
   .hero-badge-link:hover { opacity: .88; transform: translateY(-1px); }
   .hero-badge-img { height: 52px; display: block; }
-  .hero-proof {
-    font-size: 12px;
-    color: #9ca3af;
-    letter-spacing: .04em;
-  }
 
-  /* RIGHT */
-  .hero-mockup {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 100%;
-  }
-  .hero-phone {
-    width: min(320px, 90%);
-    border-radius: 40px 40px 0 0;
-    overflow: hidden;
-    box-shadow:
-      0 0 0 1px rgba(0,0,0,.06),
-      0 40px 100px rgba(0,0,0,.16),
-      0 16px 32px rgba(0,0,0,.08);
-    transform: translateY(0);
-  }
-  .hero-video {
-    display: block;
-    width: 100%;
-  }
-
-  /* Mobile */
   @media (max-width: 768px) {
     .hero-inner {
       grid-template-columns: 1fr;
       min-height: auto;
       padding: 0 24px;
-      gap: 48px;
     }
     .hero-text { align-items: center; text-align: center; }
     .hero-sub { max-width: 100%; }
-    .hero-mockup { justify-content: center; }
-    .hero-phone { width: min(280px, 80vw); }
     .hero-h1 { font-size: clamp(2.4rem, 8vw, 3.2rem); }
   }
 </style>
