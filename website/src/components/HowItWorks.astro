@@ -51,10 +51,11 @@ const budgets = lang === 'es'
       { emoji: '✈️', bg: '#e0f2fe', color: '#0284c7', barColor: '#0284c7', name: 'Travel goal',   current: 800, limit: 2000, pct: 40, pctColor: '#0284c7' },
     ];
 
-const pills = [
-  { emoji: '🎮', fillColor: '#b5a8e8', bg: '#f5f3ff', fill: 50, pillStyle: 'background:#f5f3ff;box-shadow:0 2px 12px rgba(0,0,0,.07),inset 0 0 0 1px rgba(0,0,0,.05)', pctColor: '#7c6fcd' },
-  { emoji: '❤️', fillColor: '#d4a520', bg: '#fffceb', fill: 45, pillStyle: 'background:#fffceb;box-shadow:0 0 0 2px #d4a520,0 2px 12px rgba(0,0,0,.07)',               pctColor: '#d4a520' },
-  { emoji: '🍔', fillColor: '#6ecba0', bg: '#f0fdf6', fill: 22, pillStyle: 'background:#f0fdf6;box-shadow:0 2px 12px rgba(0,0,0,.07),inset 0 0 0 1px rgba(0,0,0,.05)', pctColor: '#059669' },
+const bolsillos = [
+  { id:'hd3-0', rgba:'245,158,11',  color:'#F59E0B', name: lang==='es'?'Efectivo':'Cash',    bal:'$320',   svgPath:'M21 7H3a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM1 13h22' },
+  { id:'hd3-1', rgba:'244,63,94',   color:'#F43F5E', name: lang==='es'?'Tarjeta':'Card',     bal:'$1,200', svgPath:'M2 5h20v14H2zM2 10h20' },
+  { id:'hd3-2', rgba:'124,58,237',  color:'#7C3AED', name: lang==='es'?'B. Digital':'Digital',bal:'$85',  svgPath:'M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-5 17a1 1 0 1 1 0-2 1 1 0 0 1 0 2z' },
+  { id:'hd3-3', rgba:'37,99,235',   color:'#2563EB', name: lang==='es'?'Banco':'Bank',       bal:'$2,400', svgPath:'M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M12 10v11M16 10v11' },
 ];
 ---
 
@@ -85,21 +86,36 @@ const pills = [
             <div class="hd1-bar" style={`height:${h}px`}></div>
           ))}
         </div>
-        <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Gasté 45$ en el supermercado' : 'I spent $45 at the supermarket'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
+        <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Gasté $45, me pagaron $100 hoy' : 'Spent $45, got paid $100 today'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
       </div>
-      <div class="hd1-card" id="hd1-card">
-        <div class="hd1-icon">🛒</div>
-        <div class="hd1-center">
-          <p class="hd1-cat">{lang === 'es' ? 'Supermercado' : 'Groceries'}</p>
-          <p class="hd1-sub">10:22 · {lang === 'es' ? 'Compras del mes' : 'Monthly groceries'}</p>
+      <!-- Dos cards: gasto + ingreso -->
+      <div class="hd1-cards">
+        <div class="hd1-card" id="hd1-card">
+          <div class="hd1-icon" style="background:rgba(34,197,94,0.15)">🛒</div>
+          <div class="hd1-center">
+            <p class="hd1-cat">{lang === 'es' ? 'Supermercado' : 'Groceries'}</p>
+            <p class="hd1-sub">10:22 · {lang === 'es' ? 'Compras del mes' : 'Monthly run'}</p>
+          </div>
+          <div class="hd1-right">
+            <p class="hd1-amount" style="color:#EF4444">− $45.00</p>
+            <div class="hd1-chip">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              <span class="hd1-chip-lbl">{lang === 'es' ? 'Efectivo' : 'Cash'}</span>
+            </div>
+          </div>
         </div>
-        <div class="hd1-right">
-          <p class="hd1-amount">− $45.00</p>
-          <div class="hd1-chip">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
-            </svg>
-            <span class="hd1-chip-lbl">{lang === 'es' ? 'Efectivo' : 'Cash'}</span>
+        <div class="hd1-card" id="hd1-card2">
+          <div class="hd1-icon" style="background:rgba(16,185,129,0.15)">💼</div>
+          <div class="hd1-center">
+            <p class="hd1-cat">{lang === 'es' ? 'Trabajo' : 'Work'}</p>
+            <p class="hd1-sub">14:05 · {lang === 'es' ? 'Pago freelance' : 'Freelance pay'}</p>
+          </div>
+          <div class="hd1-right">
+            <p class="hd1-amount" style="color:#10B981">+ $100.00</p>
+            <div class="hd1-chip">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              <span class="hd1-chip-lbl">{lang === 'es' ? 'Banco' : 'Bank'}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -129,18 +145,23 @@ const pills = [
     </div>
 
     <div class="hiw-demo hiw-demo-3 reveal" id="hiw-demo-3" style="transition-delay:200ms">
-      <div class="hd3-pills">
-        {pills.map((p) => (
-          <div class="hd3-wrap">
-            <div class="hd3-pill" style={p.pillStyle}>
-              <div class="hd3-water" data-fill={String(p.fill)} style={`background:${p.fillColor};height:0%`}>
-                <div class="hd3-wave" style={`background:${p.fillColor}`}></div>
+      <div class="hd3-box">
+        <p class="hd3-header">{lang === 'es' ? 'Mis bolsillos' : 'My pockets'}</p>
+        <div class="hd3-grid">
+          {bolsillos.map((b) => (
+            <div class="hd3-item" id={b.id} data-color={b.color} data-rgba={b.rgba}>
+              <div class="hd3-circle" style={`background:rgba(${b.rgba},0.12)`}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={b.color} stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d={b.svgPath}/>
+                </svg>
               </div>
-              <span class="hd3-emoji">{p.emoji}</span>
+              <div class="hd3-info">
+                <p class="hd3-name" style={`color:#6C7A71`}>{b.name}</p>
+                <p class="hd3-bal">{b.bal}</p>
+              </div>
             </div>
-            <p class="hd3-pct" style={`color:${p.pctColor}`}>{p.fill}%</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
 
@@ -169,39 +190,45 @@ const pills = [
   function runDemo1() {
     const rec    = document.getElementById('hd1-rec')    as HTMLElement | null;
     const card   = document.getElementById('hd1-card')   as HTMLElement | null;
+    const card2  = document.getElementById('hd1-card2')  as HTMLElement | null;
     const textEl = document.getElementById('hd1-text')   as HTMLElement | null;
     if (!rec || !card || !textEl) return;
 
-    const phrase = (document.querySelector('.hd1-phrase') as HTMLElement | null)?.dataset.phrase ?? 'Almuerzo, 85 lempiras';
+    const phrase = (document.querySelector('.hd1-phrase') as HTMLElement | null)?.dataset.phrase ?? 'Gasté $45, me pagaron $100 hoy';
     let ti: ReturnType<typeof setInterval>;
 
     function reset() {
       rec.style.cssText  += ';opacity:1;transform:translateY(0);transition:none';
-      card.style.cssText += ';opacity:0;transform:translateY(14px);transition:none';
-      textEl.textContent  = '';
+      card.style.cssText += ';opacity:0;transform:translateY(10px);transition:none';
+      if (card2) card2.style.cssText += ';opacity:0;transform:translateY(10px);transition:none';
+      textEl.textContent = '';
     }
 
     function run() {
       reset();
       let i = 0;
       clearInterval(ti);
-      // small delay so reset is applied before animation
       setTimeout(() => {
         ti = setInterval(() => {
           textEl.textContent += phrase[i++];
           if (i >= phrase.length) {
             clearInterval(ti);
             setTimeout(() => {
-              rec.style.transition  = 'opacity .4s ease, transform .4s ease';
-              rec.style.opacity     = '0';
-              rec.style.transform   = 'translateY(-10px)';
-              card.style.transition = 'opacity .45s ease, transform .45s ease';
-              card.style.opacity    = '1';
-              card.style.transform  = 'translateY(0)';
+              rec.style.transition = 'opacity .4s ease, transform .4s ease';
+              rec.style.opacity    = '0';
+              rec.style.transform  = 'translateY(-10px)';
+              card.style.transition  = 'opacity .4s ease, transform .4s ease';
+              card.style.opacity     = '1';
+              card.style.transform   = 'translateY(0)';
+              if (card2) {
+                card2.style.transition = 'opacity .4s .1s ease, transform .4s .1s ease';
+                card2.style.opacity    = '1';
+                card2.style.transform  = 'translateY(0)';
+              }
               setTimeout(run, 4500);
             }, 500);
           }
-        }, 55);
+        }, 52);
       }, 30);
     }
     run();
@@ -228,25 +255,35 @@ const pills = [
     run();
   }
 
-  /* ── Demo 3: water pills ── */
+  /* ── Demo 3: bolsillo selection cycle ── */
   function runDemo3() {
-    const waters = Array.from(document.querySelectorAll<HTMLElement>('.hd3-water'));
-    if (!waters.length) return;
+    const items = Array.from(document.querySelectorAll<HTMLElement>('.hd3-item'));
+    if (!items.length) return;
+    let idx = 0;
 
-    function run() {
-      waters.forEach(w => {
-        w.style.transition = 'none';
-        w.style.height = '0%';
+    function select() {
+      items.forEach((el, i) => {
+        const rgba  = el.dataset.rgba  ?? '0,0,0';
+        const color = el.dataset.color ?? '#000';
+        const circle = el.querySelector<HTMLElement>('.hd3-circle');
+        const name   = el.querySelector<HTMLElement>('.hd3-name');
+        if (i === idx) {
+          el.style.borderColor = color;
+          el.style.background  = `rgba(${rgba},0.10)`;
+          if (circle) circle.style.background = `rgba(${rgba},0.20)`;
+          if (name)   name.style.color        = color;
+        } else {
+          el.style.borderColor = 'transparent';
+          el.style.background  = '#F8F9FF';
+          if (circle) circle.style.background = `rgba(${rgba},0.12)`;
+          if (name)   name.style.color        = '#6C7A71';
+        }
       });
-      waters.forEach((w, i) => {
-        setTimeout(() => {
-          w.style.transition = 'height 2s cubic-bezier(.4,0,.2,1)';
-          w.style.height = (w.dataset.fill ?? '40') + '%';
-        }, 150 + i * 250);
-      });
-      setTimeout(run, 5500);
+      idx = (idx + 1) % items.length;
     }
-    run();
+
+    select();
+    setInterval(select, 1400);
   }
 
   const section = document.getElementById('como-funciona');
@@ -305,7 +342,7 @@ const pills = [
   /* ── Demo shell ── */
   .hiw-demo   { width:100%; display:flex; align-items:center; justify-content:center; }
   .hiw-demo-1 {
-    position:relative; height:160px; max-width:260px;
+    position:relative; height:196px; width:260px; margin:0 auto;
     background:#fff; border-radius:16px;
     box-shadow:0 2px 16px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04);
     overflow:hidden;
@@ -353,30 +390,32 @@ const pills = [
   .hd1-cursor { animation:blink .8s infinite; color:#1DB48B; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  /* _SheetItemCard calco — KaxaColors exact */
-  .hd1-card {
+  /* Two-card stack */
+  .hd1-cards {
     position:absolute; inset:0;
-    background:#F8F9FF; padding:12px 14px;
-    display:flex; align-items:center; gap:12px;
-    opacity:0; transform:translateY(14px);
+    display:flex; flex-direction:column; justify-content:center; gap:8px; padding:12px;
+  }
+  .hd1-card {
+    background:#F8F9FF; border-radius:12px; padding:9px 12px;
+    display:flex; align-items:center; gap:10px;
+    opacity:0; transform:translateY(10px);
   }
   .hd1-icon   {
-    width:40px; height:40px; border-radius:11px; flex-shrink:0;
-    background:rgba(34,197,94,0.15);
+    width:34px; height:34px; border-radius:9px; flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
-    font-size:21px;
+    font-size:17px;
   }
   .hd1-center { flex:1; min-width:0; }
-  .hd1-cat    { font-size:14px; font-weight:700; color:#0B1C30; margin:0; }
-  .hd1-sub    { font-size:12px; font-weight:500; color:#6C7A71; margin:0; }
-  .hd1-right  { display:flex; flex-direction:column; align-items:flex-end; gap:5px; flex-shrink:0; }
-  .hd1-amount { font-size:14px; font-weight:800; color:#EF4444; margin:0; }
+  .hd1-cat    { font-size:12px; font-weight:700; color:#0B1C30; margin:0; }
+  .hd1-sub    { font-size:10px; font-weight:500; color:#6C7A71; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hd1-right  { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
+  .hd1-amount { font-size:12px; font-weight:800; margin:0; }
   .hd1-chip   {
     display:flex; align-items:center; gap:3px;
-    padding:3px 7px; border-radius:9999px;
+    padding:2px 6px; border-radius:9999px;
     background:#fff; border:1px solid #BBCABF;
   }
-  .hd1-chip-lbl { font-size:9.5px; font-weight:600; color:#6C7A71; }
+  .hd1-chip-lbl { font-size:9px; font-weight:600; color:#6C7A71; }
 
   /* ══ DEMO 2 ══ */
   .hd2-card {
@@ -400,30 +439,24 @@ const pills = [
   .hd2-track  { height:4px; background:#f3f4f6; border-radius:2px; overflow:hidden; }
   .hd2-fill   { height:100%; border-radius:2px; width:0%; }
 
-  /* ══ DEMO 3 ══ */
-  .hd3-pills  { display:flex; gap:14px; align-items:flex-end; }
-  .hd3-wrap   { display:flex; flex-direction:column; align-items:center; gap:6px; }
-  .hd3-pill   {
-    width:48px; height:175px; border-radius:9999px;
-    position:relative; overflow:hidden;
+  /* ══ DEMO 3: bolsillos 2×2 grid (calco de _BolsillosPage) ══ */
+  .hd3-box    { display:flex; flex-direction:column; align-items:center; gap:0; }
+  .hd3-header { font-size:11px; color:#6C7A71; font-weight:500; margin:0 0 10px; }
+  .hd3-grid   {
+    display:grid; grid-template-columns:1fr 1fr; gap:8px; width:220px;
   }
-  .hd3-water  {
-    position:absolute; bottom:0; left:0; right:0;
-    /* no bottom border-radius — we clip via overflow:hidden on pill */
+  .hd3-item   {
+    display:flex; align-items:center; gap:8px;
+    padding:8px 10px; border-radius:12px;
+    background:#F8F9FF; border:1.5px solid transparent;
+    transition: border-color .35s ease, background .35s ease;
   }
-  .hd3-wave   {
-    position:absolute; top:-12px; left:-40%;
-    width:180%; height:24px; border-radius:50%;
-    animation:hwave 2.4s ease-in-out infinite;
+  .hd3-circle {
+    width:32px; height:32px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    transition: background .35s ease;
   }
-  @keyframes hwave {
-    0%,100% { transform:translateX(0) scaleY(.8); }
-    50%      { transform:translateX(15%) scaleY(1); }
-  }
-  .hd3-emoji  {
-    position:absolute; bottom:10px; left:50%;
-    transform:translateX(-50%);
-    font-size:22px; z-index:2;
-  }
-  .hd3-pct    { font-size:11px; font-weight:800; margin:0; }
+  .hd3-info   { flex:1; min-width:0; }
+  .hd3-name   { font-size:10px; font-weight:700; margin:0; transition: color .35s ease; }
+  .hd3-bal    { font-size:13px; font-weight:800; color:#0B1C30; margin:0; }
 </style>
