@@ -1,52 +1,476 @@
 ---
-import Icon, { type IconName } from './Icon.astro';
-import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/routes';
-
-interface Props {
-  lang: Lang;
-}
-
+interface Props { lang: Lang; }
 const { lang } = Astro.props;
-const t = translations[lang];
 
-const stepIcons: IconName[] = ['pencil', 'wallet', 'chart-bar'];
-const stepNums = ['01', '02', '03'];
+const copy = lang === 'es' ? {
+  title: 'Así de simple.',
+  subtitle: 'Tres cosas que pasan cada vez que abres Kaxa.',
+  steps: [
+    {
+      title: 'Di lo que gastaste',
+      desc: 'Habla o escribe en lenguaje natural. Kaxa detecta el monto, la categoría y lo registra. Sin formularios, sin menús.',
+    },
+    {
+      title: 'Tíldalo todos los días',
+      desc: 'Cuando registrar toma 5 segundos, realmente lo haces. La consistencia convierte el control en un hábito.',
+    },
+    {
+      title: 'Mira tu dinero moverse',
+      desc: 'Cada bolsillo refleja un objetivo real. Ve el agua subir con cada aporte. Finanzas que puedes sentir.',
+    },
+  ],
+} : {
+  title: 'That simple.',
+  subtitle: 'Three things that happen every time you open Kaxa.',
+  steps: [
+    {
+      title: 'Say what you spent',
+      desc: 'Speak or type naturally. Kaxa detects the amount, category and saves it. No forms, no menus.',
+    },
+    {
+      title: 'Check it every day',
+      desc: 'When logging takes 5 seconds, you actually do it. Consistency turns control into a habit.',
+    },
+    {
+      title: 'Watch your money move',
+      desc: 'Each pocket reflects a real goal. Watch the water rise with every contribution. Finances you can feel.',
+    },
+  ],
+};
 ---
 
-<section id="como-funciona" class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-  <h2 class="reveal text-center text-3xl font-extrabold text-ink sm:text-4xl">{t.howItWorks.title}</h2>
-  <p class="reveal mx-auto mt-3 max-w-xl text-center text-muted" style="transition-delay: 100ms">
-    {t.howItWorks.subtitle}
-  </p>
+<section id="como-funciona" class="hiw-section">
+  <div class="hiw-header reveal">
+    <h2 class="hiw-title">{copy.title}</h2>
+    <p class="hiw-sub">{copy.subtitle}</p>
+  </div>
 
-  <div class="relative mt-16 grid gap-8 md:grid-cols-3">
-    {/* Connecting line — desktop only */}
-    <div
-      class="absolute left-0 right-0 hidden h-px bg-surface-border md:block"
-      style="top: 28px; left: calc(16.66% + 14px); right: calc(16.66% + 14px);"
-      aria-hidden="true"
-    ></div>
+  <div class="hiw-grid">
 
-    {t.howItWorks.steps.map((step, i) => (
-      <div
-        class="reveal flex flex-col items-center text-center"
-        style={`transition-delay: ${i * 120}ms`}
-      >
-        {/* Step number circle */}
-        <div class="relative flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary bg-white z-10 shadow-sm">
-          <span class="text-sm font-extrabold text-primary">{stepNums[i]}</span>
+    <!-- ── COL 1: AI transaction card ── -->
+    <div class="hiw-col reveal">
+      <div class="hiw-demo" id="hiw-demo-1">
+
+        <!-- recording state -->
+        <div class="hd1-record" id="hd1-rec">
+          <div class="hd1-mic-wrap">
+            <div class="hd1-ring hd1-r1"></div>
+            <div class="hd1-ring hd1-r2"></div>
+            <div class="hd1-mic">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="22"/>
+              </svg>
+            </div>
+          </div>
+          <div class="hd1-wave">
+            {[4,10,18,26,18,10,4,10,18,10,4].map((h: number) => (
+              <div class="hd1-bar" style={`height:${h}px`}></div>
+            ))}
+          </div>
+          <p class="hd1-phrase"><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
         </div>
 
-        {/* Icon + content */}
-        <div class="mt-6 flex flex-col items-center">
-          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <Icon name={stepIcons[i]} class="h-5 w-5" />
+        <!-- result card (hidden initially) -->
+        <div class="hd1-card" id="hd1-card">
+          <div class="hd1-badge">✓ Guardado</div>
+          <div class="hd1-row">
+            <div class="hd1-icon">🍔</div>
+            <div class="hd1-info">
+              <p class="hd1-cat">Comida</p>
+              <p class="hd1-note">Almuerzo con el equipo</p>
+            </div>
+            <p class="hd1-amount">$85.00</p>
           </div>
-          <h3 class="mt-3 text-lg font-bold text-ink">{step.title}</h3>
-          <p class="mt-2 max-w-[220px] text-sm leading-relaxed text-muted">{step.description}</p>
+          <div class="hd1-bar-wrap">
+            <div class="hd1-progress" id="hd1-prog"></div>
+          </div>
+          <p class="hd1-percent">$260 <span>de $500</span></p>
+        </div>
+
+      </div>
+      <h3 class="hiw-step-title">{copy.steps[0].title}</h3>
+      <p class="hiw-step-desc">{copy.steps[0].desc}</p>
+    </div>
+
+    <!-- ── COL 2: Checklist ── -->
+    <div class="hiw-col reveal" style="transition-delay:100ms">
+      <div class="hiw-demo" id="hiw-demo-2">
+        <div class="hd2-list">
+          {[
+            { emoji: '🍔', label: lang === 'es' ? 'Comida' : 'Food',        sub: lang === 'es' ? '$260 de $500' : '$260 of $500' },
+            { emoji: '✈️', label: lang === 'es' ? 'Meta viaje' : 'Travel goal', sub: lang === 'es' ? '$400 aportados' : '$400 saved' },
+            { emoji: '💳', label: lang === 'es' ? 'Celular' : 'Phone plan',  sub: lang === 'es' ? 'Pago registrado' : 'Payment logged' },
+          ].map((item, i) => (
+            <div class="hd2-item" data-idx={String(i)}>
+              <div class="hd2-check" data-check={String(i)}>
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                  <polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="hd2-emoji">{item.emoji}</span>
+              <div class="hd2-text">
+                <p class="hd2-label">{item.label}</p>
+                <p class="hd2-sub">{item.sub}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
+      <h3 class="hiw-step-title">{copy.steps[1].title}</h3>
+      <p class="hiw-step-desc">{copy.steps[1].desc}</p>
+    </div>
+
+    <!-- ── COL 3: Bolsillos water pills ── -->
+    <div class="hiw-col reveal" style="transition-delay:200ms">
+      <div class="hiw-demo" id="hiw-demo-3">
+        <div class="hd3-pills">
+          {[
+            { emoji: '🎮', color: '#c4b5fd', bg: '#ede9fe', fill: 42 },
+            { emoji: '❤️', color: '#fcd34d', bg: '#fef9c3', fill: 68 },
+            { emoji: '🍔', color: '#6ee7b7', bg: '#d1fae5', fill: 25 },
+          ].map((pill, i) => (
+            <div class="hd3-pill-wrap">
+              <div class="hd3-pill" style={`background:${pill.bg}`}>
+                <div
+                  class="hd3-water"
+                  data-fill={String(pill.fill)}
+                  style={`background:${pill.color};height:0%`}
+                >
+                  <div class="hd3-wave" style={`background:${pill.color}`}></div>
+                </div>
+                <span class="hd3-emoji">{pill.emoji}</span>
+              </div>
+              <p class="hd3-pct" style={`color:${pill.color === '#fcd34d' ? '#d97706' : pill.color}`}>{pill.fill}%</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <h3 class="hiw-step-title">{copy.steps[2].title}</h3>
+      <p class="hiw-step-desc">{copy.steps[2].desc}</p>
+    </div>
+
   </div>
 </section>
+
+<script>
+(function () {
+  let started = false;
+
+  /* ── Demo 1: AI card ── */
+  function runDemo1() {
+    const rec  = document.getElementById('hd1-rec');
+    const card = document.getElementById('hd1-card');
+    const textEl = document.getElementById('hd1-text') as HTMLElement;
+    const prog = document.getElementById('hd1-prog');
+    if (!rec || !card || !textEl || !prog) return;
+
+    const phrase = 'Gasté 85 en almuerzo';
+    let ti: ReturnType<typeof setInterval>;
+
+    function reset() {
+      rec.style.opacity  = '1';
+      rec.style.transform = 'translateY(0)';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(12px)';
+      textEl.textContent = '';
+      prog.style.width = '0%';
+    }
+
+    function run() {
+      reset();
+      let i = 0;
+      clearInterval(ti);
+      ti = setInterval(() => {
+        textEl.textContent += phrase[i++];
+        if (i >= phrase.length) {
+          clearInterval(ti);
+          setTimeout(() => {
+            rec.style.transition  = 'opacity .4s, transform .4s';
+            rec.style.opacity     = '0';
+            rec.style.transform   = 'translateY(-8px)';
+            card.style.transition = 'opacity .4s, transform .4s';
+            card.style.opacity    = '1';
+            card.style.transform  = 'translateY(0)';
+            prog.style.transition = 'width 1.2s ease';
+            prog.style.width      = '52%';
+            setTimeout(run, 4000);
+          }, 600);
+        }
+      }, 60);
+    }
+
+    run();
+  }
+
+  /* ── Demo 2: checklist ── */
+  function runDemo2() {
+    const checks = Array.from(document.querySelectorAll<HTMLElement>('[data-check]'));
+    if (!checks.length) return;
+
+    function reset() {
+      checks.forEach(c => {
+        c.style.transition = 'none';
+        c.style.background = '#e5e7eb';
+        c.style.borderColor = '#e5e7eb';
+      });
+    }
+
+    function run() {
+      reset();
+      checks.forEach((c, i) => {
+        setTimeout(() => {
+          c.style.transition = 'background .35s, border-color .35s';
+          c.style.background = '#1DB48B';
+          c.style.borderColor = '#1DB48B';
+        }, 600 + i * 700);
+      });
+      setTimeout(run, checks.length * 700 + 2000);
+    }
+    run();
+  }
+
+  /* ── Demo 3: bolsillos ── */
+  function runDemo3() {
+    const waters = Array.from(document.querySelectorAll<HTMLElement>('.hd3-water'));
+    if (!waters.length) return;
+
+    function run() {
+      waters.forEach(w => {
+        w.style.transition = 'none';
+        w.style.height = '0%';
+        const fill = w.dataset.fill ?? '40';
+        setTimeout(() => {
+          w.style.transition = 'height 1.8s cubic-bezier(.4,0,.2,1)';
+          w.style.height = fill + '%';
+        }, 200 + Math.random() * 300);
+      });
+      setTimeout(run, 5000);
+    }
+    run();
+  }
+
+  /* ── trigger on scroll ── */
+  const section = document.getElementById('como-funciona');
+  if (!section) return;
+
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !started) {
+      started = true;
+      obs.disconnect();
+      runDemo1();
+      runDemo2();
+      runDemo3();
+    }
+  }, { threshold: 0.2 });
+  obs.observe(section);
+})();
+</script>
+
+<style>
+  /* ── Shell ── */
+  .hiw-section {
+    background: #f5f7f5;
+    padding: 96px 24px;
+  }
+  .hiw-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .hiw-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: #0d1512;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
+  }
+  .hiw-sub {
+    font-size: 1.05rem;
+    color: #6b7280;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .hiw-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .hiw-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hiw-section { padding: 64px 20px; }
+  }
+  .hiw-col { display: flex; flex-direction: column; align-items: center; }
+  .hiw-step-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0d1512;
+    margin: 24px 0 8px;
+    text-align: center;
+  }
+  .hiw-step-desc {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.7;
+    text-align: center;
+    max-width: 240px;
+  }
+
+  /* ── Demo wrapper ── */
+  .hiw-demo {
+    width: 220px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ══ DEMO 1 ══ */
+  .hd1-record {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .hd1-mic-wrap {
+    position: relative;
+    width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hd1-ring {
+    position: absolute; border-radius: 50%;
+    border: 1.5px solid rgba(29,180,139,.3);
+    animation: hring 2s ease-in-out infinite;
+  }
+  .hd1-r1 { width: 52px; height: 52px; }
+  .hd1-r2 { width: 36px; height: 36px; animation-delay: .5s; }
+  @keyframes hring { 0%,100%{transform:scale(1);opacity:.4} 50%{transform:scale(1.15);opacity:.1} }
+  .hd1-mic {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #1DB48B; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+    box-shadow: 0 0 16px rgba(29,180,139,.3);
+  }
+  .hd1-wave {
+    display: flex; align-items: center; gap: 2px; height: 28px;
+  }
+  .hd1-bar {
+    width: 2.5px; border-radius: 2px; background: #1DB48B; opacity: .7;
+    animation: hwbar .9s ease-in-out infinite; transform-origin: center;
+  }
+  .hd1-bar:nth-child(1){animation-delay:0s}.hd1-bar:nth-child(2){animation-delay:.08s}
+  .hd1-bar:nth-child(3){animation-delay:.16s}.hd1-bar:nth-child(4){animation-delay:.24s}
+  .hd1-bar:nth-child(5){animation-delay:.16s}.hd1-bar:nth-child(6){animation-delay:.08s}
+  .hd1-bar:nth-child(7){animation-delay:0s}.hd1-bar:nth-child(8){animation-delay:.08s}
+  .hd1-bar:nth-child(9){animation-delay:.16s}.hd1-bar:nth-child(10){animation-delay:.08s}
+  .hd1-bar:nth-child(11){animation-delay:0s}
+  @keyframes hwbar { 0%,100%{transform:scaleY(.3);opacity:.3} 50%{transform:scaleY(1);opacity:.9} }
+  .hd1-phrase {
+    font-size: 11px; color: #374151; font-weight: 500;
+    height: 16px; display: flex; align-items: center; gap: 1px;
+  }
+  .hd1-cursor { animation: blink .8s infinite; color: #1DB48B; font-weight: 300; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .hd1-card {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; transform: translateY(12px);
+    background: #fff; border-radius: 16px;
+    padding: 14px 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+  }
+  .hd1-badge {
+    font-size: 9px; font-weight: 800; color: #1DB48B;
+    background: rgba(29,180,139,.1); padding: 3px 8px;
+    border-radius: 20px; align-self: flex-start; margin-bottom: 10px;
+    letter-spacing: .04em;
+  }
+  .hd1-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .hd1-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: #d1fae5; display: flex; align-items: center;
+    justify-content: center; font-size: 18px; flex-shrink: 0;
+  }
+  .hd1-info { flex: 1; }
+  .hd1-cat { font-size: 12px; font-weight: 800; color: #111; margin: 0; }
+  .hd1-note { font-size: 10px; color: #9ca3af; margin: 0; }
+  .hd1-amount { font-size: 14px; font-weight: 900; color: #111; white-space: nowrap; }
+  .hd1-bar-wrap {
+    height: 4px; background: #f3f4f6; border-radius: 2px; overflow: hidden; margin-bottom: 4px;
+  }
+  .hd1-progress {
+    height: 100%; background: #1DB48B; border-radius: 2px; width: 0%;
+  }
+  .hd1-percent {
+    font-size: 9px; color: #6b7280; margin: 0;
+  }
+  .hd1-percent span { color: #9ca3af; }
+
+  /* ══ DEMO 2 ══ */
+  .hd2-list {
+    display: flex; flex-direction: column; gap: 10px; width: 200px;
+  }
+  .hd2-item {
+    display: flex; align-items: center; gap: 10px;
+    background: #fff; border-radius: 12px; padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  }
+  .hd2-check {
+    width: 20px; height: 20px; border-radius: 6px;
+    border: 1.5px solid #e5e7eb; background: #e5e7eb;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hd2-emoji { font-size: 16px; flex-shrink: 0; }
+  .hd2-text { flex: 1; }
+  .hd2-label { font-size: 11px; font-weight: 700; color: #111; margin: 0; }
+  .hd2-sub { font-size: 9px; color: #9ca3af; margin: 0; }
+
+  /* ══ DEMO 3 ══ */
+  .hd3-pills {
+    display: flex; gap: 16px; align-items: flex-end;
+  }
+  .hd3-pill-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .hd3-pill {
+    width: 52px; height: 148px; border-radius: 9999px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08), inset 0 0 0 1.5px rgba(0,0,0,.06);
+  }
+  .hd3-water {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    border-radius: 0 0 9999px 9999px;
+  }
+  .hd3-wave {
+    position: absolute; top: -8px; left: -50%;
+    width: 200%; height: 16px; border-radius: 50%;
+    animation: hwave 2.2s ease-in-out infinite;
+  }
+  @keyframes hwave {
+    0%,100% { transform: translateX(0) scaleY(1); }
+    50% { transform: translateX(20%) scaleY(1.3); }
+  }
+  .hd3-emoji {
+    position: absolute; bottom: 8px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px; z-index: 1;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.15));
+  }
+  .hd3-pct {
+    font-size: 11px; font-weight: 800; margin: 0;
+  }
+</style>
