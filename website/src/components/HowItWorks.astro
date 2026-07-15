@@ -87,24 +87,24 @@ const pills = [
               <div class="hd1-bar" style={`height:${h}px`}></div>
             ))}
           </div>
-          <p class="hd1-phrase"><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
+          <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Almuerzo, 85 lempiras' : 'Lunch, 85 cash'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
         </div>
 
+        <!-- Exact calco de _SheetItemCard de recent_activity_section.dart -->
         <div class="hd1-card" id="hd1-card">
-          <div class="hd1-row">
-            <div class="hd1-icon">🍔</div>
-            <div class="hd1-info">
-              <p class="hd1-cat">{lang === 'es' ? 'Comida' : 'Food'}</p>
-              <p class="hd1-note">{lang === 'es' ? 'Almuerzo con el equipo' : 'Lunch with the team'}</p>
-            </div>
-            <div class="hd1-right">
-              <p class="hd1-amount">$85.00</p>
-              <span class="hd1-check">✓</span>
-            </div>
+          <div class="hd1-icon">🍔</div>
+          <div class="hd1-center">
+            <p class="hd1-cat">{lang === 'es' ? 'Comida' : 'Food'}</p>
+            <p class="hd1-sub">13:47 · {lang === 'es' ? 'Almuerzo' : 'Lunch'}</p>
           </div>
-          <div class="hd1-footer">
-            <span class="hd1-pocket">💵 {lang === 'es' ? 'Efectivo' : 'Cash'}</span>
-            <span class="hd1-date">{lang === 'es' ? 'Hoy' : 'Today'}</span>
+          <div class="hd1-right">
+            <p class="hd1-amount">− L. 85.00</p>
+            <div class="hd1-chip">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
+              </svg>
+              <span class="hd1-chip-lbl">{lang === 'es' ? 'Efectivo' : 'Cash'}</span>
+            </div>
           </div>
         </div>
 
@@ -180,7 +180,7 @@ const pills = [
     const textEl = document.getElementById('hd1-text')   as HTMLElement | null;
     if (!rec || !card || !textEl) return;
 
-    const phrase = 'Almuerzo, 85 pesos';
+    const phrase = (document.querySelector('.hd1-phrase') as HTMLElement | null)?.dataset.phrase ?? 'Almuerzo, 85 lempiras';
     let ti: ReturnType<typeof setInterval>;
 
     function reset() {
@@ -337,31 +337,31 @@ const pills = [
   .hd1-cursor { animation:blink .8s infinite; color:#1DB48B; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
+  /* _SheetItemCard calco — KaxaColors exact */
   .hd1-card {
-    position:absolute; inset:0; border-radius:16px;
-    background:#fff; padding:16px;
-    box-shadow:0 4px 24px rgba(0,0,0,.09), 0 1px 4px rgba(0,0,0,.04);
-    display:flex; flex-direction:column; justify-content:center; gap:12px;
+    position:absolute; inset:0; border-radius:14px;
+    background:#F8F9FF; padding:12px 14px;
+    box-shadow:0 2px 12px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.04);
+    display:flex; align-items:center; gap:12px;
     opacity:0; transform:translateY(14px);
   }
-  .hd1-row    { display:flex; align-items:center; gap:12px; }
   .hd1-icon   {
-    width:40px; height:40px; border-radius:11px;
-    background:#dcfce7; display:flex; align-items:center; justify-content:center;
-    font-size:20px; flex-shrink:0;
+    width:40px; height:40px; border-radius:11px; flex-shrink:0;
+    background:rgba(34,197,94,0.15);
+    display:flex; align-items:center; justify-content:center;
+    font-size:21px;
   }
-  .hd1-info   { flex:1; min-width:0; }
-  .hd1-cat    { font-size:13px; font-weight:800; color:#111; margin:0; }
-  .hd1-note   { font-size:10px; color:#9ca3af; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .hd1-right  { display:flex; flex-direction:column; align-items:flex-end; gap:3px; flex-shrink:0; }
-  .hd1-amount { font-size:15px; font-weight:900; color:#0d1512; margin:0; }
-  .hd1-check  { font-size:10px; font-weight:800; color:#1DB48B; }
-  .hd1-footer {
-    display:flex; align-items:center; justify-content:space-between;
-    padding:8px 10px; background:#f9fafb; border-radius:10px;
+  .hd1-center { flex:1; min-width:0; }
+  .hd1-cat    { font-size:14px; font-weight:700; color:#0B1C30; margin:0; }
+  .hd1-sub    { font-size:12px; font-weight:500; color:#6C7A71; margin:0; }
+  .hd1-right  { display:flex; flex-direction:column; align-items:flex-end; gap:5px; flex-shrink:0; }
+  .hd1-amount { font-size:14px; font-weight:800; color:#EF4444; margin:0; }
+  .hd1-chip   {
+    display:flex; align-items:center; gap:3px;
+    padding:3px 7px; border-radius:9999px;
+    background:#fff; border:1px solid #BBCABF;
   }
-  .hd1-pocket { font-size:10px; font-weight:600; color:#374151; }
-  .hd1-date   { font-size:10px; color:#9ca3af; }
+  .hd1-chip-lbl { font-size:9.5px; font-weight:600; color:#6C7A71; }
 
   /* ══ DEMO 2 ══ */
   .hd2-card {
