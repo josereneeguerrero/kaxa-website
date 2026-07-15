@@ -14,75 +14,150 @@ const t = translations[lang];
 const home = routes.home[lang];
 const switchHref = routes[currentRoute][otherLang(lang)];
 ---
-<header class="sticky top-0 z-50 border-b border-surface-border bg-white/90 backdrop-blur">
-  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-    <a href={home} class="flex items-center gap-2">
-      <img src="/apple-touch-icon.png" alt="" class="h-8 w-8 rounded-xl" aria-hidden="true" />
-      <img src="/images/kaxa_wordmark_green.png" alt="Kaxa" class="h-5 w-auto" />
+<header id="site-header" class="hdr">
+  <div class="hdr-inner">
+    <a href={home} class="hdr-logo">
+      <img src="/apple-touch-icon.png" alt="" class="hdr-icon" aria-hidden="true" />
+      <img src="/images/kaxa_wordmark_green.png" alt="Kaxa" class="hdr-wordmark" />
     </a>
-    <nav class="hidden items-center gap-8 text-sm font-semibold text-ink md:flex">
-      <a href={`${home}#como-funciona`} class="hover:text-primary">{t.nav.howItWorks}</a>
-      <a href={`${home}#funciones`} class="hover:text-primary">{t.nav.features}</a>
-      <a href={`${home}#precios`} class="hover:text-primary">{t.nav.pricing}</a>
-      <a href={routes.support[lang]} class="hover:text-primary">{t.nav.support}</a>
+    <nav class="hdr-nav">
+      <a href={`${home}#como-funciona`}>{t.nav.howItWorks}</a>
+      <a href={`${home}#funciones`}>{t.nav.features}</a>
+      <a href={`${home}#precios`}>{t.nav.pricing}</a>
+      <a href={routes.support[lang]}>{t.nav.support}</a>
     </nav>
-    <div class="flex items-center gap-3">
-      <a
-        href={switchHref}
-        class="text-sm font-bold text-muted hover:text-primary"
-        aria-label="Switch language"
-      >
-        {lang === 'es' ? 'EN' : 'ES'}
-      </a>
-      <a
-        href={PLAY_STORE_URL}
-        target="_blank"
-        rel="noopener"
-        class="hidden rounded-btn bg-primary px-4 py-2 text-sm font-bold text-white shadow-card hover:bg-primary-dark sm:inline-block"
-      >
+    <div class="hdr-actions">
+      <a href={PLAY_STORE_URL} target="_blank" rel="noopener" class="hdr-cta">
         {t.nav.download}
       </a>
-      <button
-        id="menu-toggle"
-        class="flex items-center justify-center md:hidden"
-        aria-label="Menu"
-      >
-        <svg class="h-6 w-6 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      <button id="menu-toggle" class="hdr-burger" aria-label="Menu">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
   </div>
-  <nav
-    id="mobile-menu"
-    class="hidden border-t border-surface-border bg-white px-4 py-4 md:hidden"
-  >
-    <div class="flex flex-col gap-4 text-sm font-semibold text-ink">
-      <a href={`${home}#como-funciona`} class="hover:text-primary">{t.nav.howItWorks}</a>
-      <a href={`${home}#funciones`} class="hover:text-primary">{t.nav.features}</a>
-      <a href={`${home}#precios`} class="hover:text-primary">{t.nav.pricing}</a>
-      <a href={routes.support[lang]} class="hover:text-primary">{t.nav.support}</a>
-      <a
-        href={PLAY_STORE_URL}
-        target="_blank"
-        rel="noopener"
-        class="rounded-btn bg-primary px-4 py-2 text-center text-sm font-bold text-white shadow-card hover:bg-primary-dark"
-      >
-        {t.nav.download}
-      </a>
-    </div>
+  <nav id="mobile-menu" class="hdr-mobile hidden">
+    <a href={`${home}#como-funciona`}>{t.nav.howItWorks}</a>
+    <a href={`${home}#funciones`}>{t.nav.features}</a>
+    <a href={`${home}#precios`}>{t.nav.pricing}</a>
+    <a href={routes.support[lang]}>{t.nav.support}</a>
+    <a href={PLAY_STORE_URL} target="_blank" rel="noopener" class="hdr-cta">{t.nav.download}</a>
   </nav>
 </header>
 
 <script>
+(function () {
+  // Glass scroll effect
+  const header = document.getElementById('site-header');
+  if (header) {
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Mobile menu
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
   if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
-    menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => menu.classList.add('hidden'));
-    });
+    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+    menu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => menu.classList.add('hidden')));
   }
+
+  // Auto language detection — first visit only
+  if (!sessionStorage.getItem('lang-detected')) {
+    sessionStorage.setItem('lang-detected', '1');
+    const browserLang = (navigator.language || '').toLowerCase();
+    const isEs = window.location.pathname === '/' || window.location.pathname.startsWith('/es');
+    const isEn = window.location.pathname.startsWith('/en');
+    if (browserLang.startsWith('en') && isEs) {
+      window.location.replace('/en/');
+    } else if (!browserLang.startsWith('en') && isEn) {
+      window.location.replace('/');
+    }
+  }
+})();
 </script>
+
+<style>
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+  .hdr.scrolled {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom: 1px solid rgba(0,0,0,.07);
+    box-shadow: 0 1px 0 rgba(0,0,0,.04);
+  }
+  .hdr-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .hdr-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+  .hdr-icon { width: 32px; height: 32px; border-radius: 10px; }
+  .hdr-wordmark { height: 20px; width: auto; }
+  .hdr-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+  }
+  .hdr-nav a { text-decoration: none; color: inherit; transition: color .15s; }
+  .hdr-nav a:hover { color: #1DB48B; }
+  .hdr-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .hdr-cta {
+    background: #1DB48B;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: opacity .15s;
+    white-space: nowrap;
+  }
+  .hdr-cta:hover { opacity: .88; }
+  .hdr-burger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111;
+    padding: 4px;
+  }
+  .hdr-mobile {
+    border-top: 1px solid rgba(0,0,0,.07);
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(20px);
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .hdr-mobile a { text-decoration: none; color: #374151; }
+  .hdr-mobile .hdr-cta { text-align: center; }
+
+  @media (max-width: 768px) {
+    .hdr-inner { padding: 0 20px; }
+    .hdr-nav { display: none; }
+    .hdr-burger { display: flex; }
+    .hdr-actions .hdr-cta { display: none; }
+  }
+  .hdr-mobile.hidden { display: none !important; }
+</style>
