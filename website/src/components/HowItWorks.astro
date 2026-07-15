@@ -66,102 +66,94 @@ const pills = [
 
   <div class="hiw-grid">
 
-    <!-- ── COL 1: Transaction card ── -->
-    <div class="hiw-col reveal">
-      <div class="hiw-demo hiw-demo-1" id="hiw-demo-1">
-
-        <div class="hd1-voice" id="hd1-rec">
-          <div class="hd1-mic-wrap">
-            <div class="hd1-ring hd1-r1"></div>
-            <div class="hd1-ring hd1-r2"></div>
-            <div class="hd1-mic">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                <line x1="12" y1="19" x2="12" y2="22"/>
-              </svg>
-            </div>
-          </div>
-          <div class="hd1-bars">
-            {[5,12,20,28,20,12,5,12,20,12,5].map((h: number) => (
-              <div class="hd1-bar" style={`height:${h}px`}></div>
-            ))}
-          </div>
-          <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Gasté 45$ en el supermercado' : 'I spent $45 at the supermarket'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
-        </div>
-
-        <!-- Exact calco de _SheetItemCard de recent_activity_section.dart -->
-        <div class="hd1-card" id="hd1-card">
-          <div class="hd1-icon">🛒</div>
-          <div class="hd1-center">
-            <p class="hd1-cat">{lang === 'es' ? 'Supermercado' : 'Groceries'}</p>
-            <p class="hd1-sub">10:22 · {lang === 'es' ? 'Compras del mes' : 'Monthly groceries'}</p>
-          </div>
-          <div class="hd1-right">
-            <p class="hd1-amount">− $45.00</p>
-            <div class="hd1-chip">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
-              </svg>
-              <span class="hd1-chip-lbl">{lang === 'es' ? 'Efectivo' : 'Cash'}</span>
-            </div>
+    <!-- ── ROW 1: demos ── -->
+    <div class="hiw-demo hiw-demo-1 reveal" id="hiw-demo-1">
+      <div class="hd1-voice" id="hd1-rec">
+        <div class="hd1-mic-wrap">
+          <div class="hd1-ring hd1-r1"></div>
+          <div class="hd1-ring hd1-r2"></div>
+          <div class="hd1-mic">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+            </svg>
           </div>
         </div>
-
+        <div class="hd1-bars">
+          {[5,12,20,28,20,12,5,12,20,12,5].map((h: number) => (
+            <div class="hd1-bar" style={`height:${h}px`}></div>
+          ))}
+        </div>
+        <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Gasté 45$ en el supermercado' : 'I spent $45 at the supermarket'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
       </div>
+      <div class="hd1-card" id="hd1-card">
+        <div class="hd1-icon">🛒</div>
+        <div class="hd1-center">
+          <p class="hd1-cat">{lang === 'es' ? 'Supermercado' : 'Groceries'}</p>
+          <p class="hd1-sub">10:22 · {lang === 'es' ? 'Compras del mes' : 'Monthly groceries'}</p>
+        </div>
+        <div class="hd1-right">
+          <p class="hd1-amount">− $45.00</p>
+          <div class="hd1-chip">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
+            </svg>
+            <span class="hd1-chip-lbl">{lang === 'es' ? 'Efectivo' : 'Cash'}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hiw-demo hiw-demo-2 reveal" id="hiw-demo-2" style="transition-delay:100ms">
+      <div class="hd2-card">
+        {budgets.map((b) => (
+          <div class="hd2-row">
+            <div class="hd2-icon" style={`background:${b.bg}`}>{b.emoji}</div>
+            <div class="hd2-body">
+              <div class="hd2-top">
+                <span class="hd2-name">{b.name}</span>
+                <span class="hd2-pct" style={`color:${b.pctColor}`}>{b.pct}%</span>
+              </div>
+              <div class="hd2-amounts">
+                <span class="hd2-cur">${b.current}</span>
+                <span class="hd2-lim">/ ${b.limit}</span>
+              </div>
+              <div class="hd2-track">
+                <div class="hd2-fill" data-pct={String(b.pct)} style={`background:${b.barColor};width:0%`}></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="hiw-demo hiw-demo-3 reveal" id="hiw-demo-3" style="transition-delay:200ms">
+      <div class="hd3-pills">
+        {pills.map((p) => (
+          <div class="hd3-wrap">
+            <div class="hd3-pill" style={p.pillStyle}>
+              <div class="hd3-water" data-fill={String(p.fill)} style={`background:${p.fillColor};height:0%`}>
+                <div class="hd3-wave" style={`background:${p.fillColor}`}></div>
+              </div>
+              <span class="hd3-emoji">{p.emoji}</span>
+            </div>
+            <p class="hd3-pct" style={`color:${p.pctColor}`}>{p.fill}%</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ── ROW 2: texts (always aligned at same baseline) ── -->
+    <div class="hiw-text reveal">
       <h3 class="hiw-step-title">{copy.steps[0].title}</h3>
       <p class="hiw-step-desc">{copy.steps[0].desc}</p>
     </div>
-
-    <!-- ── COL 2: Budget bars ── -->
-    <div class="hiw-col reveal" style="transition-delay:100ms">
-      <div class="hiw-demo hiw-demo-2" id="hiw-demo-2">
-        <div class="hd2-card">
-          {budgets.map((b) => (
-            <div class="hd2-row">
-              <div class="hd2-icon" style={`background:${b.bg}`}>{b.emoji}</div>
-              <div class="hd2-body">
-                <div class="hd2-top">
-                  <span class="hd2-name">{b.name}</span>
-                  <span class="hd2-pct" style={`color:${b.pctColor}`}>{b.pct}%</span>
-                </div>
-                <div class="hd2-amounts">
-                  <span class="hd2-cur">${b.current}</span>
-                  <span class="hd2-lim">/ ${b.limit}</span>
-                </div>
-                <div class="hd2-track">
-                  <div
-                    class="hd2-fill"
-                    data-pct={String(b.pct)}
-                    style={`background:${b.barColor};width:0%`}
-                  ></div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div class="hiw-text reveal" style="transition-delay:100ms">
       <h3 class="hiw-step-title">{copy.steps[1].title}</h3>
       <p class="hiw-step-desc">{copy.steps[1].desc}</p>
     </div>
-
-    <!-- ── COL 3: Bolsillos ── -->
-    <div class="hiw-col reveal" style="transition-delay:200ms">
-      <div class="hiw-demo hiw-demo-3" id="hiw-demo-3">
-        <div class="hd3-pills">
-          {pills.map((p) => (
-            <div class="hd3-wrap">
-              <div class="hd3-pill" style={p.pillStyle}>
-                <div class="hd3-water" data-fill={String(p.fill)} style={`background:${p.fillColor};height:0%`}>
-                  <div class="hd3-wave" style={`background:${p.fillColor}`}></div>
-                </div>
-                <span class="hd3-emoji">{p.emoji}</span>
-              </div>
-              <p class="hd3-pct" style={`color:${p.pctColor}`}>{p.fill}%</p>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div class="hiw-text reveal" style="transition-delay:200ms">
       <h3 class="hiw-step-title">{copy.steps[2].title}</h3>
       <p class="hiw-step-desc">{copy.steps[2].desc}</p>
     </div>
@@ -281,21 +273,40 @@ const pills = [
 
   .hiw-grid {
     max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; align-items: start;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto auto;
+    column-gap: 48px;
+    row-gap: 0;
+    align-items: end; /* demos bottom-align in row 1 so texts start at same Y */
   }
+  .hiw-demo   { align-self:end; padding-bottom:32px; }
+  .hiw-text   { display:flex; flex-direction:column; align-items:center; align-self:start; }
+  .hiw-step-title { font-size:1.1rem; font-weight:800; color:#0d1512; margin:0 0 8px; text-align:center; }
+  .hiw-step-desc  { font-size:14px; color:#6b7280; line-height:1.7; text-align:center; max-width:240px; margin:0; }
+
   @media (max-width:768px) {
-    .hiw-grid { grid-template-columns:1fr; gap:56px; }
+    .hiw-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+      row-gap: 0;
+    }
     .hiw-section { padding:64px 20px; }
+    /* interleave demo+text per feature */
+    .hiw-demo-1 { order:1; }
+    .hiw-text:nth-child(4) { order:2; padding-bottom:48px; }
+    .hiw-demo-2 { order:3; }
+    .hiw-text:nth-child(5) { order:4; padding-bottom:48px; }
+    .hiw-demo-3 { order:5; }
+    .hiw-text:nth-child(6) { order:6; }
+    .hiw-demo   { padding-bottom:24px; }
   }
-  .hiw-col          { display:flex; flex-direction:column; align-items:center; }
-  .hiw-step-title   { font-size:1.1rem; font-weight:800; color:#0d1512; margin:24px 0 8px; text-align:center; }
-  .hiw-step-desc    { font-size:14px; color:#6b7280; line-height:1.7; text-align:center; max-width:240px; }
 
   /* ── Demo shell ── */
-  .hiw-demo         { width:220px; display:flex; align-items:center; justify-content:center; }
-  .hiw-demo-1       { position:relative; width:100%; min-height:130px; display:flex; align-items:center; }
-  .hiw-demo-2       { height:auto; }
-  .hiw-demo-3       { height:220px; }
+  .hiw-demo   { width:100%; display:flex; align-items:center; justify-content:center; }
+  .hiw-demo-1 { position:relative; min-height:130px; flex-direction:column; }
+  .hiw-demo-2 { }
+  .hiw-demo-3 { height:220px; }
 
   /* ══ DEMO 1 ══ */
   .hd1-voice {
