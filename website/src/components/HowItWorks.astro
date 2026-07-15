@@ -12,8 +12,8 @@ const copy = lang === 'es' ? {
       desc: 'Habla o escribe en lenguaje natural. Kaxa detecta el monto, la categoría y lo registra. Sin formularios, sin menús.',
     },
     {
-      title: 'Tíldalo todos los días',
-      desc: 'Cuando registrar toma 5 segundos, realmente lo haces. La consistencia convierte el control en un hábito.',
+      title: 'Todo en un vistazo',
+      desc: 'Ve cuánto llevas en cada categoría, qué falta para el límite y cuáles se están pasando — sin abrir una hoja de cálculo.',
     },
     {
       title: 'Mira tu dinero moverse',
@@ -29,8 +29,8 @@ const copy = lang === 'es' ? {
       desc: 'Speak or type naturally. Kaxa detects the amount, category and saves it. No forms, no menus.',
     },
     {
-      title: 'Check it every day',
-      desc: 'When logging takes 5 seconds, you actually do it. Consistency turns control into a habit.',
+      title: 'Everything at a glance',
+      desc: 'See how much you\'ve spent per category, what\'s left before the limit, and which ones are over — no spreadsheet needed.',
     },
     {
       title: 'Watch your money move',
@@ -38,6 +38,24 @@ const copy = lang === 'es' ? {
     },
   ],
 };
+
+const budgets = lang === 'es'
+  ? [
+      { emoji: '🍔', bg: '#dcfce7', color: '#16a34a', barColor: '#16a34a', name: 'Comida',          current: 260, limit: 500,  pct: 52, pctColor: '#16a34a' },
+      { emoji: '🎮', bg: '#fee2e2', color: '#dc2626', barColor: '#f59e0b', name: 'Entretenimiento', current: 280, limit: 300,  pct: 93, pctColor: '#d97706', warn: true },
+      { emoji: '✈️', bg: '#e0f2fe', color: '#0284c7', barColor: '#0284c7', name: 'Meta viaje',       current: 800, limit: 2000, pct: 40, pctColor: '#0284c7' },
+    ]
+  : [
+      { emoji: '🍔', bg: '#dcfce7', color: '#16a34a', barColor: '#16a34a', name: 'Food',          current: 260, limit: 500,  pct: 52, pctColor: '#16a34a' },
+      { emoji: '🎮', bg: '#fee2e2', color: '#dc2626', barColor: '#f59e0b', name: 'Entertainment', current: 280, limit: 300,  pct: 93, pctColor: '#d97706', warn: true },
+      { emoji: '✈️', bg: '#e0f2fe', color: '#0284c7', barColor: '#0284c7', name: 'Travel goal',   current: 800, limit: 2000, pct: 40, pctColor: '#0284c7' },
+    ];
+
+const pills = [
+  { emoji: '🎮', fillColor: '#b5a8e8', bg: '#f5f3ff', fill: 50, pillStyle: 'background:#f5f3ff;box-shadow:0 2px 12px rgba(0,0,0,.07),inset 0 0 0 1px rgba(0,0,0,.05)', pctColor: '#7c6fcd' },
+  { emoji: '❤️', fillColor: '#d4a520', bg: '#fffceb', fill: 45, pillStyle: 'background:#fffceb;box-shadow:0 0 0 2px #d4a520,0 2px 12px rgba(0,0,0,.07)',               pctColor: '#d4a520' },
+  { emoji: '🍔', fillColor: '#6ecba0', bg: '#f0fdf6', fill: 22, pillStyle: 'background:#f0fdf6;box-shadow:0 2px 12px rgba(0,0,0,.07),inset 0 0 0 1px rgba(0,0,0,.05)', pctColor: '#059669' },
+];
 ---
 
 <section id="como-funciona" class="hiw-section">
@@ -48,12 +66,11 @@ const copy = lang === 'es' ? {
 
   <div class="hiw-grid">
 
-    <!-- ── COL 1: AI transaction card ── -->
+    <!-- ── COL 1: Transaction card ── -->
     <div class="hiw-col reveal">
-      <div class="hiw-demo" id="hiw-demo-1">
+      <div class="hiw-demo hiw-demo-1" id="hiw-demo-1">
 
-        <!-- recording state -->
-        <div class="hd1-record" id="hd1-rec">
+        <div class="hd1-voice" id="hd1-rec">
           <div class="hd1-mic-wrap">
             <div class="hd1-ring hd1-r1"></div>
             <div class="hd1-ring hd1-r2"></div>
@@ -65,29 +82,30 @@ const copy = lang === 'es' ? {
               </svg>
             </div>
           </div>
-          <div class="hd1-wave">
-            {[4,10,18,26,18,10,4,10,18,10,4].map((h: number) => (
+          <div class="hd1-bars">
+            {[5,12,20,28,20,12,5,12,20,12,5].map((h: number) => (
               <div class="hd1-bar" style={`height:${h}px`}></div>
             ))}
           </div>
           <p class="hd1-phrase"><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
         </div>
 
-        <!-- result card (hidden initially) -->
         <div class="hd1-card" id="hd1-card">
-          <div class="hd1-badge">✓ Guardado</div>
           <div class="hd1-row">
             <div class="hd1-icon">🍔</div>
             <div class="hd1-info">
-              <p class="hd1-cat">Comida</p>
-              <p class="hd1-note">Almuerzo con el equipo</p>
+              <p class="hd1-cat">{lang === 'es' ? 'Comida' : 'Food'}</p>
+              <p class="hd1-note">{lang === 'es' ? 'Almuerzo con el equipo' : 'Lunch with the team'}</p>
             </div>
-            <p class="hd1-amount">$85.00</p>
+            <div class="hd1-right">
+              <p class="hd1-amount">$85.00</p>
+              <span class="hd1-check">✓</span>
+            </div>
           </div>
-          <div class="hd1-bar-wrap">
-            <div class="hd1-progress" id="hd1-prog"></div>
+          <div class="hd1-footer">
+            <span class="hd1-pocket">💵 {lang === 'es' ? 'Efectivo' : 'Cash'}</span>
+            <span class="hd1-date">{lang === 'es' ? 'Hoy' : 'Today'}</span>
           </div>
-          <p class="hd1-percent">$260 <span>de $500</span></p>
         </div>
 
       </div>
@@ -95,25 +113,29 @@ const copy = lang === 'es' ? {
       <p class="hiw-step-desc">{copy.steps[0].desc}</p>
     </div>
 
-    <!-- ── COL 2: Checklist ── -->
+    <!-- ── COL 2: Budget bars ── -->
     <div class="hiw-col reveal" style="transition-delay:100ms">
-      <div class="hiw-demo" id="hiw-demo-2">
-        <div class="hd2-list">
-          {[
-            { emoji: '🍔', label: lang === 'es' ? 'Comida' : 'Food',        sub: lang === 'es' ? '$260 de $500' : '$260 of $500' },
-            { emoji: '✈️', label: lang === 'es' ? 'Meta viaje' : 'Travel goal', sub: lang === 'es' ? '$400 aportados' : '$400 saved' },
-            { emoji: '💳', label: lang === 'es' ? 'Celular' : 'Phone plan',  sub: lang === 'es' ? 'Pago registrado' : 'Payment logged' },
-          ].map((item, i) => (
-            <div class="hd2-item" data-idx={String(i)}>
-              <div class="hd2-check" data-check={String(i)}>
-                <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-                  <polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <span class="hd2-emoji">{item.emoji}</span>
-              <div class="hd2-text">
-                <p class="hd2-label">{item.label}</p>
-                <p class="hd2-sub">{item.sub}</p>
+      <div class="hiw-demo hiw-demo-2" id="hiw-demo-2">
+        <div class="hd2-card">
+          {budgets.map((b) => (
+            <div class="hd2-row">
+              <div class="hd2-icon" style={`background:${b.bg}`}>{b.emoji}</div>
+              <div class="hd2-body">
+                <div class="hd2-top">
+                  <span class="hd2-name">{b.name}</span>
+                  <span class="hd2-pct" style={`color:${b.pctColor}`}>{b.pct}%</span>
+                </div>
+                <div class="hd2-amounts">
+                  <span class="hd2-cur">${b.current}</span>
+                  <span class="hd2-lim">/ ${b.limit}</span>
+                </div>
+                <div class="hd2-track">
+                  <div
+                    class="hd2-fill"
+                    data-pct={String(b.pct)}
+                    style={`background:${b.barColor};width:0%`}
+                  ></div>
+                </div>
               </div>
             </div>
           ))}
@@ -123,27 +145,19 @@ const copy = lang === 'es' ? {
       <p class="hiw-step-desc">{copy.steps[1].desc}</p>
     </div>
 
-    <!-- ── COL 3: Bolsillos water pills ── -->
+    <!-- ── COL 3: Bolsillos ── -->
     <div class="hiw-col reveal" style="transition-delay:200ms">
-      <div class="hiw-demo" id="hiw-demo-3">
+      <div class="hiw-demo hiw-demo-3" id="hiw-demo-3">
         <div class="hd3-pills">
-          {[
-            { emoji: '🎮', color: '#c4b5fd', bg: '#ede9fe', fill: 42 },
-            { emoji: '❤️', color: '#fcd34d', bg: '#fef9c3', fill: 68 },
-            { emoji: '🍔', color: '#6ee7b7', bg: '#d1fae5', fill: 25 },
-          ].map((pill, i) => (
-            <div class="hd3-pill-wrap">
-              <div class="hd3-pill" style={`background:${pill.bg}`}>
-                <div
-                  class="hd3-water"
-                  data-fill={String(pill.fill)}
-                  style={`background:${pill.color};height:0%`}
-                >
-                  <div class="hd3-wave" style={`background:${pill.color}`}></div>
+          {pills.map((p) => (
+            <div class="hd3-wrap">
+              <div class="hd3-pill" style={p.pillStyle}>
+                <div class="hd3-water" data-fill={String(p.fill)} style={`background:${p.fillColor};height:0%`}>
+                  <div class="hd3-wave" style={`background:${p.fillColor}`}></div>
                 </div>
-                <span class="hd3-emoji">{pill.emoji}</span>
+                <span class="hd3-emoji">{p.emoji}</span>
               </div>
-              <p class="hd3-pct" style={`color:${pill.color === '#fcd34d' ? '#d97706' : pill.color}`}>{pill.fill}%</p>
+              <p class="hd3-pct" style={`color:${p.pctColor}`}>{p.fill}%</p>
             </div>
           ))}
         </div>
@@ -159,80 +173,70 @@ const copy = lang === 'es' ? {
 (function () {
   let started = false;
 
-  /* ── Demo 1: AI card ── */
+  /* ── Demo 1 ── */
   function runDemo1() {
-    const rec  = document.getElementById('hd1-rec');
-    const card = document.getElementById('hd1-card');
-    const textEl = document.getElementById('hd1-text') as HTMLElement;
-    const prog = document.getElementById('hd1-prog');
-    if (!rec || !card || !textEl || !prog) return;
+    const rec    = document.getElementById('hd1-rec')    as HTMLElement | null;
+    const card   = document.getElementById('hd1-card')   as HTMLElement | null;
+    const textEl = document.getElementById('hd1-text')   as HTMLElement | null;
+    if (!rec || !card || !textEl) return;
 
-    const phrase = 'Gasté 85 en almuerzo';
+    const phrase = 'Almuerzo, 85 pesos';
     let ti: ReturnType<typeof setInterval>;
 
     function reset() {
-      rec.style.opacity  = '1';
-      rec.style.transform = 'translateY(0)';
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(12px)';
-      textEl.textContent = '';
-      prog.style.width = '0%';
+      rec.style.cssText  += ';opacity:1;transform:translateY(0);transition:none';
+      card.style.cssText += ';opacity:0;transform:translateY(14px);transition:none';
+      textEl.textContent  = '';
     }
 
     function run() {
       reset();
       let i = 0;
       clearInterval(ti);
-      ti = setInterval(() => {
-        textEl.textContent += phrase[i++];
-        if (i >= phrase.length) {
-          clearInterval(ti);
-          setTimeout(() => {
-            rec.style.transition  = 'opacity .4s, transform .4s';
-            rec.style.opacity     = '0';
-            rec.style.transform   = 'translateY(-8px)';
-            card.style.transition = 'opacity .4s, transform .4s';
-            card.style.opacity    = '1';
-            card.style.transform  = 'translateY(0)';
-            prog.style.transition = 'width 1.2s ease';
-            prog.style.width      = '52%';
-            setTimeout(run, 4000);
-          }, 600);
-        }
-      }, 60);
+      // small delay so reset is applied before animation
+      setTimeout(() => {
+        ti = setInterval(() => {
+          textEl.textContent += phrase[i++];
+          if (i >= phrase.length) {
+            clearInterval(ti);
+            setTimeout(() => {
+              rec.style.transition  = 'opacity .4s ease, transform .4s ease';
+              rec.style.opacity     = '0';
+              rec.style.transform   = 'translateY(-10px)';
+              card.style.transition = 'opacity .45s ease, transform .45s ease';
+              card.style.opacity    = '1';
+              card.style.transform  = 'translateY(0)';
+              setTimeout(run, 4500);
+            }, 500);
+          }
+        }, 55);
+      }, 30);
     }
-
     run();
   }
 
-  /* ── Demo 2: checklist ── */
+  /* ── Demo 2: budget bars ── */
   function runDemo2() {
-    const checks = Array.from(document.querySelectorAll<HTMLElement>('[data-check]'));
-    if (!checks.length) return;
-
-    function reset() {
-      checks.forEach(c => {
-        c.style.transition = 'none';
-        c.style.background = '#e5e7eb';
-        c.style.borderColor = '#e5e7eb';
-      });
-    }
+    const fills = Array.from(document.querySelectorAll<HTMLElement>('.hd2-fill'));
+    if (!fills.length) return;
 
     function run() {
-      reset();
-      checks.forEach((c, i) => {
-        setTimeout(() => {
-          c.style.transition = 'background .35s, border-color .35s';
-          c.style.background = '#1DB48B';
-          c.style.borderColor = '#1DB48B';
-        }, 600 + i * 700);
+      fills.forEach(f => {
+        f.style.transition = 'none';
+        f.style.width = '0%';
       });
-      setTimeout(run, checks.length * 700 + 2000);
+      fills.forEach((f, i) => {
+        setTimeout(() => {
+          f.style.transition = 'width 1s cubic-bezier(.4,0,.2,1)';
+          f.style.width = (f.dataset.pct ?? '50') + '%';
+        }, 300 + i * 350);
+      });
+      setTimeout(run, 5000);
     }
     run();
   }
 
-  /* ── Demo 3: bolsillos ── */
+  /* ── Demo 3: water pills ── */
   function runDemo3() {
     const waters = Array.from(document.querySelectorAll<HTMLElement>('.hd3-water'));
     if (!waters.length) return;
@@ -241,21 +245,20 @@ const copy = lang === 'es' ? {
       waters.forEach(w => {
         w.style.transition = 'none';
         w.style.height = '0%';
-        const fill = w.dataset.fill ?? '40';
-        setTimeout(() => {
-          w.style.transition = 'height 1.8s cubic-bezier(.4,0,.2,1)';
-          w.style.height = fill + '%';
-        }, 200 + Math.random() * 300);
       });
-      setTimeout(run, 5000);
+      waters.forEach((w, i) => {
+        setTimeout(() => {
+          w.style.transition = 'height 2s cubic-bezier(.4,0,.2,1)';
+          w.style.height = (w.dataset.fill ?? '40') + '%';
+        }, 150 + i * 250);
+      });
+      setTimeout(run, 5500);
     }
     run();
   }
 
-  /* ── trigger on scroll ── */
   const section = document.getElementById('como-funciona');
   if (!section) return;
-
   const obs = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting && !started) {
       started = true;
@@ -264,213 +267,148 @@ const copy = lang === 'es' ? {
       runDemo2();
       runDemo3();
     }
-  }, { threshold: 0.2 });
+  }, { threshold: 0.15 });
   obs.observe(section);
 })();
 </script>
 
 <style>
-  /* ── Shell ── */
-  .hiw-section {
-    background: #f5f7f5;
-    padding: 96px 24px;
-  }
-  .hiw-header {
-    text-align: center;
-    margin-bottom: 72px;
-  }
-  .hiw-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 900;
-    color: #0d1512;
-    letter-spacing: -.02em;
-    margin-bottom: 12px;
-  }
-  .hiw-sub {
-    font-size: 1.05rem;
-    color: #6b7280;
-    max-width: 420px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-  .hiw-grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
-    align-items: start;
-  }
-  @media (max-width: 768px) {
-    .hiw-grid { grid-template-columns: 1fr; gap: 56px; }
-    .hiw-section { padding: 64px 20px; }
-  }
-  .hiw-col { display: flex; flex-direction: column; align-items: center; }
-  .hiw-step-title {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #0d1512;
-    margin: 24px 0 8px;
-    text-align: center;
-  }
-  .hiw-step-desc {
-    font-size: 14px;
-    color: #6b7280;
-    line-height: 1.7;
-    text-align: center;
-    max-width: 240px;
-  }
+  /* ── Section ── */
+  .hiw-section { background: #f5f7f5; padding: 96px 24px; }
+  .hiw-header  { text-align: center; margin-bottom: 72px; }
+  .hiw-title   { font-size: clamp(2rem,4vw,3rem); font-weight:900; color:#0d1512; letter-spacing:-.02em; margin-bottom:12px; }
+  .hiw-sub     { font-size:1.05rem; color:#6b7280; max-width:420px; margin:0 auto; line-height:1.6; }
 
-  /* ── Demo wrapper ── */
-  .hiw-demo {
-    width: 220px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  .hiw-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; align-items: start;
   }
+  @media (max-width:768px) {
+    .hiw-grid { grid-template-columns:1fr; gap:56px; }
+    .hiw-section { padding:64px 20px; }
+  }
+  .hiw-col          { display:flex; flex-direction:column; align-items:center; }
+  .hiw-step-title   { font-size:1.1rem; font-weight:800; color:#0d1512; margin:24px 0 8px; text-align:center; }
+  .hiw-step-desc    { font-size:14px; color:#6b7280; line-height:1.7; text-align:center; max-width:240px; }
+
+  /* ── Demo shell ── */
+  .hiw-demo         { width:220px; display:flex; align-items:center; justify-content:center; }
+  .hiw-demo-1       { height:200px; position:relative; }
+  .hiw-demo-2       { height:auto; }
+  .hiw-demo-3       { height:220px; }
 
   /* ══ DEMO 1 ══ */
-  .hd1-record {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  .hd1-voice {
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
   }
   .hd1-mic-wrap {
-    position: relative;
-    width: 52px; height: 52px;
-    display: flex; align-items: center; justify-content: center;
+    position:relative; width:52px; height:52px;
+    display:flex; align-items:center; justify-content:center;
   }
   .hd1-ring {
-    position: absolute; border-radius: 50%;
-    border: 1.5px solid rgba(29,180,139,.3);
-    animation: hring 2s ease-in-out infinite;
+    position:absolute; border-radius:50%;
+    border:1.5px solid rgba(29,180,139,.3);
+    animation:hring 2s ease-in-out infinite;
   }
-  .hd1-r1 { width: 52px; height: 52px; }
-  .hd1-r2 { width: 36px; height: 36px; animation-delay: .5s; }
-  @keyframes hring { 0%,100%{transform:scale(1);opacity:.4} 50%{transform:scale(1.15);opacity:.1} }
+  .hd1-r1 { width:52px; height:52px; }
+  .hd1-r2 { width:36px; height:36px; animation-delay:.5s; }
+  @keyframes hring { 0%,100%{transform:scale(1);opacity:.4} 50%{transform:scale(1.18);opacity:.1} }
   .hd1-mic {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: #1DB48B; color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; z-index: 1;
-    box-shadow: 0 0 16px rgba(29,180,139,.3);
+    width:36px; height:36px; border-radius:50%;
+    background:#1DB48B; color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    position:relative; z-index:1;
+    box-shadow:0 0 16px rgba(29,180,139,.3);
   }
-  .hd1-wave {
-    display: flex; align-items: center; gap: 2px; height: 28px;
+  .hd1-bars   { display:flex; align-items:center; gap:2.5px; height:30px; }
+  .hd1-bar    {
+    width:2.5px; border-radius:2px; background:#1DB48B; opacity:.7;
+    animation:hwbar .9s ease-in-out infinite; transform-origin:center;
   }
-  .hd1-bar {
-    width: 2.5px; border-radius: 2px; background: #1DB48B; opacity: .7;
-    animation: hwbar .9s ease-in-out infinite; transform-origin: center;
-  }
-  .hd1-bar:nth-child(1){animation-delay:0s}.hd1-bar:nth-child(2){animation-delay:.08s}
-  .hd1-bar:nth-child(3){animation-delay:.16s}.hd1-bar:nth-child(4){animation-delay:.24s}
-  .hd1-bar:nth-child(5){animation-delay:.16s}.hd1-bar:nth-child(6){animation-delay:.08s}
-  .hd1-bar:nth-child(7){animation-delay:0s}.hd1-bar:nth-child(8){animation-delay:.08s}
-  .hd1-bar:nth-child(9){animation-delay:.16s}.hd1-bar:nth-child(10){animation-delay:.08s}
+  .hd1-bar:nth-child(1){animation-delay:0s}   .hd1-bar:nth-child(2){animation-delay:.07s}
+  .hd1-bar:nth-child(3){animation-delay:.14s}  .hd1-bar:nth-child(4){animation-delay:.21s}
+  .hd1-bar:nth-child(5){animation-delay:.14s}  .hd1-bar:nth-child(6){animation-delay:.07s}
+  .hd1-bar:nth-child(7){animation-delay:0s}    .hd1-bar:nth-child(8){animation-delay:.07s}
+  .hd1-bar:nth-child(9){animation-delay:.14s}  .hd1-bar:nth-child(10){animation-delay:.07s}
   .hd1-bar:nth-child(11){animation-delay:0s}
-  @keyframes hwbar { 0%,100%{transform:scaleY(.3);opacity:.3} 50%{transform:scaleY(1);opacity:.9} }
-  .hd1-phrase {
-    font-size: 11px; color: #374151; font-weight: 500;
-    height: 16px; display: flex; align-items: center; gap: 1px;
-  }
-  .hd1-cursor { animation: blink .8s infinite; color: #1DB48B; font-weight: 300; }
+  @keyframes hwbar { 0%,100%{transform:scaleY(.25);opacity:.25} 50%{transform:scaleY(1);opacity:.9} }
+  .hd1-phrase { font-size:11px; color:#374151; font-weight:500; height:16px; display:flex; align-items:center; gap:1px; }
+  .hd1-cursor { animation:blink .8s infinite; color:#1DB48B; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
   .hd1-card {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; justify-content: center;
-    opacity: 0; transform: translateY(12px);
-    background: #fff; border-radius: 16px;
-    padding: 14px 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+    position:absolute; inset:0; border-radius:16px;
+    background:#fff; padding:16px;
+    box-shadow:0 4px 24px rgba(0,0,0,.09), 0 1px 4px rgba(0,0,0,.04);
+    display:flex; flex-direction:column; justify-content:center; gap:12px;
+    opacity:0; transform:translateY(14px);
   }
-  .hd1-badge {
-    font-size: 9px; font-weight: 800; color: #1DB48B;
-    background: rgba(29,180,139,.1); padding: 3px 8px;
-    border-radius: 20px; align-self: flex-start; margin-bottom: 10px;
-    letter-spacing: .04em;
+  .hd1-row    { display:flex; align-items:center; gap:12px; }
+  .hd1-icon   {
+    width:40px; height:40px; border-radius:11px;
+    background:#dcfce7; display:flex; align-items:center; justify-content:center;
+    font-size:20px; flex-shrink:0;
   }
-  .hd1-row {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  .hd1-info   { flex:1; min-width:0; }
+  .hd1-cat    { font-size:13px; font-weight:800; color:#111; margin:0; }
+  .hd1-note   { font-size:10px; color:#9ca3af; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hd1-right  { display:flex; flex-direction:column; align-items:flex-end; gap:3px; flex-shrink:0; }
+  .hd1-amount { font-size:15px; font-weight:900; color:#0d1512; margin:0; }
+  .hd1-check  { font-size:10px; font-weight:800; color:#1DB48B; }
+  .hd1-footer {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 10px; background:#f9fafb; border-radius:10px;
   }
-  .hd1-icon {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: #d1fae5; display: flex; align-items: center;
-    justify-content: center; font-size: 18px; flex-shrink: 0;
-  }
-  .hd1-info { flex: 1; }
-  .hd1-cat { font-size: 12px; font-weight: 800; color: #111; margin: 0; }
-  .hd1-note { font-size: 10px; color: #9ca3af; margin: 0; }
-  .hd1-amount { font-size: 14px; font-weight: 900; color: #111; white-space: nowrap; }
-  .hd1-bar-wrap {
-    height: 4px; background: #f3f4f6; border-radius: 2px; overflow: hidden; margin-bottom: 4px;
-  }
-  .hd1-progress {
-    height: 100%; background: #1DB48B; border-radius: 2px; width: 0%;
-  }
-  .hd1-percent {
-    font-size: 9px; color: #6b7280; margin: 0;
-  }
-  .hd1-percent span { color: #9ca3af; }
+  .hd1-pocket { font-size:10px; font-weight:600; color:#374151; }
+  .hd1-date   { font-size:10px; color:#9ca3af; }
 
   /* ══ DEMO 2 ══ */
-  .hd2-list {
-    display: flex; flex-direction: column; gap: 10px; width: 200px;
+  .hd2-card {
+    width:220px; background:#fff; border-radius:16px;
+    padding:14px; display:flex; flex-direction:column; gap:12px;
+    box-shadow:0 4px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
   }
-  .hd2-item {
-    display: flex; align-items: center; gap: 10px;
-    background: #fff; border-radius: 12px; padding: 10px 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  .hd2-row    { display:flex; align-items:flex-start; gap:10px; }
+  .hd2-icon   {
+    width:36px; height:36px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; flex-shrink:0; margin-top:1px;
   }
-  .hd2-check {
-    width: 20px; height: 20px; border-radius: 6px;
-    border: 1.5px solid #e5e7eb; background: #e5e7eb;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .hd2-emoji { font-size: 16px; flex-shrink: 0; }
-  .hd2-text { flex: 1; }
-  .hd2-label { font-size: 11px; font-weight: 700; color: #111; margin: 0; }
-  .hd2-sub { font-size: 9px; color: #9ca3af; margin: 0; }
+  .hd2-body   { flex:1; min-width:0; }
+  .hd2-top    { display:flex; justify-content:space-between; align-items:center; margin-bottom:1px; }
+  .hd2-name   { font-size:11px; font-weight:800; color:#111; }
+  .hd2-pct    { font-size:11px; font-weight:700; }
+  .hd2-amounts{ display:flex; align-items:baseline; gap:3px; margin-bottom:5px; }
+  .hd2-cur    { font-size:12px; font-weight:700; color:#0d1512; }
+  .hd2-lim    { font-size:10px; color:#9ca3af; }
+  .hd2-track  { height:4px; background:#f3f4f6; border-radius:2px; overflow:hidden; }
+  .hd2-fill   { height:100%; border-radius:2px; width:0%; }
 
   /* ══ DEMO 3 ══ */
-  .hd3-pills {
-    display: flex; gap: 16px; align-items: flex-end;
+  .hd3-pills  { display:flex; gap:14px; align-items:flex-end; }
+  .hd3-wrap   { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .hd3-pill   {
+    width:48px; height:175px; border-radius:9999px;
+    position:relative; overflow:hidden;
   }
-  .hd3-pill-wrap {
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  .hd3-water  {
+    position:absolute; bottom:0; left:0; right:0;
+    /* no bottom border-radius — we clip via overflow:hidden on pill */
   }
-  .hd3-pill {
-    width: 52px; height: 148px; border-radius: 9999px;
-    position: relative; overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,.08), inset 0 0 0 1.5px rgba(0,0,0,.06);
-  }
-  .hd3-water {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    border-radius: 0 0 9999px 9999px;
-  }
-  .hd3-wave {
-    position: absolute; top: -8px; left: -50%;
-    width: 200%; height: 16px; border-radius: 50%;
-    animation: hwave 2.2s ease-in-out infinite;
+  .hd3-wave   {
+    position:absolute; top:-12px; left:-40%;
+    width:180%; height:24px; border-radius:50%;
+    animation:hwave 2.4s ease-in-out infinite;
   }
   @keyframes hwave {
-    0%,100% { transform: translateX(0) scaleY(1); }
-    50% { transform: translateX(20%) scaleY(1.3); }
+    0%,100% { transform:translateX(0) scaleY(.8); }
+    50%      { transform:translateX(15%) scaleY(1); }
   }
-  .hd3-emoji {
-    position: absolute; bottom: 8px; left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px; z-index: 1;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,.15));
+  .hd3-emoji  {
+    position:absolute; bottom:10px; left:50%;
+    transform:translateX(-50%);
+    font-size:22px; z-index:2;
   }
-  .hd3-pct {
-    font-size: 11px; font-weight: 800; margin: 0;
-  }
+  .hd3-pct    { font-size:11px; font-weight:800; margin:0; }
 </style>
