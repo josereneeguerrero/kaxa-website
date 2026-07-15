@@ -87,18 +87,18 @@ const pills = [
               <div class="hd1-bar" style={`height:${h}px`}></div>
             ))}
           </div>
-          <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Almuerzo, 85 lempiras' : 'Lunch, 85 cash'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
+          <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Gasté 45$ en el supermercado' : 'I spent $45 at the supermarket'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
         </div>
 
         <!-- Exact calco de _SheetItemCard de recent_activity_section.dart -->
         <div class="hd1-card" id="hd1-card">
-          <div class="hd1-icon">🍔</div>
+          <div class="hd1-icon">🛒</div>
           <div class="hd1-center">
-            <p class="hd1-cat">{lang === 'es' ? 'Comida' : 'Food'}</p>
-            <p class="hd1-sub">13:47 · {lang === 'es' ? 'Almuerzo' : 'Lunch'}</p>
+            <p class="hd1-cat">{lang === 'es' ? 'Supermercado' : 'Groceries'}</p>
+            <p class="hd1-sub">10:22 · {lang === 'es' ? 'Walmart' : 'Walmart'}</p>
           </div>
           <div class="hd1-right">
-            <p class="hd1-amount">− L. 85.00</p>
+            <p class="hd1-amount">− $45.00</p>
             <div class="hd1-chip">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
@@ -293,7 +293,7 @@ const pills = [
 
   /* ── Demo shell ── */
   .hiw-demo         { width:220px; display:flex; align-items:center; justify-content:center; }
-  .hiw-demo-1       { height:200px; position:relative; }
+  .hiw-demo-1       { position:relative; width:100%; }
   .hiw-demo-2       { height:auto; }
   .hiw-demo-3       { height:220px; }
 
@@ -339,7 +339,7 @@ const pills = [
 
   /* _SheetItemCard calco — KaxaColors exact */
   .hd1-card {
-    position:absolute; inset:0; border-radius:14px;
+    width:100%; border-radius:14px;
     background:#F8F9FF; padding:12px 14px;
     box-shadow:0 2px 12px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.04);
     display:flex; align-items:center; gap:12px;
