@@ -67,88 +67,91 @@ const bolsillos = [
 
   <div class="hiw-grid">
 
-    <!-- ── ROW 1: demos ── -->
-    <div class="hiw-demo hiw-demo-1" id="hiw-demo-1">
-      <div class="hd1-wrap">
-      <div class="hd1-voice" id="hd1-rec">
-        <div class="hd1-mic-wrap">
-          <div class="hd1-ring hd1-r1"></div>
-          <div class="hd1-ring hd1-r2"></div>
-          <div class="hd1-mic">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-              <line x1="12" y1="19" x2="12" y2="22"/>
-            </svg>
+    <!-- ── ROW 1: demos — all share .hiw-card (same width + height) ── -->
+    <div class="hiw-demo" id="hiw-demo-1">
+      <div class="hiw-card">
+        <!-- voice phase -->
+        <div class="hd1-voice" id="hd1-rec">
+          <div class="hd1-mic-wrap">
+            <div class="hd1-ring hd1-r1"></div>
+            <div class="hd1-ring hd1-r2"></div>
+            <div class="hd1-mic">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="22"/>
+              </svg>
+            </div>
+          </div>
+          <div class="hd1-bars">
+            {[5,12,20,28,20,12,5,12,20,12,5].map((h: number) => (
+              <div class="hd1-bar" style={`height:${h}px`}></div>
+            ))}
+          </div>
+          <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Gasté $45, me pagaron $100 hoy' : 'Spent $45, got paid $100 today'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
+        </div>
+        <!-- cards phase -->
+        <div class="hd1-cards">
+          <div class="hd1-card" id="hd1-card">
+            <div class="hd1-icon" style="background:rgba(239,68,68,0.12)">🛒</div>
+            <div class="hd1-center">
+              <p class="hd1-cat">{lang === 'es' ? 'Supermercado' : 'Groceries'}</p>
+              <p class="hd1-sub">10:22 · {lang === 'es' ? 'Compras del mes' : 'Monthly run'}</p>
+            </div>
+            <div class="hd1-right">
+              <p class="hd1-amount" style="color:#EF4444">− $45.00</p>
+              <div class="hd1-chip">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <span class="hd1-chip-lbl">{lang === 'es' ? 'Efectivo' : 'Cash'}</span>
+              </div>
+            </div>
+          </div>
+          <div class="hd1-card" id="hd1-card2">
+            <div class="hd1-icon" style="background:rgba(16,185,129,0.12)">💼</div>
+            <div class="hd1-center">
+              <p class="hd1-cat">{lang === 'es' ? 'Trabajo' : 'Work'}</p>
+              <p class="hd1-sub">14:05 · {lang === 'es' ? 'Pago freelance' : 'Freelance pay'}</p>
+            </div>
+            <div class="hd1-right">
+              <p class="hd1-amount" style="color:#10B981">+ $100.00</p>
+              <div class="hd1-chip">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                <span class="hd1-chip-lbl">{lang === 'es' ? 'Banco' : 'Bank'}</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="hd1-bars">
-          {[5,12,20,28,20,12,5,12,20,12,5].map((h: number) => (
-            <div class="hd1-bar" style={`height:${h}px`}></div>
+      </div>
+    </div>
+
+    <div class="hiw-demo" id="hiw-demo-2">
+      <div class="hiw-card">
+        <div class="hd2-inner">
+          {budgets.map((b) => (
+            <div class="hd2-row">
+              <div class="hd2-icon" style={`background:${b.bg}`}>{b.emoji}</div>
+              <div class="hd2-body">
+                <div class="hd2-top">
+                  <span class="hd2-name">{b.name}</span>
+                  <span class="hd2-pct" style={`color:${b.pctColor}`}>{b.pct}%</span>
+                </div>
+                <div class="hd2-amounts">
+                  <span class="hd2-cur">${b.current}</span>
+                  <span class="hd2-lim">/ ${b.limit}</span>
+                </div>
+                <div class="hd2-track">
+                  <div class="hd2-fill" data-pct={String(b.pct)} style={`background:${b.barColor};width:0%`}></div>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-        <p class="hd1-phrase" data-phrase={lang === 'es' ? 'Gasté $45, me pagaron $100 hoy' : 'Spent $45, got paid $100 today'}><span id="hd1-text"></span><span class="hd1-cursor">|</span></p>
-      </div>
-      <!-- Dos cards: gasto + ingreso -->
-      <div class="hd1-cards">
-        <div class="hd1-card" id="hd1-card">
-          <div class="hd1-icon" style="background:rgba(34,197,94,0.15)">🛒</div>
-          <div class="hd1-center">
-            <p class="hd1-cat">{lang === 'es' ? 'Supermercado' : 'Groceries'}</p>
-            <p class="hd1-sub">10:22 · {lang === 'es' ? 'Compras del mes' : 'Monthly run'}</p>
-          </div>
-          <div class="hd1-right">
-            <p class="hd1-amount" style="color:#EF4444">− $45.00</p>
-            <div class="hd1-chip">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-              <span class="hd1-chip-lbl">{lang === 'es' ? 'Efectivo' : 'Cash'}</span>
-            </div>
-          </div>
-        </div>
-        <div class="hd1-card" id="hd1-card2">
-          <div class="hd1-icon" style="background:rgba(16,185,129,0.15)">💼</div>
-          <div class="hd1-center">
-            <p class="hd1-cat">{lang === 'es' ? 'Trabajo' : 'Work'}</p>
-            <p class="hd1-sub">14:05 · {lang === 'es' ? 'Pago freelance' : 'Freelance pay'}</p>
-          </div>
-          <div class="hd1-right">
-            <p class="hd1-amount" style="color:#10B981">+ $100.00</p>
-            <div class="hd1-chip">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-              <span class="hd1-chip-lbl">{lang === 'es' ? 'Banco' : 'Bank'}</span>
-            </div>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
 
-    <div class="hiw-demo hiw-demo-2" id="hiw-demo-2">
-      <div class="hd2-card">
-        {budgets.map((b) => (
-          <div class="hd2-row">
-            <div class="hd2-icon" style={`background:${b.bg}`}>{b.emoji}</div>
-            <div class="hd2-body">
-              <div class="hd2-top">
-                <span class="hd2-name">{b.name}</span>
-                <span class="hd2-pct" style={`color:${b.pctColor}`}>{b.pct}%</span>
-              </div>
-              <div class="hd2-amounts">
-                <span class="hd2-cur">${b.current}</span>
-                <span class="hd2-lim">/ ${b.limit}</span>
-              </div>
-              <div class="hd2-track">
-                <div class="hd2-fill" data-pct={String(b.pct)} style={`background:${b.barColor};width:0%`}></div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <div class="hiw-demo hiw-demo-3" id="hiw-demo-3">
-      <div class="hd3-card">
-        <div class="hd3-box">
+    <div class="hiw-demo" id="hiw-demo-3">
+      <div class="hiw-card">
+        <div class="hd3-inner">
           <p class="hd3-header">{lang === 'es' ? 'Mis bolsillos' : 'My pockets'}</p>
           <div class="hd3-grid">
             {bolsillos.map((b) => (
@@ -159,7 +162,7 @@ const bolsillos = [
                   </svg>
                 </div>
                 <div class="hd3-info">
-                  <p class="hd3-name" style={`color:#6C7A71`}>{b.name}</p>
+                  <p class="hd3-name">{b.name}</p>
                   <p class="hd3-bal">{b.bal}</p>
                 </div>
               </div>
@@ -343,16 +346,13 @@ const bolsillos = [
     .hiw-demo   { padding-bottom:24px; }
   }
 
-  /* ── Demo shell ── */
-  .hiw-demo-1 { }
-  .hd1-wrap {
-    position:relative; height:196px; width:260px; margin:0 auto;
-    background:#fff; border-radius:16px;
-    box-shadow:0 2px 16px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04);
-    overflow:hidden;
+  /* ── Shared demo card (identical for all 3) ── */
+  .hiw-card {
+    width: 260px; height: 200px; margin: 0 auto;
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
+    overflow: hidden; position: relative;
   }
-  .hiw-demo-2 { }
-  .hiw-demo-3 { }
 
   /* ══ DEMO 1 ══ */
   .hd1-voice {
@@ -393,8 +393,6 @@ const bolsillos = [
   .hd1-phrase { font-size:11px; color:#374151; font-weight:500; height:16px; display:flex; align-items:center; gap:1px; }
   .hd1-cursor { animation:blink .8s infinite; color:#1DB48B; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-  /* Two-card stack */
   .hd1-cards {
     position:absolute; inset:0;
     display:flex; flex-direction:column; justify-content:center; gap:8px; padding:12px;
@@ -404,68 +402,50 @@ const bolsillos = [
     display:flex; align-items:center; gap:10px;
     opacity:0; transform:translateY(10px);
   }
-  .hd1-icon   {
-    width:34px; height:34px; border-radius:9px; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    font-size:17px;
-  }
+  .hd1-icon   { width:34px; height:34px; border-radius:9px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:17px; }
   .hd1-center { flex:1; min-width:0; }
   .hd1-cat    { font-size:12px; font-weight:700; color:#0B1C30; margin:0; }
-  .hd1-sub    { font-size:10px; font-weight:500; color:#6C7A71; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hd1-sub    { font-size:10px; color:#6C7A71; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .hd1-right  { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
   .hd1-amount { font-size:12px; font-weight:800; margin:0; }
-  .hd1-chip   {
-    display:flex; align-items:center; gap:3px;
-    padding:2px 6px; border-radius:9999px;
-    background:#fff; border:1px solid #BBCABF;
-  }
+  .hd1-chip   { display:flex; align-items:center; gap:3px; padding:2px 6px; border-radius:9999px; background:#fff; border:1px solid #BBCABF; }
   .hd1-chip-lbl { font-size:9px; font-weight:600; color:#6C7A71; }
 
   /* ══ DEMO 2 ══ */
-  .hd2-card {
-    width:220px; margin:0 auto; background:#fff; border-radius:16px;
-    padding:14px; display:flex; flex-direction:column; gap:12px;
-    box-shadow:0 4px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
+  .hd2-inner {
+    position:absolute; inset:0; padding:14px;
+    display:flex; flex-direction:column; justify-content:center; gap:10px;
   }
-  .hd2-row    { display:flex; align-items:flex-start; gap:10px; }
-  .hd2-icon   {
-    width:36px; height:36px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:18px; flex-shrink:0; margin-top:1px;
-  }
+  .hd2-row    { display:flex; align-items:center; gap:10px; }
+  .hd2-icon   { width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
   .hd2-body   { flex:1; min-width:0; }
-  .hd2-top    { display:flex; justify-content:space-between; align-items:center; margin-bottom:1px; }
+  .hd2-top    { display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; }
   .hd2-name   { font-size:11px; font-weight:800; color:#111; }
   .hd2-pct    { font-size:11px; font-weight:700; }
-  .hd2-amounts{ display:flex; align-items:baseline; gap:3px; margin-bottom:5px; }
-  .hd2-cur    { font-size:12px; font-weight:700; color:#0d1512; }
+  .hd2-amounts{ display:flex; align-items:baseline; gap:3px; margin-bottom:4px; }
+  .hd2-cur    { font-size:11px; font-weight:700; color:#0d1512; }
   .hd2-lim    { font-size:10px; color:#9ca3af; }
   .hd2-track  { height:4px; background:#f3f4f6; border-radius:2px; overflow:hidden; }
   .hd2-fill   { height:100%; border-radius:2px; width:0%; }
 
-  /* ══ DEMO 3: bolsillos 2×2 grid (calco de _BolsillosPage) ══ */
-  .hd3-card   {
-    width:252px; margin:0 auto;
-    background:#fff; border-radius:16px; padding:16px;
-    box-shadow:0 4px 24px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
+  /* ══ DEMO 3 ══ */
+  .hd3-inner {
+    position:absolute; inset:0; padding:14px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
   }
-  .hd3-box    { display:flex; flex-direction:column; align-items:center; gap:0; }
-  .hd3-header { font-size:11px; color:#6C7A71; font-weight:500; margin:0 0 10px; }
-  .hd3-grid   {
-    display:grid; grid-template-columns:1fr 1fr; gap:8px; width:220px;
-  }
+  .hd3-header { font-size:11px; color:#6C7A71; font-weight:500; margin:0; }
+  .hd3-grid   { display:grid; grid-template-columns:1fr 1fr; gap:7px; width:100%; }
   .hd3-item   {
-    display:flex; align-items:center; gap:8px;
-    padding:8px 10px; border-radius:12px;
-    background:#F8F9FF; border:1.5px solid transparent;
+    display:flex; align-items:center; gap:7px; padding:7px 8px;
+    border-radius:12px; background:#F8F9FF; border:1.5px solid transparent;
     transition: border-color .3s ease, background .3s ease;
   }
   .hd3-circle {
-    width:32px; height:32px; border-radius:50%; flex-shrink:0;
+    width:30px; height:30px; border-radius:50%; flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
     transition: background .3s ease;
   }
-  .hd3-info   { flex:1; min-width:0; }
-  .hd3-name   { font-size:10px; font-weight:700; margin:0; transition: color .35s ease; }
-  .hd3-bal    { font-size:13px; font-weight:800; color:#0B1C30; margin:0; }
+  .hd3-info   { min-width:0; }
+  .hd3-name   { font-size:10px; font-weight:700; color:#6C7A71; margin:0; transition: color .3s ease; }
+  .hd3-bal    { font-size:12px; font-weight:800; color:#0B1C30; margin:0; }
 </style>
