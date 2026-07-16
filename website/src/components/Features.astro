@@ -8,11 +8,10 @@ const { lang } = Astro.props;
 const t = translations[lang];
 
 const labels = lang === 'es'
-  ? ['REGISTRO', 'PRESUPUESTOS', 'METAS', 'DEUDAS', 'RESUMEN']
-  : ['TRACKING', 'BUDGETS', 'GOALS', 'DEBTS', 'SUMMARY'];
+  ? ['BOLSILLOS', 'VOZ & IA', 'PRESUPUESTOS', 'METAS', 'DEUDAS']
+  : ['POCKETS', 'VOICE & AI', 'BUDGETS', 'GOALS', 'DEBTS'];
 
-const features = t.features.items; // 5 items con screenshot
-
+const features = t.features.items;
 ---
 
 <section id="funciones" class="bg-grain">
@@ -24,137 +23,148 @@ const features = t.features.items; // 5 items con screenshot
     <p class="reveal mx-auto mt-4 max-w-xl text-muted" style="transition-delay:120ms">{t.features.subtitle}</p>
   </div>
 
-  <!-- ── DESKTOP sticky scroll ── -->
-  <div class="hidden lg:flex mx-auto max-w-6xl px-6 pb-24" style="gap:0;">
-
-    <!-- LEFT: scrollable steps -->
-    <div style="flex:1;">
-      {features.map((f, i) => (
-        <div class="f-step" data-i={String(i)} style="height:100vh;display:flex;align-items:center;">
-          <div style="max-width:400px;padding-right:48px;">
-            <p class="f-num" style="font-size:72px;font-weight:900;color:var(--color-primary,#1DB48B);opacity:.06;line-height:1;margin-bottom:-16px;font-variant-numeric:tabular-nums;transition:opacity .45s ease;">
-              {String(i + 1).padStart(2, '0')}
-            </p>
-            <p class="f-label" style={`font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;color:var(--color-primary,#1DB48B);opacity:.25;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease;`}>
-              {labels[i]}
-            </p>
-            <h3 class="f-title" style="font-size:1.8rem;font-weight:800;line-height:1.2;margin-bottom:16px;color:var(--color-ink,#111);opacity:.15;transform:translateY(10px);transition:opacity .45s .07s ease,transform .45s .07s ease;text-wrap:balance;">
-              {f.title}
-            </h3>
-            <p class="f-desc" style="color:var(--color-muted,#6b7280);line-height:1.7;margin-bottom:24px;opacity:.15;transform:translateY(10px);transition:opacity .45s .14s ease,transform .45s .14s ease;">
-              {f.description}
-            </p>
-            <ul class="f-bullets" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;opacity:.15;transform:translateY(10px);transition:opacity .45s .21s ease,transform .45s .21s ease;">
-              {f.bullets?.map((b: string) => (
-                <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--color-ink,#111);">
-                  <span style="width:20px;height:20px;border-radius:50%;background:var(--color-primary,#1DB48B);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;">✓</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <!-- RIGHT: sticky phone + dots -->
-    <div style="position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;gap:24px;flex-shrink:0;align-self:start;">
-
-      <!-- Dots -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
-        {features.map((_, i) => (
-          <div class="f-dot" data-dot={String(i)} style="width:6px;height:6px;border-radius:3px;background:rgba(0,0,0,.15);transition:height .3s ease,background .3s ease,border-radius .3s ease;flex-shrink:0;"></div>
-        ))}
-      </div>
-
-      <!-- Screenshot sin frame -->
-      <div style="position:relative;width:248px;height:534px;">
-        <!-- glow de fondo -->
-        <div style="position:absolute;inset:-24px;border-radius:48px;background:radial-gradient(ellipse at center,rgba(29,180,139,.12) 0%,transparent 70%);pointer-events:none;"></div>
-        <!-- screenshots -->
-        <div style="position:relative;width:100%;height:100%;border-radius:28px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.18),0 8px 24px rgba(0,0,0,.1),0 0 0 1px rgba(0,0,0,.04);">
-          {features.map((f, i) => (
-            <img
-              src={f.screenshot}
-              alt={f.title}
-              class="f-screen"
-              data-screen={String(i)}
-              style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .55s ease;opacity:${i===0?'1':'0'};`}
-              loading={i===0?'eager':'lazy'}
-            />
-          ))}
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ── MOBILE ── -->
-  <div class="lg:hidden mx-auto max-w-sm px-4 pb-16 pt-4 space-y-16">
+  <!-- Cards -->
+  <div class="feat-list">
     {features.map((f, i) => (
-      <div class="reveal" style={`transition-delay:${i*60}ms`}>
-        <div style="border-radius:28px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.15);margin-bottom:20px;aspect-ratio:9/19.5;max-height:380px;">
-          <img src={f.screenshot} alt={f.title} style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;" loading="lazy" />
+      <div class={`reveal feat-card feat-card--${i % 2 === 0 ? 'normal' : 'flip'}`} style={`transition-delay:${i * 60}ms`}>
+
+        <!-- Text -->
+        <div class="feat-text">
+          <p class="feat-label">{labels[i]}</p>
+          <h3 class="feat-title">{f.title}</h3>
+          <p class="feat-desc">{f.description}</p>
+          <ul class="feat-bullets">
+            {f.bullets?.map((b: string) => (
+              <li>
+                <span class="feat-check">✓</span>
+                {b}
+              </li>
+            ))}
+          </ul>
         </div>
-        <p style="font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--color-primary,#1DB48B);margin-bottom:8px;">{labels[i]}</p>
-        <h3 style="font-size:1.2rem;font-weight:800;color:var(--color-ink,#111);margin-bottom:10px;line-height:1.3;">{f.title}</h3>
-        <p style="color:var(--color-muted,#6b7280);font-size:14px;line-height:1.7;">{f.description}</p>
+
+        <!-- Visual placeholder -->
+        <div class="feat-visual">
+          <!-- screenshot aquí -->
+        </div>
+
       </div>
     ))}
   </div>
 
 </section>
 
-<script>
-(function () {
-  const steps   = Array.from(document.querySelectorAll<HTMLElement>('.f-step'));
-  const screens = Array.from(document.querySelectorAll<HTMLElement>('.f-screen'));
-  const dots    = Array.from(document.querySelectorAll<HTMLElement>('.f-dot'));
-  if (!steps.length) return;
-
-  let cur = -1;
-
-  function activate(i: number) {
-    if (i === cur) return;
-    cur = i;
-
-    screens.forEach((s, idx) => { s.style.opacity = idx === i ? '1' : '0'; });
-
-    dots.forEach((d, idx) => {
-      if (idx === i) {
-        d.style.height = '28px';
-        d.style.borderRadius = '3px';
-        d.style.background = 'var(--color-primary,#1DB48B)';
-      } else {
-        d.style.height = '6px';
-        d.style.borderRadius = '3px';
-        d.style.background = 'rgba(0,0,0,.15)';
-      }
-    });
-
-    steps.forEach((step, idx) => {
-      const active = idx === i;
-      const opacity = active ? '1' : '.15';
-      const ty = active ? '0' : '10px';
-      ['f-label','f-title','f-desc','f-bullets'].forEach(cls => {
-        const el = step.querySelector<HTMLElement>(`.${cls}`);
-        if (el) { el.style.opacity = opacity; el.style.transform = `translateY(${ty})`; }
-      });
-      const num = step.querySelector<HTMLElement>('.f-num');
-      if (num) num.style.opacity = active ? '.08' : '.04';
-    });
+<style>
+  .feat-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
-  activate(0);
+  .feat-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 460px;
+  }
 
-  const obs = new IntersectionObserver(
-    (entries) => entries.forEach(e => {
-      if (e.isIntersecting) activate(Number((e.target as HTMLElement).dataset.i ?? 0));
-    }),
-    { rootMargin: '-42% 0px -42% 0px', threshold: 0 }
-  );
+  .feat-card--flip .feat-text { order: 2; }
+  .feat-card--flip .feat-visual { order: 1; }
 
-  steps.forEach(s => obs.observe(s));
-})();
-</script>
+  .feat-text {
+    padding: 56px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
+  .feat-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-primary, #1DB48B);
+    margin: 0 0 14px;
+  }
+
+  .feat-title {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-ink, #0B1C30);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+
+  .feat-desc {
+    color: var(--color-muted, #6b7280);
+    line-height: 1.75;
+    font-size: 1rem;
+    margin: 0 0 28px;
+  }
+
+  .feat-bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .feat-bullets li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--color-ink, #0B1C30);
+  }
+
+  .feat-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-primary, #1DB48B);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .feat-visual {
+    background: #F3F4F6;
+    min-height: 460px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .feat-card {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .feat-card--flip .feat-text { order: 0; }
+    .feat-card--flip .feat-visual { order: 1; }
+
+    .feat-text {
+      padding: 36px 28px 28px;
+    }
+
+    .feat-title {
+      font-size: 1.5rem;
+    }
+
+    .feat-visual {
+      min-height: 280px;
+    }
+  }
+</style>
