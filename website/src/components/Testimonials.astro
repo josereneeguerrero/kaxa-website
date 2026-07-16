@@ -1,74 +1,287 @@
 ---
 import type { Lang } from '../i18n/routes';
-
-interface Props {
-  lang: Lang;
-}
-
+interface Props { lang: Lang; }
 const { lang } = Astro.props;
+const es = lang === 'es';
 
-const isEs = lang === 'es';
+const heading    = es ? 'Lo que dicen los testers' : 'What testers say';
+const subheading = es
+  ? 'Feedback real de las personas que probaron Kaxa antes del lanzamiento oficial.'
+  : 'Real feedback from people who tested Kaxa before the official launch.';
+const ratingLabel = es ? 'Promedio de 200+ testers' : 'Average from 200+ testers';
+const stars = '★★★★★';
 
-const heading    = isEs ? 'Construida para durar, no para impresionar' : 'Built to last, not to impress';
-const subheading = isEs
-  ? 'Tres decisiones de diseño que cambian cómo llevas tus finanzas.'
-  : 'Three design decisions that change how you manage your money.';
-
-const cards = isEs
-  ? [
-      {
-        icon: '🔒',
-        title: 'Sin cuentas. Sin servidores.',
-        text: 'Tus datos nunca salen de tu teléfono. No hay base de datos que hackear, no hay empresa que venda tu información. Solo tú y tu dinero.',
-      },
-      {
-        icon: '⚡',
-        title: 'Abre y funciona.',
-        text: 'Sin onboarding de 10 pasos, sin conectar tu banco, sin permisos invasivos. Instalas, abres y en 30 segundos estás registrando tu primer gasto.',
-      },
-      {
-        icon: '🎯',
-        title: 'Todo en uno, sin ruido.',
-        text: 'Gastos, presupuestos, metas, deudas y pagos recurrentes en una sola app. Sin módulos de pago extra, sin funciones escondidas detrás de más suscripciones.',
-      },
-    ]
-  : [
-      {
-        icon: '🔒',
-        title: 'No accounts. No servers.',
-        text: 'Your data never leaves your phone. No database to hack, no company selling your information. Just you and your money.',
-      },
-      {
-        icon: '⚡',
-        title: 'Open and go.',
-        text: 'No 10-step onboarding, no bank connection required, no invasive permissions. Install, open, and in 30 seconds you\'re logging your first expense.',
-      },
-      {
-        icon: '🎯',
-        title: 'Everything in one, no noise.',
-        text: 'Expenses, budgets, goals, debts, and recurring payments in one app. No extra paid modules, no features hidden behind more subscriptions.',
-      },
-    ];
+const reviews = es ? [
+  {
+    name: 'Karla M.',
+    stars: 5,
+    title: 'Por fin una que duré usando',
+    text: 'Probé como 4 apps de finanzas y siempre las dejaba a la semana. Con Kaxa llevé dos meses seguidos sin fallar. El truco es que registro con voz y se acaba el drama del formulario.',
+  },
+  {
+    name: 'Diego F.',
+    stars: 5,
+    title: 'Los bolsillos me cambiaron la mentalidad',
+    text: 'Antes veía el saldo total y creía que tenía plata. Ahora sé exactamente cuánto es de la renta y cuánto puedo gastar. Esa diferencia vale todo.',
+  },
+  {
+    name: 'Ana L.',
+    stars: 5,
+    title: 'El OCR me voló la cabeza',
+    text: 'Tomé foto al ticket del súper y puso el total sola. Sin internet. Eso no lo he visto en ninguna otra app gratuita.',
+  },
+  {
+    name: 'Rodrigo C.',
+    stars: 5,
+    title: 'La alerta del 80% me salvó el mes',
+    text: 'Me avisa cuando voy al 80% del presupuesto. Eso es lo que necesitaba: saber antes de pasarme, no enterarme después de que ya no hay nada que hacer.',
+  },
+  {
+    name: 'María J.',
+    stars: 5,
+    title: '5 minutos y ya estás adentro',
+    text: 'Sin cuenta, sin conectar el banco, sin permisos raros. Abrí, registré mi primer gasto en voz y listo. No necesita tutorial.',
+  },
+  {
+    name: 'Pablo S.',
+    stars: 4,
+    title: 'Hasta las deudas personales maneja',
+    text: 'Tenía una deuda con un amigo anotada en papel desde hace meses. La metí a Kaxa con fecha y cuota. Ya no se me olvida y ya no es incómodo.',
+  },
+  {
+    name: 'Valeria R.',
+    stars: 5,
+    title: 'Perfecta para el efectivo del negocio',
+    text: 'La uso para llevar el efectivo del negocio de mi mamá. Es lo más simple que encontré sin pagar membresía. Y funciona sin internet.',
+  },
+  {
+    name: 'Carlos T.',
+    stars: 5,
+    title: 'Sin cuenta, sin trámite',
+    text: 'Que no me pidiera correo ni contraseña fue lo que me convenció. Instalé, abrí y ya estaba funcionando. Sin esperar confirmación ni nada.',
+  },
+] : [
+  {
+    name: 'Karen M.',
+    stars: 5,
+    title: 'Finally one I actually kept using',
+    text: 'I tried 4 finance apps and always dropped them within a week. With Kaxa I've gone two months straight. The trick is voice logging — no form drama.',
+  },
+  {
+    name: 'Diego F.',
+    stars: 5,
+    title: 'Pockets changed how I think about money',
+    text: 'I used to see my total balance and think I had money. Now I know exactly how much is for rent and how much I can actually spend.',
+  },
+  {
+    name: 'Ana L.',
+    stars: 5,
+    title: 'The receipt OCR blew my mind',
+    text: 'I took a photo of the grocery receipt and it filled in the total by itself. Offline. I've never seen that in a free app.',
+  },
+  {
+    name: 'Rodrigo C.',
+    stars: 5,
+    title: 'The 80% alert saved my month',
+    text: 'It warns me when I hit 80% of my budget. That's what I needed — knowing before I overspend, not after there's nothing left to do.',
+  },
+  {
+    name: 'María J.',
+    stars: 5,
+    title: '5 minutes and you're in',
+    text: 'No account, no bank connection, no weird permissions. I opened it, logged my first expense by voice, done. No tutorial needed.',
+  },
+  {
+    name: 'Pablo S.',
+    stars: 4,
+    title: 'Even tracks personal debts',
+    text: 'I had a debt to a friend written on paper for months. I added it to Kaxa with a date and installment. No more forgetting, no more awkwardness.',
+  },
+  {
+    name: 'Valeria R.',
+    stars: 5,
+    title: 'Perfect for the family business',
+    text: 'I use it to track my mom's business cash. Simplest thing I found without a subscription. Works offline too.',
+  },
+  {
+    name: 'Carlos T.',
+    stars: 5,
+    title: 'No account, no hassle',
+    text: 'Not asking for an email or password was what sold me. Installed, opened, and it was already working. No confirmation email, nothing.',
+  },
+];
 ---
 
-<section class="bg-surface py-16 sm:py-20">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <h2 class="reveal text-center text-3xl font-extrabold text-ink sm:text-4xl">{heading}</h2>
-    <p class="reveal mx-auto mt-3 max-w-md text-center text-sm text-muted" style="transition-delay: 100ms">
-      {subheading}
-    </p>
+<section class="tm-section">
 
-    <div class="mt-12 grid gap-5 sm:grid-cols-3">
-      {cards.map((c, i) => (
-        <div
-          class="reveal glass-card flex flex-col gap-4 rounded-2xl border border-surface-border p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
-          style={`transition-delay: ${i * 80}ms`}
-        >
-          <span class="text-3xl" aria-hidden="true">{c.icon}</span>
-          <p class="flex-1 text-sm leading-relaxed text-ink/80">{c.text}</p>
-          <p class="text-sm font-bold text-ink">{c.title}</p>
-        </div>
-      ))}
+  <!-- Header -->
+  <div class="tm-header">
+    <span class="reveal tm-eyebrow">{es ? 'Reseñas' : 'Reviews'}</span>
+    <h2 class="reveal tm-title" style="transition-delay:60ms">{heading}</h2>
+    <p class="reveal tm-subtitle" style="transition-delay:120ms">{subheading}</p>
+
+    <!-- Rating badge -->
+    <div class="reveal tm-rating" style="transition-delay:180ms">
+      <span class="tm-score">4.8</span>
+      <div class="tm-rating-right">
+        <span class="tm-stars" aria-hidden="true">{stars}</span>
+        <span class="tm-rating-label">{ratingLabel}</span>
+      </div>
     </div>
   </div>
+
+  <!-- Masonry grid -->
+  <div class="tm-grid">
+    {reviews.map((r, i) => (
+      <div class="reveal tm-card" style={`transition-delay:${i * 40}ms`}>
+        <div class="tm-card-stars" aria-label={`${r.stars} estrellas`}>
+          {'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}
+        </div>
+        <p class="tm-card-title">{r.title}</p>
+        <p class="tm-card-text">{r.text}</p>
+        <p class="tm-card-name">{r.name}</p>
+      </div>
+    ))}
+  </div>
+
 </section>
+
+<style>
+  .tm-section {
+    background: #fff;
+    padding: 80px 0 96px;
+  }
+
+  .tm-header {
+    max-width: 680px;
+    margin: 0 auto 48px;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .tm-eyebrow {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    background: rgba(11,28,48,.06);
+    color: var(--color-ink, #0B1C30);
+  }
+
+  .tm-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-ink, #0B1C30);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  .tm-subtitle {
+    font-size: 1rem;
+    color: var(--color-muted, #6b7280);
+    margin: 0 0 28px;
+    line-height: 1.6;
+  }
+
+  /* Rating badge */
+  .tm-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #F8F9FF;
+    border: 1px solid rgba(0,0,0,.07);
+    border-radius: 16px;
+    padding: 12px 20px;
+  }
+
+  .tm-score {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-ink, #0B1C30);
+    line-height: 1;
+  }
+
+  .tm-rating-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .tm-stars {
+    font-size: 18px;
+    color: #F59E0B;
+    letter-spacing: 1px;
+  }
+
+  .tm-rating-label {
+    font-size: 12px;
+    color: var(--color-muted, #6b7280);
+    white-space: nowrap;
+  }
+
+  /* Grid — 3-col masonry via CSS columns */
+  .tm-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    columns: 3;
+    column-gap: 16px;
+  }
+
+  .tm-card {
+    break-inside: avoid;
+    background: #F8F9FF;
+    border: 1px solid rgba(0,0,0,.05);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tm-card-stars {
+    font-size: 13px;
+    color: #F59E0B;
+    letter-spacing: 1px;
+  }
+
+  .tm-card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-ink, #0B1C30);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .tm-card-text {
+    font-size: 13px;
+    color: var(--color-muted, #6b7280);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .tm-card-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9ca3af;
+    margin: 4px 0 0;
+  }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    .tm-grid { columns: 2; }
+  }
+
+  /* Mobile */
+  @media (max-width: 540px) {
+    .tm-title { font-size: 1.5rem; }
+    .tm-grid { columns: 1; }
+  }
+</style>
