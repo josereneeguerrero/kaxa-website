@@ -1,0 +1,285 @@
+---
+import type { Lang } from '../i18n/routes';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const es = lang === 'es';
+
+const active = es ? [
+  {
+    title: 'Voz con IA',
+    desc: 'Di el gasto en voz alta. Kaxa detecta monto, categoría y bolsillo sola.',
+    svg: 'M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3zm7 9v1a7 7 0 0 1-14 0v-1m7 8v3m-4 0h8',
+  },
+  {
+    title: 'Foto de recibo',
+    desc: 'Toma foto del ticket. OCR local lee el total en segundos, sin internet.',
+    svg: 'M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+  },
+  {
+    title: 'Manual rápido',
+    desc: 'Numpad + categoría + bolsillo. Registrado en 3 toques.',
+    svg: 'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z',
+  },
+] : [
+  {
+    title: 'Voice + AI',
+    desc: 'Say the expense out loud. Kaxa detects amount, category, and pocket on its own.',
+    svg: 'M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3zm7 9v1a7 7 0 0 1-14 0v-1m7 8v3m-4 0h8',
+  },
+  {
+    title: 'Receipt photo',
+    desc: 'Snap the ticket. On-device OCR reads the total in seconds, no internet needed.',
+    svg: 'M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+  },
+  {
+    title: 'Quick manual',
+    desc: 'Numpad + category + pocket. Logged in 3 taps.',
+    svg: 'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z',
+  },
+];
+
+const coming = es ? [
+  {
+    title: 'Widget',
+    desc: 'Registra desde la pantalla de inicio sin abrir la app.',
+    svg: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
+  },
+  {
+    title: 'SMS del banco',
+    desc: 'Detecta pagos automáticamente desde los mensajes de tu banco.',
+    svg: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+  },
+  {
+    title: 'Notificaciones',
+    desc: 'Captura pagos de Mercado Pago, Nequi y más al instante.',
+    svg: 'M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9m-4.27 13a2 2 0 0 1-3.46 0',
+  },
+] : [
+  {
+    title: 'Widget',
+    desc: 'Log from your home screen without opening the app.',
+    svg: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
+  },
+  {
+    title: 'Bank SMS',
+    desc: 'Auto-detects payments from your bank text messages.',
+    svg: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+  },
+  {
+    title: 'Notifications',
+    desc: 'Captures payments from Mercado Pago, Nequi, and more instantly.',
+    svg: 'M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9m-4.27 13a2 2 0 0 1-3.46 0',
+  },
+];
+
+const soonLabel  = es ? 'Próximamente' : 'Coming soon';
+const sectionTitle    = es ? 'Registra como quieras' : 'Log your way';
+const sectionSubtitle = es
+  ? 'Tres formas de anotar un gasto hoy — y más por venir.'
+  : 'Three ways to log today — more on the way.';
+const eyebrow = es ? 'Formas de registrar' : 'How to log';
+---
+
+<section class="rm-section bg-grain">
+
+  <!-- Header -->
+  <div class="rm-header">
+    <span class="reveal rm-eyebrow">{eyebrow}</span>
+    <h2 class="reveal rm-title" style="transition-delay:60ms">{sectionTitle}</h2>
+    <p class="reveal rm-subtitle" style="transition-delay:120ms">{sectionSubtitle}</p>
+  </div>
+
+  <!-- Grid -->
+  <div class="rm-grid">
+
+    <!-- Active cards -->
+    {active.map((item, i) => (
+      <div class="reveal rm-card rm-card--active" style={`transition-delay:${i * 50}ms`}>
+        <div class="rm-icon rm-icon--active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d={item.svg} />
+          </svg>
+        </div>
+        <p class="rm-card-title">{item.title}</p>
+        <p class="rm-card-desc">{item.desc}</p>
+      </div>
+    ))}
+
+    <!-- Coming soon cards -->
+    {coming.map((item, i) => (
+      <div class="reveal rm-card rm-card--soon" style={`transition-delay:${(i + active.length) * 50}ms`}>
+        <div class="rm-card-top">
+          <div class="rm-icon rm-icon--soon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d={item.svg} />
+            </svg>
+          </div>
+          <span class="rm-badge">{soonLabel}</span>
+        </div>
+        <p class="rm-card-title rm-card-title--soon">{item.title}</p>
+        <p class="rm-card-desc rm-card-desc--soon">{item.desc}</p>
+      </div>
+    ))}
+
+  </div>
+</section>
+
+<style>
+  .rm-section {
+    padding: 80px 0 96px;
+  }
+
+  .rm-header {
+    max-width: 680px;
+    margin: 0 auto 48px;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .rm-eyebrow {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    background: rgba(11,28,48,.06);
+    color: var(--color-ink, #0B1C30);
+  }
+
+  .rm-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-ink, #0B1C30);
+    margin: 0 0 12px;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  .rm-subtitle {
+    font-size: 1rem;
+    color: var(--color-muted, #6b7280);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Grid */
+  .rm-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  /* Card base */
+  .rm-card {
+    border-radius: 18px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Active */
+  .rm-card--active {
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.04);
+  }
+
+  .rm-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .rm-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .rm-icon--active {
+    background: rgba(16,185,129,.12);
+    color: var(--color-primary, #10B981);
+  }
+
+  /* Coming soon */
+  .rm-card--soon {
+    background: rgba(0,0,0,.025);
+    border: 1px solid rgba(0,0,0,.06);
+  }
+
+  .rm-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .rm-icon--soon {
+    background: rgba(0,0,0,.06);
+    color: #9ca3af;
+  }
+
+  .rm-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--color-primary, #10B981);
+    background: rgba(16,185,129,.10);
+    padding: 3px 8px;
+    border-radius: 9999px;
+  }
+
+  /* Text */
+  .rm-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-ink, #0B1C30);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .rm-card-title--soon {
+    color: #9ca3af;
+  }
+
+  .rm-card-desc {
+    font-size: 13px;
+    color: var(--color-muted, #6b7280);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .rm-card-desc--soon {
+    color: #c4c9d0;
+  }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    .rm-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 540px) {
+    .rm-title { font-size: 1.5rem; }
+
+    .rm-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .rm-card {
+      padding: 18px 16px;
+    }
+  }
+</style>
