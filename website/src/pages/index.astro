@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import TrustStrip from '../components/TrustStrip.astro';
 import Features from '../components/Features.astro';
 import VoiceSection from '../components/VoiceSection.astro';
 import HowItWorks from '../components/HowItWorks.astro';
@@ -16,7 +15,6 @@ const t = translations[lang];
 ---
 <BaseLayout lang={lang} currentRoute="home" title={t.meta.title} description={t.meta.description}>
   <Hero lang={lang} />
-  <TrustStrip lang={lang} />
   <Features lang={lang} />
   <VoiceSection lang={lang} />
   <HowItWorks lang={lang} />
