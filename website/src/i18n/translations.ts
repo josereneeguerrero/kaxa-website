@@ -194,9 +194,9 @@ export const translations = {
       contactButton: 'Enviar correo',
     },
     cta: {
-      title: 'Empieza gratis hoy. Tus finanzas claras en minutos.',
-      subtitle: 'Disponible en Google Play. Sin tarjeta de crédito.',
-      button: 'Descargar en Google Play',
+      title: 'Tu dinero, por fin ordenado.',
+      subtitle: 'Gratis en Google Play · Sin cuenta ni tarjeta.',
+      button: 'Descargar gratis',
       ctaWaitlist: false,
     },
     waitlistUI: {
@@ -412,9 +412,9 @@ export const translations = {
       contactButton: 'Send email',
     },
     cta: {
-      title: 'Start free today. Clear finances in minutes.',
-      subtitle: 'Available on Google Play. No credit card required.',
-      button: 'Download on Google Play',
+      title: 'Your money, finally under control.',
+      subtitle: 'Free on Google Play · No account or credit card needed.',
+      button: 'Download free',
       ctaWaitlist: false,
     },
     waitlistUI: {
