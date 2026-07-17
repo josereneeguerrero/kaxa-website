@@ -78,13 +78,16 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
   .hero-badge-img { height: 52px; display: block; }
 
   @media (max-width: 768px) {
+    .hero-section { padding: 48px 0 56px; }
     .hero-inner {
       grid-template-columns: 1fr;
       min-height: auto;
       padding: 0 24px;
+      gap: 0;
     }
+    .hero-inner > div:last-child { display: none; }
     .hero-text { align-items: center; text-align: center; }
     .hero-sub { max-width: 100%; }
-    .hero-h1 { font-size: clamp(2.4rem, 8vw, 3.2rem); }
+    .hero-h1 { font-size: clamp(2rem, 8vw, 3rem); }
   }
 </style>

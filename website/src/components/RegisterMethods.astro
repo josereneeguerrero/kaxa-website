@@ -271,6 +271,7 @@ const eyebrow = es ? 'Formas de registrar' : 'How to log';
 
   /* Mobile */
   @media (max-width: 540px) {
+    .rm-section { padding: 60px 0 72px; }
     .rm-title { font-size: 1.5rem; }
 
     .rm-grid {
@@ -279,7 +280,13 @@ const eyebrow = es ? 'Formas de registrar' : 'How to log';
     }
 
     .rm-card {
-      padding: 18px 16px;
+      padding: 18px 14px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .rm-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
