@@ -27,8 +27,16 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
       </a>
     </div>
 
-    <!-- RIGHT: placeholder -->
-    <div></div>
+    <!-- RIGHT: phone mockup -->
+    <div class="hero-mockup-wrap">
+      <img
+        src="/images/hero-mockup.png"
+        alt={lang === 'es' ? 'Pantalla principal de Kaxa' : 'Kaxa home screen'}
+        class="hero-mockup-img"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
 
   </div>
 </section>
@@ -77,6 +85,19 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
   .hero-badge-link:hover { opacity: .88; transform: translateY(-1px); }
   .hero-badge-img { height: 52px; display: block; }
 
+  .hero-mockup-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-mockup-img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 32px 64px rgba(0,0,0,.13));
+  }
+
   @media (max-width: 768px) {
     .hero-section { padding: 48px 0 56px; }
     .hero-inner {
@@ -85,7 +106,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
       padding: 0 24px;
       gap: 0;
     }
-    .hero-inner > div:last-child { display: none; }
+    .hero-mockup-wrap { display: none; }
     .hero-text { align-items: center; text-align: center; }
     .hero-sub { max-width: 100%; }
     .hero-h1 { font-size: clamp(2rem, 8vw, 3rem); }
