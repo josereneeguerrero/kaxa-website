@@ -303,25 +303,25 @@ const reviews = es ? [
   /* Wrap with height clip */
   .tm-wrap {
     position: relative;
-    max-height: 460px;
+    max-height: 600px;
     overflow: hidden;
-    transition: max-height .5s ease;
+    transition: max-height .6s cubic-bezier(.4,0,.2,1);
   }
 
   .tm-wrap--open {
-    max-height: 2000px;
+    max-height: 3000px;
   }
 
-  /* Gradient fade overlay */
+  /* Gradient fade — starts at top of row 3, covers it fully */
   .tm-fade {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 160px;
-    background: linear-gradient(to bottom, transparent, #fff);
+    height: 240px;
+    background: linear-gradient(to bottom, transparent, #fff 80%);
     pointer-events: none;
-    transition: opacity .3s ease;
+    transition: opacity .25s ease;
   }
 
   /* Show more button */
