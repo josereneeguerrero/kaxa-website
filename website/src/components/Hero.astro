@@ -30,7 +30,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
     <!-- RIGHT: phone mockup -->
     <div class="hero-mockup-wrap">
       <img
-        src="/images/hero-mockup.png"
+        src={lang === 'es' ? '/images/hero-mockup-es.png' : '/images/hero-mockup-en.png'}
         alt={lang === 'es' ? 'Pantalla principal de Kaxa' : 'Kaxa home screen'}
         class="hero-mockup-img"
         loading="eager"
