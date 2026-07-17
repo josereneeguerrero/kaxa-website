@@ -8,7 +8,7 @@ export const translations = {
     nav: {
       howItWorks: 'Cómo funciona',
       features: 'Funciones',
-      pricing: 'Precios',
+      about: 'Nosotros',
       support: 'Soporte',
       download: 'Descargar',
     },
@@ -227,7 +227,7 @@ export const translations = {
     nav: {
       howItWorks: 'How it works',
       features: 'Features',
-      pricing: 'Pricing',
+      about: 'About',
       support: 'Support',
       download: 'Download',
     },

@@ -23,6 +23,7 @@ const switchHref = routes[currentRoute][otherLang(lang)];
     <nav class="hdr-nav">
       <a href={`${home}#como-funciona`}>{t.nav.howItWorks}</a>
       <a href={`${home}#funciones`}>{t.nav.features}</a>
+      <a href={`${home}#nosotros`}>{t.nav.about}</a>
       <a href={routes.support[lang]}>{t.nav.support}</a>
     </nav>
     <div class="hdr-actions">
@@ -42,6 +43,7 @@ const switchHref = routes[currentRoute][otherLang(lang)];
   <nav id="mobile-menu" class="hdr-mobile hidden">
     <a href={`${home}#como-funciona`}>{t.nav.howItWorks}</a>
     <a href={`${home}#funciones`}>{t.nav.features}</a>
+    <a href={`${home}#nosotros`}>{t.nav.about}</a>
     <a href={routes.support[lang]}>{t.nav.support}</a>
     <a href={switchHref} class="hdr-lang-mobile">{lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}</a>
     <a href={PLAY_STORE_URL} target="_blank" rel="noopener" class="hdr-cta">{t.nav.download}</a>
