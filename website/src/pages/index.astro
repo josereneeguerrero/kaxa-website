@@ -8,6 +8,7 @@ import HowItWorks from '../components/HowItWorks.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Pricing from '../components/Pricing.astro';
 import FAQ from '../components/FAQ.astro';
+import About from '../components/About.astro';
 import CTASection from '../components/CTASection.astro';
 import { translations } from '../i18n/translations';
 
@@ -23,5 +24,6 @@ const t = translations[lang];
   <Testimonials lang={lang} />
   <Pricing lang={lang} />
   <FAQ lang={lang} />
+  <About lang={lang} />
   <CTASection lang={lang} />
 </BaseLayout>
