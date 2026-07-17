@@ -139,49 +139,49 @@ export const translations = {
       title: 'Preguntas frecuentes',
       items: [
         {
-          question: '¿Qué incluye Kaxa?',
+          question: '¿Está disponible para iPhone?',
           answer:
-            'Registro de gastos e ingresos, bolsillos para organizar tu dinero, presupuestos por categoría con alertas automáticas, metas de ahorro, control de deudas y cuotas, pagos recurrentes, resumen con gráficas y puntaje de salud financiera. Todo en una sola app, sin anuncios.',
+            'Por ahora Kaxa es exclusiva para Android y está disponible gratis en Google Play. La versión para iOS está en desarrollo.',
         },
         {
-          question: '¿Cómo funciona la IA?',
+          question: '¿Qué incluye Kaxa?',
           answer:
-            'Hablale a Kaxa: decí "gasté 50 en el supermercado" y ella detecta el monto, lo categoriza y lo registra sola. No hay menús que navegar ni campos que llenar. La inteligencia artificial entiende lenguaje natural para que anotar un gasto sea tan rápido como mandar un audio.',
+            'Registro de gastos e ingresos, bolsillos para organizar tu dinero por cuenta, presupuestos por categoría con alertas al 80%, metas de ahorro con progreso visual, control de deudas y cuotas, y pagos recurrentes. Todo sin anuncios y sin necesitar crear una cuenta.',
         },
         {
           question: '¿Qué son los bolsillos?',
           answer:
-            'Los bolsillos son la forma en que Kaxa organiza tu dinero real. Creas uno por efectivo, otro por tu cuenta bancaria, otro por tu billetera digital — los que necesites. Cada bolsillo tiene su propio balance y todos suman a tu total. Así sabes exactamente dónde está cada peso, no solo cuánto tienes.',
+            'Los bolsillos son la forma en que Kaxa organiza tu dinero real. Creás uno por efectivo, otro por tu cuenta bancaria, otro por tu billetera digital — los que necesités. Cada bolsillo tiene su propio saldo y todos suman a tu total. Así sabés exactamente dónde está cada peso, no solo cuánto tenés en total.',
         },
         {
-          question: '¿En qué se diferencia de Excel u otras apps?',
+          question: '¿Cómo registro un gasto? ¿Funciona con voz y foto?',
           answer:
-            'Excel no te avisa cuando te pasás del presupuesto, no te recuerda una cuota pendiente y no tiene IA. Otras apps te piden conectar tu banco o crear una cuenta antes de hacer nada. Kaxa abre y funciona desde el primer segundo, sin login, sin sincronización bancaria, sin fricción.',
-        },
-        {
-          question: '¿Mis datos están seguros?',
-          answer:
-            'Tus datos financieros se guardan únicamente en tu dispositivo. No hay servidores que los almacenen, no hay cuentas que hackear, no hay nada que vender. Solo tú tienes acceso. Y si quieres una capa extra, activas el bloqueo biométrico con huella o reconocimiento facial.',
+            'Hay tres formas: por voz (decís "gasté 50 en el super" y la IA detecta monto, categoría y bolsillo), por foto de recibo (tomás una foto y el OCR lee el total sin internet), o de forma manual con el teclado numérico. Las tres funcionan desde la misma pantalla.',
         },
         {
           question: '¿Necesito conexión a internet?',
           answer:
-            'No. Kaxa funciona completamente sin internet. Registrás, consultás y analizás tus finanzas en cualquier lugar, sin datos móviles. Solo necesitás conexión para procesar la compra de la suscripción.',
+            'Casi todo funciona sin internet: registro manual, OCR de recibos, consultas, presupuestos y metas. Solo el registro por voz con IA necesita conexión para procesar el lenguaje natural. Si no tenés datos, usás el manual o la foto y listo.',
+        },
+        {
+          question: '¿Mis datos están seguros?',
+          answer:
+            'Tus datos financieros se guardan únicamente en tu dispositivo. No hay servidores que los almacenen, no hay cuentas que hackear, nada que vender. Solo vos tenés acceso. Si querés una capa extra, activás el bloqueo biométrico con huella o cara.',
+        },
+        {
+          question: '¿En qué se diferencia de otras apps de finanzas?',
+          answer:
+            'La mayoría te piden conectar tu banco, crear una cuenta o pagar antes de poder hacer algo. Kaxa abre y funciona desde el primer segundo — sin login, sin sincronización bancaria, sin fricción. Y tiene IA integrada para que registrar sea tan rápido como mandar un mensaje.',
         },
         {
           question: '¿En qué monedas funciona?',
           answer:
-            'Kaxa soporta 8 monedas: dólares (USD), euros (EUR), pesos mexicanos (MXN), pesos colombianos (COP), reales brasileños (BRL), pesos argentinos (ARS), quetzales (GTQ) y lempiras (HNL). Elegís la tuya al configurar la app.',
+            'Kaxa soporta dólares (USD), euros (EUR), pesos mexicanos (MXN), pesos colombianos (COP), reales brasileños (BRL), pesos argentinos (ARS), quetzales (GTQ) y lempiras (HNL). Elegís la tuya al abrir la app por primera vez.',
         },
         {
-          question: '¿Puedo probarla gratis?',
+          question: '¿Cómo cancelo la suscripción?',
           answer:
-            'Sí. El plan semanal incluye 3 días de prueba completamente gratis. Si no te convence, cancelas antes de que termine y no se cobra absolutamente nada. Sin tarjeta guardada de forma forzosa, sin compromisos.',
-        },
-        {
-          question: '¿Cómo cancelo mi suscripción?',
-          answer:
-            'Desde Google Play → Suscripciones → Kaxa → Cancelar. Sin llamadas, sin formularios, sin penalidades. Conservás el acceso completo hasta que termine tu periodo pagado.',
+            'Google Play → Suscripciones → Kaxa → Cancelar. Sin llamadas, sin formularios, sin penalidades. Conservás el acceso completo hasta que termine tu periodo pagado.',
         },
       ],
     },
@@ -357,49 +357,49 @@ export const translations = {
       title: 'Frequently asked questions',
       items: [
         {
-          question: 'What does Kaxa include?',
+          question: 'Is Kaxa available for iPhone?',
           answer:
-            'Expense and income tracking, pockets to organize your money, category budgets with automatic alerts, savings goals, debt and installment management, recurring payments, charts and summaries, and a financial health score. All in one app, no ads.',
+            'Kaxa is currently Android-only and free on Google Play. An iOS version is in development.',
         },
         {
-          question: 'How does the AI work?',
+          question: 'What does Kaxa include?',
           answer:
-            'Just talk to Kaxa: say "spent 50 at the supermarket" and she detects the amount, categorizes it, and logs it on her own. No menus to navigate, no fields to fill in. The built-in AI understands natural language so recording an expense is as fast as sending a voice note.',
+            'Expense and income tracking, pockets to organize your money by account, category budgets with 80% alerts, savings goals with visual progress, debt and installment tracking, and recurring payments. No ads, no account required.',
         },
         {
           question: 'What are pockets?',
           answer:
-            'Pockets are how Kaxa organizes your real money. You create one for cash, one for your bank account, one for your digital wallet — as many as you need. Each pocket has its own balance and they all add up to your total. That way you know exactly where every dollar is, not just how much you have.',
+            'Pockets are how Kaxa organizes your real money. Create one for cash, one for your bank account, one for your digital wallet — as many as you need. Each pocket has its own balance and they all add up to your total. You know exactly where every dollar is, not just how much you have.',
         },
         {
-          question: 'How is it different from Excel or other apps?',
+          question: 'How do I log an expense? Does voice and photo work?',
           answer:
-            'Excel won\'t alert you when you overspend, won\'t remind you of a due payment, and has no AI. Other apps ask you to connect your bank or create an account before you can do anything. Kaxa opens and works from the first second — no login, no bank sync, no friction.',
-        },
-        {
-          question: 'Is my data safe?',
-          answer:
-            'Your financial data is stored only on your device. No servers holding it, no accounts to get hacked, nothing to sell. Only you have access. And if you want an extra layer of protection, turn on biometric lock with fingerprint or face recognition.',
+            'Three ways: by voice (say "spent $50 at the grocery store" and AI detects amount, category, and pocket), by receipt photo (snap a ticket and on-device OCR reads the total without internet), or manually with the numpad. All three work from the same screen.',
         },
         {
           question: 'Do I need an internet connection?',
           answer:
-            'No. Kaxa works completely offline. You can log, review, and analyze your finances anywhere, without mobile data. You only need a connection to process the subscription purchase.',
+            'Almost everything works offline: manual entry, receipt OCR, budgets, goals, and reports. Only voice logging with AI needs a connection to process natural language. No data? Use manual or photo — done.',
+        },
+        {
+          question: 'Is my data safe?',
+          answer:
+            'Your financial data lives only on your device. No servers storing it, no accounts to get hacked, nothing to sell. Only you have access. For an extra layer, enable biometric lock with fingerprint or face recognition.',
+        },
+        {
+          question: 'How is it different from other finance apps?',
+          answer:
+            'Most apps ask you to link your bank, create an account, or pay before you can do anything. Kaxa opens and works from the first second — no login, no bank sync, no friction. And built-in AI makes logging as fast as sending a message.',
         },
         {
           question: 'What currencies does it support?',
           answer:
-            'Kaxa supports 8 currencies: US dollars (USD), euros (EUR), Mexican pesos (MXN), Colombian pesos (COP), Brazilian reais (BRL), Argentine pesos (ARS), Guatemalan quetzales (GTQ), and Honduran lempiras (HNL). You choose yours when setting up the app.',
-        },
-        {
-          question: 'Can I try it for free?',
-          answer:
-            'Yes. The weekly plan includes a 3-day free trial. If you\'re not convinced, cancel before it ends and you won\'t be charged a thing. No forced commitment, no strings attached.',
+            'Kaxa supports USD, EUR, MXN, COP, BRL, ARS, GTQ, and HNL. You pick yours the first time you open the app.',
         },
         {
           question: 'How do I cancel my subscription?',
           answer:
-            'Go to Google Play → Subscriptions → Kaxa → Cancel. No calls, no forms, no penalties. You keep full access until the end of your paid period.',
+            'Google Play → Subscriptions → Kaxa → Cancel. No calls, no forms, no penalties. You keep full access until your paid period ends.',
         },
       ],
     },
