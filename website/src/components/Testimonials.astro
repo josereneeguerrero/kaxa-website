@@ -4,12 +4,11 @@ interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const es = lang === 'es';
 
-const heading    = es ? 'Lo que dicen los testers' : 'What testers say';
+const heading    = es ? 'Lo que dicen los testers' : 'What our testers say';
 const subheading = es
-  ? 'Feedback real de las personas que probaron Kaxa antes del lanzamiento oficial.'
-  : 'Real feedback from people who tested Kaxa before the official launch.';
-const ratingLabel = es ? 'Promedio de 200+ testers' : 'Average from 200+ testers';
-const stars = '★★★★★';
+  ? 'Feedback real de las 12 personas que probaron Kaxa antes del lanzamiento.'
+  : 'Real feedback from the 12 people who tested Kaxa before launch.';
+const ratingLabel = es ? 'Promedio · 12 testers' : 'Average · 12 testers';
 
 const reviews = es ? [
   {
@@ -19,10 +18,10 @@ const reviews = es ? [
     text: 'Probé como 4 apps de finanzas y siempre las dejaba a la semana. Con Kaxa llevé dos meses seguidos sin fallar. El truco es que registro con voz y se acaba el drama del formulario.',
   },
   {
-    name: 'Diego F.',
+    name: 'Sofía B.',
     stars: 5,
-    title: 'Los bolsillos me cambiaron la mentalidad',
-    text: 'Antes veía el saldo total y creía que tenía plata. Ahora sé exactamente cuánto es de la renta y cuánto puedo gastar. Esa diferencia vale todo.',
+    title: 'La primera que no prometió demasiado',
+    text: 'Era escéptica. Todas prometen lo mismo. Kaxa fue la primera que simplemente funcionó sin pedirme que confiara en ella.',
   },
   {
     name: 'Ana L.',
@@ -31,16 +30,34 @@ const reviews = es ? [
     text: 'Tomé foto al ticket del súper y puso el total sola. Sin internet. Eso no lo he visto en ninguna otra app gratuita.',
   },
   {
+    name: 'Diego F.',
+    stars: 5,
+    title: 'Los bolsillos me cambiaron la mentalidad',
+    text: 'Antes veía el saldo total y creía que tenía plata. Ahora sé exactamente cuánto es de la renta y cuánto puedo gastar. Esa diferencia vale todo.',
+  },
+  {
+    name: 'Luis E.',
+    stars: 5,
+    title: 'Se acabaron las discusiones por dinero',
+    text: 'Mi pareja y yo llevamos la plata juntos. Antes era tensión cada mes. Ahora los dos vemos los mismos bolsillos y cada quien sabe cuánto puede gastar.',
+  },
+  {
     name: 'Rodrigo C.',
     stars: 5,
     title: 'La alerta del 80% me salvó el mes',
     text: 'Me avisa cuando voy al 80% del presupuesto. Eso es lo que necesitaba: saber antes de pasarme, no enterarme después de que ya no hay nada que hacer.',
   },
   {
+    name: 'Daniela M.',
+    stars: 4,
+    title: 'Me mostró dónde realmente gasto',
+    text: 'Soy estudiante. El presupuesto por categoría me mostró que el problema era el café y las salidas, no el arriendo. Eso no lo hubiera visto en un Excel.',
+  },
+  {
     name: 'María J.',
     stars: 5,
     title: '5 minutos y ya estás adentro',
-    text: 'Sin cuenta, sin conectar el banco, sin permisos raros. Abrí, registré mi primer gasto en voz y listo. No necesita tutorial.',
+    text: 'Sin cuenta, sin conectar el banco, sin permisos raros. Abrí, registré mi primer gasto en voz y listo.',
   },
   {
     name: 'Pablo S.',
@@ -49,10 +66,16 @@ const reviews = es ? [
     text: 'Tenía una deuda con un amigo anotada en papel desde hace meses. La metí a Kaxa con fecha y cuota. Ya no se me olvida y ya no es incómodo.',
   },
   {
+    name: 'Javier A.',
+    stars: 5,
+    title: 'Perfecta para ingresos variables',
+    text: 'Trabajo independiente y mis ingresos no son fijos. La meta de ahorro me dice cuánto necesito juntar antes de poder relajarme con los gastos del mes. No hay otra app que lo haga así de simple.',
+  },
+  {
     name: 'Valeria R.',
     stars: 5,
     title: 'Perfecta para el efectivo del negocio',
-    text: 'La uso para llevar el efectivo del negocio de mi mamá. Es lo más simple que encontré sin pagar membresía. Y funciona sin internet.',
+    text: 'La uso para el efectivo del negocio de mi mamá. Sin membresía. Sin internet.',
   },
   {
     name: 'Carlos T.',
@@ -68,10 +91,10 @@ const reviews = es ? [
     text: "I tried 4 finance apps and always dropped them within a week. With Kaxa I've gone two months straight. The trick is voice logging — no form drama.",
   },
   {
-    name: 'Diego F.',
+    name: 'Sofia B.',
     stars: 5,
-    title: 'Pockets changed how I think about money',
-    text: 'I used to see my total balance and think I had money. Now I know exactly how much is for rent and how much I can actually spend.',
+    title: "First one that didn't overpromise",
+    text: "I was skeptical. Every finance app promises the same thing. Kaxa was the first one that just worked — no asking me to trust it first.",
   },
   {
     name: 'Ana L.',
@@ -80,16 +103,34 @@ const reviews = es ? [
     text: "I took a photo of the grocery receipt and it filled in the total by itself. Offline. I've never seen that in a free app.",
   },
   {
+    name: 'Diego F.',
+    stars: 5,
+    title: 'Pockets changed how I think about money',
+    text: 'I used to see my total balance and think I had money. Now I know exactly how much is for rent and how much I can actually spend.',
+  },
+  {
+    name: 'Luis E.',
+    stars: 5,
+    title: 'No more money arguments',
+    text: "My partner and I share finances. Every month used to bring tension. Now we both see the same pockets and know how much each of us can spend. No more conflict.",
+  },
+  {
     name: 'Rodrigo C.',
     stars: 5,
     title: 'The 80% alert saved my month',
     text: "It warns me when I hit 80% of my budget. That's what I needed — knowing before I overspend, not after there's nothing left to do.",
   },
   {
+    name: 'Daniela M.',
+    stars: 4,
+    title: 'Showed me where I actually spend',
+    text: "I'm a student. The category budget showed me it was coffee and going out — not rent — that was draining me. I never would have seen that in a spreadsheet.",
+  },
+  {
     name: 'María J.',
     stars: 5,
     title: "5 minutes and you're in",
-    text: 'No account, no bank connection, no weird permissions. I opened it, logged my first expense by voice, done. No tutorial needed.',
+    text: 'No account, no bank connection, no weird permissions. I opened it, logged my first expense by voice, done.',
   },
   {
     name: 'Pablo S.',
@@ -98,10 +139,16 @@ const reviews = es ? [
     text: 'I had a debt to a friend written on paper for months. I added it to Kaxa with a date and installment. No more forgetting, no more awkwardness.',
   },
   {
+    name: 'Javier A.',
+    stars: 5,
+    title: 'Built for variable income',
+    text: "I'm freelance — income isn't fixed. The savings goal tells me how much I need to save before I can relax on spending that month. No other app does that this simply.",
+  },
+  {
     name: 'Valeria R.',
     stars: 5,
     title: 'Perfect for the family business',
-    text: "I use it to track my mom's business cash. Simplest thing I found without a subscription. Works offline too.",
+    text: "I use it to track my mom's business cash. No subscription. Works offline.",
   },
   {
     name: 'Carlos T.',
@@ -124,7 +171,7 @@ const reviews = es ? [
     <div class="reveal tm-rating" style="transition-delay:180ms">
       <span class="tm-score">4.8</span>
       <div class="tm-rating-right">
-        <span class="tm-stars" aria-hidden="true">{stars}</span>
+        <span class="tm-stars" aria-hidden="true">★★★★★</span>
         <span class="tm-rating-label">{ratingLabel}</span>
       </div>
     </div>
@@ -133,8 +180,8 @@ const reviews = es ? [
   <!-- Masonry grid -->
   <div class="tm-grid">
     {reviews.map((r, i) => (
-      <div class="reveal tm-card" style={`transition-delay:${i * 40}ms`}>
-        <div class="tm-card-stars" aria-label={`${r.stars} estrellas`}>
+      <div class="reveal tm-card" style={`transition-delay:${i * 35}ms`}>
+        <div class="tm-card-stars" aria-hidden="true">
           {'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}
         </div>
         <p class="tm-card-title">{r.title}</p>
@@ -153,8 +200,8 @@ const reviews = es ? [
   }
 
   .tm-header {
-    max-width: 680px;
-    margin: 0 auto 48px;
+    max-width: 640px;
+    margin: 0 auto 52px;
     padding: 0 24px;
     text-align: center;
   }
@@ -188,7 +235,6 @@ const reviews = es ? [
     line-height: 1.6;
   }
 
-  /* Rating badge */
   .tm-rating {
     display: inline-flex;
     align-items: center;
@@ -210,22 +256,22 @@ const reviews = es ? [
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 2px;
+    gap: 3px;
   }
 
   .tm-stars {
-    font-size: 18px;
+    font-size: 17px;
     color: #F59E0B;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
   }
 
   .tm-rating-label {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--color-muted, #6b7280);
     white-space: nowrap;
   }
 
-  /* Grid — 3-col masonry via CSS columns */
+  /* Masonry via CSS columns */
   .tm-grid {
     max-width: 1100px;
     margin: 0 auto;
@@ -264,22 +310,21 @@ const reviews = es ? [
     font-size: 13px;
     color: var(--color-muted, #6b7280);
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.65;
   }
 
   .tm-card-name {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    color: #9ca3af;
+    color: #b0b7c3;
     margin: 4px 0 0;
+    letter-spacing: .02em;
   }
 
-  /* Tablet */
   @media (max-width: 900px) {
     .tm-grid { columns: 2; }
   }
 
-  /* Mobile */
   @media (max-width: 540px) {
     .tm-title { font-size: 1.5rem; }
     .tm-grid { columns: 1; }
