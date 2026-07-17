@@ -45,9 +45,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
   .hero-section {
     background: #fff;
     overflow: hidden;
-    padding: 80px 0 80px;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
   }
   .hero-inner {
+    width: 100%;
     max-width: 1160px;
     margin: 0 auto;
     padding: 0 48px;
@@ -55,7 +59,6 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 40px;
-    min-height: calc(100vh - 64px);
   }
   .hero-text {
     display: flex;
