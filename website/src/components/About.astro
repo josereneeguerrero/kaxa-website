@@ -35,39 +35,35 @@ const links = [
       <p class="reveal ab-subtitle" style="transition-delay:120ms">{subtitle}</p>
     </div>
 
-    <!-- Card -->
-    <div class="reveal ab-card" style="transition-delay:180ms">
-
-      <!-- Photo -->
-      <div class="ab-photo-wrap">
-        <!-- REEMPLAZA con: <img src="/images/founder.jpg" alt={photoAlt} class="ab-photo" /> -->
-        <div class="ab-photo-placeholder" aria-label={photoAlt}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="4"/>
-            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-          </svg>
-        </div>
+    <!-- Photo -->
+    <div class="reveal ab-photo-wrap" style="transition-delay:180ms">
+      <!-- REEMPLAZA con: <img src="/images/founder.jpg" alt={photoAlt} class="ab-photo" /> -->
+      <div class="ab-photo-placeholder" aria-label={photoAlt}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
       </div>
-
-      <!-- Text -->
-      <div class="ab-text">
-        <p class="ab-name">{name}</p>
-        <p class="ab-role">{role}</p>
-        <p class="ab-bio">{bio}</p>
-
-        <!-- Social links -->
-        <div class="ab-links">
-          {links.map(l => (
-            <a href={l.href} target="_blank" rel="noopener" class="ab-link" aria-label={l.label}>
-              <svg viewBox="0 0 24 24" fill={l.fill ? 'currentColor' : 'none'} stroke={l.fill ? 'none' : 'currentColor'}>
-                <path d={l.svg}/>
-              </svg>
-            </a>
-          ))}
-        </div>
-      </div>
-
     </div>
+
+    <!-- Text -->
+    <div class="reveal ab-text" style="transition-delay:240ms">
+      <p class="ab-name">{name}</p>
+      <p class="ab-role">{role}</p>
+      <p class="ab-bio">{bio}</p>
+
+      <!-- Social links -->
+      <div class="ab-links">
+        {links.map(l => (
+          <a href={l.href} target="_blank" rel="noopener" class="ab-link" aria-label={l.label}>
+            <svg viewBox="0 0 24 24" fill={l.fill ? 'currentColor' : 'none'} stroke={l.fill ? 'none' : 'currentColor'}>
+              <path d={l.svg}/>
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -117,33 +113,24 @@ const links = [
     line-height: 1.6;
   }
 
-  /* Card */
-  .ab-card {
-    background: #fff;
-    border-radius: 24px;
-    box-shadow: 0 2px 16px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
-    display: flex;
-    align-items: center;
-    gap: 48px;
-    padding: 48px;
-  }
-
-  /* Photo */
+  /* Photo — centered */
   .ab-photo-wrap {
-    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
   }
 
   .ab-photo {
-    width: 180px;
-    height: 180px;
-    border-radius: 20px;
+    width: 220px;
+    height: 220px;
+    border-radius: 24px;
     object-fit: cover;
   }
 
   .ab-photo-placeholder {
-    width: 180px;
-    height: 180px;
-    border-radius: 20px;
+    width: 220px;
+    height: 220px;
+    border-radius: 24px;
     background: #F3F4F6;
     display: flex;
     align-items: center;
@@ -152,19 +139,23 @@ const links = [
   }
 
   .ab-photo-placeholder svg {
-    width: 72px;
-    height: 72px;
+    width: 80px;
+    height: 80px;
   }
 
-  /* Text */
+  /* Text — centered */
   .ab-text {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    max-width: 560px;
+    margin: 0 auto;
   }
 
   .ab-name {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: var(--color-ink, #0B1C30);
     margin: 0;
@@ -181,14 +172,15 @@ const links = [
     font-size: 15px;
     color: var(--color-muted, #6b7280);
     line-height: 1.75;
-    margin: 8px 0 0;
+    margin: 10px 0 0;
   }
 
   /* Social links */
   .ab-links {
     display: flex;
     gap: 12px;
-    margin-top: 16px;
+    margin-top: 20px;
+    justify-content: center;
   }
 
   .ab-link {
@@ -213,19 +205,7 @@ const links = [
     height: 15px;
   }
 
-  /* Mobile */
   @media (max-width: 640px) {
-    .ab-card {
-      flex-direction: column;
-      padding: 32px 24px;
-      gap: 28px;
-      text-align: center;
-    }
-
-    .ab-links {
-      justify-content: center;
-    }
-
     .ab-title { font-size: 1.5rem; }
   }
 </style>

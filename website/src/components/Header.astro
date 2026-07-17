@@ -23,10 +23,12 @@ const switchHref = routes[currentRoute][otherLang(lang)];
     <nav class="hdr-nav">
       <a href={`${home}#como-funciona`}>{t.nav.howItWorks}</a>
       <a href={`${home}#funciones`}>{t.nav.features}</a>
-      <a href={`${home}#precios`}>{t.nav.pricing}</a>
       <a href={routes.support[lang]}>{t.nav.support}</a>
     </nav>
     <div class="hdr-actions">
+      <a href={switchHref} class="hdr-lang" aria-label="Switch language">
+        {lang === 'es' ? 'EN' : 'ES'}
+      </a>
       <a href={PLAY_STORE_URL} target="_blank" rel="noopener" class="hdr-cta">
         {t.nav.download}
       </a>
@@ -40,8 +42,8 @@ const switchHref = routes[currentRoute][otherLang(lang)];
   <nav id="mobile-menu" class="hdr-mobile hidden">
     <a href={`${home}#como-funciona`}>{t.nav.howItWorks}</a>
     <a href={`${home}#funciones`}>{t.nav.features}</a>
-    <a href={`${home}#precios`}>{t.nav.pricing}</a>
     <a href={routes.support[lang]}>{t.nav.support}</a>
+    <a href={switchHref} class="hdr-lang-mobile">{lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}</a>
     <a href={PLAY_STORE_URL} target="_blank" rel="noopener" class="hdr-cta">{t.nav.download}</a>
   </nav>
 </header>
@@ -119,6 +121,19 @@ const switchHref = routes[currentRoute][otherLang(lang)];
   .hdr-nav a { text-decoration: none; color: inherit; transition: color .15s; }
   .hdr-nav a:hover { color: #1DB48B; }
   .hdr-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .hdr-lang {
+    font-size: 13px;
+    font-weight: 700;
+    color: #374151;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1.5px solid rgba(0,0,0,.12);
+    border-radius: 8px;
+    letter-spacing: .04em;
+    transition: border-color .15s, color .15s;
+  }
+  .hdr-lang:hover { border-color: #1DB48B; color: #1DB48B; }
+  .hdr-lang-mobile { color: #6b7280 !important; font-size: 14px; }
   .hdr-cta {
     background: #1DB48B;
     color: #fff;
