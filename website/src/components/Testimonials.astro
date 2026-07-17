@@ -177,21 +177,50 @@ const reviews = es ? [
     </div>
   </div>
 
-  <!-- Masonry grid -->
-  <div class="tm-grid">
-    {reviews.map((r, i) => (
-      <div class="reveal tm-card" style={`transition-delay:${i * 35}ms`}>
-        <div class="tm-card-stars" aria-hidden="true">
-          {'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}
+  <!-- Masonry grid with fade + expand -->
+  <div class="tm-wrap" id="tm-wrap">
+    <div class="tm-grid">
+      {reviews.map((r, i) => (
+        <div class="reveal tm-card" style={`transition-delay:${i * 35}ms`}>
+          <div class="tm-card-stars" aria-hidden="true">
+            {'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}
+          </div>
+          <p class="tm-card-title">{r.title}</p>
+          <p class="tm-card-text">{r.text}</p>
+          <p class="tm-card-name">{r.name}</p>
         </div>
-        <p class="tm-card-title">{r.title}</p>
-        <p class="tm-card-text">{r.text}</p>
-        <p class="tm-card-name">{r.name}</p>
-      </div>
-    ))}
+      ))}
+    </div>
+    <div class="tm-fade" id="tm-fade"></div>
+  </div>
+
+  <!-- Show more button -->
+  <div class="tm-more-wrap">
+    <button class="tm-more-btn" id="tm-btn" type="button">
+      {es ? 'Ver más reseñas' : 'Show more reviews'}
+      <svg id="tm-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
   </div>
 
 </section>
+
+<script>
+  const wrap    = document.getElementById('tm-wrap');
+  const fade    = document.getElementById('tm-fade');
+  const btn     = document.getElementById('tm-btn');
+  const chevron = document.getElementById('tm-chevron');
+
+  if (wrap && fade && btn && chevron) {
+    btn.addEventListener('click', () => {
+      const expanded = wrap.classList.toggle('tm-wrap--open');
+      fade.style.opacity = expanded ? '0' : '1';
+      chevron.style.transform = expanded ? 'rotate(180deg)' : '';
+      btn.firstChild!.textContent = expanded
+        ? (document.documentElement.lang === 'es' ? ' Ver menos' : ' Show less')
+        : (document.documentElement.lang === 'es' ? ' Ver más reseñas' : ' Show more reviews');
+    });
+  }
+</script>
 
 <style>
   .tm-section {
@@ -269,6 +298,63 @@ const reviews = es ? [
     font-size: 11px;
     color: var(--color-muted, #6b7280);
     white-space: nowrap;
+  }
+
+  /* Wrap with height clip */
+  .tm-wrap {
+    position: relative;
+    max-height: 460px;
+    overflow: hidden;
+    transition: max-height .5s ease;
+  }
+
+  .tm-wrap--open {
+    max-height: 2000px;
+  }
+
+  /* Gradient fade overlay */
+  .tm-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 160px;
+    background: linear-gradient(to bottom, transparent, #fff);
+    pointer-events: none;
+    transition: opacity .3s ease;
+  }
+
+  /* Show more button */
+  .tm-more-wrap {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .tm-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    border: 1.5px solid rgba(0,0,0,.12);
+    border-radius: 9999px;
+    background: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-ink, #0B1C30);
+    cursor: pointer;
+    transition: border-color .2s, box-shadow .2s;
+  }
+
+  .tm-more-btn:hover {
+    border-color: rgba(0,0,0,.22);
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  }
+
+  .tm-more-btn svg {
+    width: 14px;
+    height: 14px;
+    transition: transform .3s ease;
+    flex-shrink: 0;
   }
 
   /* Masonry via CSS columns */
