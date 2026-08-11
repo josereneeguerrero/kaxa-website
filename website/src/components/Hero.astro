@@ -27,7 +27,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
       </a>
     </div>
 
-    <!-- RIGHT: phone mockup -->
+    <!-- RIGHT: phone mockup + floating elements -->
     <div class="hero-mockup-wrap">
       <img
         src={lang === 'es' ? '/images/hero-mockup-es.png' : '/images/hero-mockup-en.png'}
@@ -35,6 +35,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
         class="hero-mockup-img"
         loading="eager"
         decoding="async"
+      />
+      <!-- Floating voice card -->
+      <img
+        src={lang === 'es' ? '/images/voice-card-es.png' : '/images/voice-card-en.png'}
+        alt=""
+        aria-hidden="true"
+        class="hero-float hero-float--voice"
       />
     </div>
 
@@ -89,6 +96,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
   .hero-badge-img { height: 52px; display: block; }
 
   .hero-mockup-wrap {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,6 +107,21 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
     height: auto;
     display: block;
     filter: drop-shadow(0 32px 64px rgba(0,0,0,.13));
+  }
+  .hero-float {
+    position: absolute;
+    pointer-events: none;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,.10));
+  }
+  .hero-float--voice {
+    width: 240px;
+    top: 8%;
+    left: 2%;
+    animation: float-y 4s ease-in-out infinite;
+  }
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
   }
 
   @media (max-width: 768px) {
