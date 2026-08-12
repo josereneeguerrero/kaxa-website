@@ -43,12 +43,12 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
         aria-hidden="true"
         class="hero-float hero-float--voice"
       />
-      <!-- Floating budget pills -->
+      <!-- Floating income card -->
       <img
-        src="/images/budget-pill.png"
+        src={lang === 'es' ? '/images/income-card-es.png' : '/images/income-card-en.png'}
         alt=""
         aria-hidden="true"
-        class="hero-float hero-float--budget"
+        class="hero-float hero-float--income"
       />
     </div>
 
@@ -126,8 +126,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
     left: 2%;
     animation: float-y 4s ease-in-out infinite;
   }
-  .hero-float--budget {
-    width: 200px;
+  .hero-float--income {
+    width: 240px;
     bottom: 6%;
     right: 2%;
     animation: float-y 5s ease-in-out infinite;
