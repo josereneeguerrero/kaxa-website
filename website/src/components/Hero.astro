@@ -43,6 +43,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
         aria-hidden="true"
         class="hero-float hero-float--voice"
       />
+      <!-- Floating budget pills -->
+      <img
+        src="/images/budget-pill.png"
+        alt=""
+        aria-hidden="true"
+        class="hero-float hero-float--budget"
+      />
     </div>
 
   </div>
@@ -118,6 +125,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.reneegue
     top: 8%;
     left: 2%;
     animation: float-y 4s ease-in-out infinite;
+  }
+  .hero-float--budget {
+    width: 200px;
+    bottom: 6%;
+    right: 2%;
+    animation: float-y 5s ease-in-out infinite;
+    animation-delay: 1s;
   }
   @keyframes float-y {
     0%, 100% { transform: translateY(0); }
