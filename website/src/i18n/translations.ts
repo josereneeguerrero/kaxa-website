@@ -156,17 +156,17 @@ export const translations = {
         {
           question: '¿Cómo registro un gasto? ¿Funciona con voz y foto?',
           answer:
-            'Hay tres formas: por voz (decís "gasté 50 en el super" y la IA detecta monto, categoría y bolsillo), por foto de recibo (tomás una foto y el OCR lee el total sin internet), o de forma manual con el teclado numérico. Las tres funcionan desde la misma pantalla.',
+            'Hay tres formas: por voz (decís "gasté 50 en el super" y la IA detecta monto, categoría y bolsillo), por foto de recibo (tomás una foto, el OCR lee el texto en tu teléfono y la IA extrae el total), o de forma manual con el teclado numérico. Las tres funcionan desde la misma pantalla.',
         },
         {
           question: '¿Necesito conexión a internet?',
           answer:
-            'Casi todo funciona sin internet: registro manual, OCR de recibos, consultas, presupuestos y metas. Solo el registro por voz con IA necesita conexión para procesar el lenguaje natural. Si no tenés datos, usás el manual o la foto y listo.',
+            'Casi todo funciona sin internet: registro manual, consultas, presupuestos, metas y reportes. El registro por voz y por foto de recibo necesitan conexión para que la IA procese el texto. Si no tenés datos, usás el registro manual y listo.',
         },
         {
           question: '¿Mis datos están seguros?',
           answer:
-            'Tus datos financieros se guardan únicamente en tu dispositivo. No hay servidores que los almacenen, no hay cuentas que hackear, nada que vender. Solo vos tenés acceso. Si querés una capa extra, activás el bloqueo biométrico con huella o cara.',
+            'Tus datos financieros se guardan únicamente en tu dispositivo. No hay servidores nuestros que los almacenen, no hay cuentas que hackear, nada que vender. Lo único que sale del teléfono es el texto de tu voz o de tu recibo, que se envía a la IA (Groq) para categorizarlo. Solo vos tenés acceso. Si querés una capa extra, activás el bloqueo biométrico con huella o cara.',
         },
         {
           question: '¿En qué se diferencia de otras apps de finanzas?',
@@ -374,17 +374,17 @@ export const translations = {
         {
           question: 'How do I log an expense? Does voice and photo work?',
           answer:
-            'Three ways: by voice (say "spent $50 at the grocery store" and AI detects amount, category, and pocket), by receipt photo (snap a ticket and on-device OCR reads the total without internet), or manually with the numpad. All three work from the same screen.',
+            'Three ways: by voice (say "spent $50 at the grocery store" and AI detects amount, category, and pocket), by receipt photo (snap a ticket, on-device OCR reads the text and AI extracts the total), or manually with the numpad. All three work from the same screen.',
         },
         {
           question: 'Do I need an internet connection?',
           answer:
-            'Almost everything works offline: manual entry, receipt OCR, budgets, goals, and reports. Only voice logging with AI needs a connection to process natural language. No data? Use manual or photo — done.',
+            'Almost everything works offline: manual entry, budgets, goals, and reports. Voice and receipt-photo logging need a connection so AI can process the text. No data? Use manual entry — done.',
         },
         {
           question: 'Is my data safe?',
           answer:
-            'Your financial data lives only on your device. No servers storing it, no accounts to get hacked, nothing to sell. Only you have access. For an extra layer, enable biometric lock with fingerprint or face recognition.',
+            'Your financial data lives only on your device. No servers of ours storing it, no accounts to get hacked, nothing to sell. The only thing that leaves your phone is the text of your voice entry or receipt, sent to AI (Groq) to categorize it. Only you have access. For an extra layer, enable biometric lock with fingerprint or face recognition.',
         },
         {
           question: 'How is it different from other finance apps?',

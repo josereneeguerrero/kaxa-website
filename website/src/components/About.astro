@@ -53,7 +53,7 @@ const links = [
 
       <!-- Social links -->
       <div class="ab-links">
-        {links.map(l => (
+        {links.filter(l => l.href !== '#').map(l => (
           <a href={l.href} target="_blank" rel="noopener" class="ab-link" aria-label={l.label}>
             <svg viewBox="0 0 24 24" fill={l.fill ? 'currentColor' : 'none'} stroke={l.fill ? 'none' : 'currentColor'}>
               <path d={l.svg}/>
