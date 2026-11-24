@@ -4,8 +4,10 @@ export const prerender = false;
 
 // Proxy for the Kaxa app's AI parsing (voice + receipts). Keeps the Groq key
 // server-side so it never ships inside the APK. Model and limits are fixed here.
-const MODEL = 'llama-3.1-8b-instant';
-const MAX_TOKENS = 500;
+// llama-3.1-8b-instant was retired by Groq (2026-08-16); gpt-oss-20b is the recommended replacement.
+const MODEL = 'openai/gpt-oss-20b';
+// gpt-oss is a reasoning model: leave headroom so reasoning does not eat the answer.
+const MAX_TOKENS = 1200;
 const MAX_CHARS = 12000;
 const MAX_MESSAGES = 2;
 
@@ -59,7 +61,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     body: JSON.stringify({
       model: MODEL,
       temperature: 0,
-      max_tokens: Math.min(Number(body.max_tokens) || MAX_TOKENS, MAX_TOKENS),
+      max_tokens: MAX_TOKENS,
+      reasoning_effort: 'low',
+      include_reasoning: false,
       messages: messages.map((m: any) => ({ role: m.role, content: m.content })),
     }),
   });
